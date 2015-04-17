@@ -1,0 +1,6 @@
+<!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="{{ page.id }}" data-title="{{ page.title }}" data-url="http://wildog.net{{ page.url }}"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->

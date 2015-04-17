@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+        <title>Wildog</title>
+        <description>Wildog - Wildog</description>
+        <link>http://wildog.net</link>
+        <link>http://wildog.net</link>
+        <lastBuildDate>2015-04-18T06:33:21+08:00</lastBuildDate>
+        <pubDate>2015-04-18T06:33:21+08:00</pubDate>
+        <ttl>1800</ttl>
+
+
+        <item>
+                <title>test</title>
+                <description>&lt;p&gt;Public releases are all root nodes.&lt;br /&gt;
+Incremental version bumps that were not released publicly are nested where appropriate.&lt;/p&gt;
+
+&lt;p&gt;P.S. If there is a standard (popular) changelog format, please let me know.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;0.3.0 : 2013.02.24&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Update twitter bootstrap to 2.2.2. Add responsiveness and update design a bit.&lt;/li&gt;
+      &lt;li&gt;@techotaku fixes custom tagline support (finally made it in!)&lt;/li&gt;
+      &lt;li&gt;@opie4624 adds ability to set tags from the command-line.&lt;/li&gt;
+      &lt;li&gt;@lax adds support for RSS feed. Adds rss and atom html links for discovery.&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Small typo fixes.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;@xuhdev fixes theme:install bug which does not overwrite theme even if saying ‘yes’.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;0.2.13 : 2012.03.24&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;0.2.13 : @mjpieters Updates pages_list helper to only show pages having a title.&lt;/li&gt;
+      &lt;li&gt;0.2.12 : @sway recommends showing page tagline only if tagline is set.&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;0.2.11 : @LukasKnuth adds ‘description’ meta-data field to post/page scaffold.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;0.2.10 : @koriroys fixes typo in atom feed&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;0.2.9 : 2012.03.01&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;0.2.9 : @alishutc Fixes the error on post creation if date was not specified.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;0.2.8 : 2012.03.01&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;0.2.8 : @metalelf0 Added option to specify a custom date when creating post.&lt;/li&gt;
+      &lt;li&gt;0.2.7 : @daz Updates twitter theme framework to use 2.x while still maintaining core layout. #50
+        @philips and @treggats add support for page.tagline metadata. #31 &amp;amp; #48&lt;/li&gt;
+      &lt;li&gt;0.2.6 : @koomar Adds Mixpanel analytics provider. #49&lt;/li&gt;
+      &lt;li&gt;0.2.5 : @nolith Adds ability to load custom rake scripts. #33&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;0.2.4 : @tommyblue Updated disqus comments provider to be compatible with posts imported from Wordpress. #47&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;0.2.3 : @3martini Adds Windows MSYS Support and error checks for git system calls. #40&lt;/li&gt;
+      &lt;li&gt;0.2.2 : @sstar Resolved an issue preventing disabling comments for individual pages #44&lt;/li&gt;
+      &lt;li&gt;0.2.1 : Resolve incorrect HOME_PATH/BASE_PATH settings&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;0.2.0 : 2012.02.01&lt;/strong&gt; &lt;br /&gt;
+Features
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Add Theme Packages v 0.1.0
+All themes should be tracked and maintained outside of JB core.
+Themes get “installed” via the Theme Installer.
+Theme Packages versioning is done separately from JB core with
+the main intent being to make sure theme versions are compatible with the given installer.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;0.1.2 : @jamesFleeting adds facebook comments support&lt;/li&gt;
+      &lt;li&gt;0.1.1 : @SegFaultAX adds tagline as site-wide configuration&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;0.1.0 : 2012.01.24&lt;/strong&gt; &lt;br /&gt;
+First major versioned release. &lt;br /&gt;
+Features
+    &lt;ul&gt;
+      &lt;li&gt;Standardize Public API&lt;/li&gt;
+      &lt;li&gt;Use name-spacing and modulation where possible.&lt;/li&gt;
+      &lt;li&gt;Ability to override public methods with custom code.&lt;/li&gt;
+      &lt;li&gt;Publish the theme API.&lt;/li&gt;
+      &lt;li&gt;Ship with comments, analytics integration.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;0.0.1 : 2011.12.30&lt;/strong&gt;  &lt;br /&gt;
+First public release, lots of updates =p
+Thank you everybody for dealing with the fast changes and helping
+me work out the API to a manageable state.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+                <link>http://wildog.net/2015/04/18/changelog</link>
+                <guid>http://wildog.net/2015/04/18/changelog</guid>
+                <pubDate>2015-04-18T00:00:00+08:00</pubDate>
+        </item>
+
+
+</channel>
+</rss>
