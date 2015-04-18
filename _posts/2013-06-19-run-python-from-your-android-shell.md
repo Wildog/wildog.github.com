@@ -3,6 +3,7 @@ layout: post
 title: 在 Android 终端上运行 Python
 ---
 
+doubanclaim2389defec8f9328e
 尝试了 [SL4A](https://code.google.com/p/android-scripting/) + [PythonForAndroid](https://code.google.com/p/python-for-android/) 和 [QPython](http://qpython.com/) 后发现 Python 并不能从 [Android Terminal Emulator](https://play.google.com/store/apps/details?id=jackpal.androidterm) 上直接运行，于是参考了下[官方的方法](https://code.google.com/p/python-for-android/wiki/RunPythonFromShell)，觉得这样调用有点麻烦，经我改进后在 Android 终端上运行 Python 的办法如下：
 
 1. 下载安装 [PythonForAndroid_r4.apk](https://code.google.com/p/python-for-android/downloads/detail?name=PythonForAndroid_r4.apk)  
@@ -15,9 +16,9 @@ title: 在 Android 终端上运行 Python
 6. 下载这里的 [python 文件](http://pan.baidu.com/share/link?shareid=2088068197&uk=3103986771) 文件复制到 `/system/bin/` 下
 7. 运行终端 → 首选项 → 命令行, 更改 `/system/bin/sh` 为 `/system/bin/bash`
 
-	![setting shell](/resources/130619-setting-shell.jpg)	
+    ![setting shell](/resources/130619-setting-shell.jpg)   
 8. 初始命令, 加入:
-		
+        
 {% highlight bash %}
 export EXTERNAL_STORAGE=/mnt/sdcard
 PYTHONPATH=/mnt/sdcard/com.googlecode.pythonforandroid/extras/python
@@ -29,8 +30,8 @@ export LD_LIBRARY_PATH=/data/data/com.googlecode.pythonforandroid/files/python/l
 #路径根据实际情况有可能需要更改
 {% endhighlight %}
 
-![](/resources/130619-export-env.jpg)	
-	
+![](/resources/130619-export-env.jpg)   
+    
 9.启终端即可运行<br>
-	
+    
 ![](/resources/130619-run.jpg)
