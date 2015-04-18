@@ -3,7 +3,6 @@ layout: post
 title: 在 Android 终端上运行 Python
 ---
 
-doubanclaim2389defec8f9328e
 尝试了 [SL4A](https://code.google.com/p/android-scripting/) + [PythonForAndroid](https://code.google.com/p/python-for-android/) 和 [QPython](http://qpython.com/) 后发现 Python 并不能从 [Android Terminal Emulator](https://play.google.com/store/apps/details?id=jackpal.androidterm) 上直接运行，于是参考了下[官方的方法](https://code.google.com/p/python-for-android/wiki/RunPythonFromShell)，觉得这样调用有点麻烦，经我改进后在 Android 终端上运行 Python 的办法如下：
 
 1. 下载安装 [PythonForAndroid_r4.apk](https://code.google.com/p/python-for-android/downloads/detail?name=PythonForAndroid_r4.apk)  
