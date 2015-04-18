@@ -73,16 +73,16 @@
     <span class="k">return</span> <span class="k">a</span>:<span class="k">m</span>
 <span class="k">endfunction</span></code></pre></div>
 
-<p>复制方法:</p>
+<p>复制方法:  </p>
 
 <div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">let</span> @<span class="p">+</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
 <span class="p">:</span>%<span class="k">s</span><span class="sr">/regex/</span>\<span class="p">=</span>CopyMatches<span class="p">(</span>submatch<span class="p">(</span><span class="m">0</span><span class="p">))</span>/<span class="k">g</span></code></pre></div>
 
-<p>粘贴方法:</p>
+<p>粘贴方法:  </p>
 
 <div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="c">&quot;+p</span></code></pre></div>
 
-<p>嫌麻烦可以设个快捷键, 如:</p>
+<p>嫌麻烦可以设个快捷键, 如:  </p>
 
 <div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span>map <span class="p">&lt;</span>F4<span class="p">&gt;</span> :<span class="k">let</span> @<span class="p">+</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span><span class="p">&lt;</span><span class="k">cr</span><span class="p">&gt;</span>:%<span class="k">s</span><span class="sr">/regex/</span>\<span class="p">=</span>CopyMatches<span class="p">(</span>submatch<span class="p">(</span><span class="m">0</span><span class="p">))</span>/<span class="k">g</span></code></pre></div>
 

@@ -5,8 +5,8 @@
         <description>Wildog - Wildog</description>
         <link>http://wildog.net</link>
         <link>http://wildog.net</link>
-        <lastBuildDate>2015-04-19T04:29:51+08:00</lastBuildDate>
-        <pubDate>2015-04-19T04:29:51+08:00</pubDate>
+        <lastBuildDate>2015-04-19T05:53:45+08:00</lastBuildDate>
+        <pubDate>2015-04-19T05:53:45+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -20,16 +20,16 @@
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;a&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;m&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;复制方法:&lt;/p&gt;
+&lt;p&gt;复制方法:  &lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;%&lt;span class=&quot;k&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;粘贴方法:&lt;/p&gt;
+&lt;p&gt;粘贴方法:  &lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;c&quot;&gt;&amp;quot;+p&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;嫌麻烦可以设个快捷键, 如:&lt;/p&gt;
+&lt;p&gt;嫌麻烦可以设个快捷键, 如:  &lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F4&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; :&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;cr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:%&lt;span class=&quot;k&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -60,11 +60,11 @@
 3. Arduino 库&lt;br /&gt;
    # 解压至 &lt;code&gt;Processing目录/modes/java/libraries/&lt;/code&gt;&lt;br /&gt;
 4. Minim 库&lt;br /&gt;
-   # 官方 Processing 已自带, 如果你的没有, 下载后解压至相同目录&lt;/p&gt;
+   # 官方 Processing 已自带, 如果你的没有, 下载后解压至相同目录  &lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;步骤&lt;/strong&gt;:&lt;br /&gt;
 1. 将 Examples 中 Firmata 库里的 StandardFirmata 上传到 Arduino 中&lt;br /&gt;
-2. 上传完毕等到 Arduino 上的 RX/TX LED 停止闪烁后再运行 Processing 源码&lt;/p&gt;
+2. 上传完毕等到 Arduino 上的 RX/TX LED 停止闪烁后再运行 Processing 源码  &lt;/p&gt;
 
 &lt;p&gt;实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：&lt;a href=&quot;http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html&quot;&gt;视频戳我&lt;/a&gt;&lt;br /&gt;
 右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&amp;lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat&lt;/p&gt;
@@ -92,7 +92,7 @@
   &lt;li&gt;
     &lt;p&gt;运行终端 → 首选项 → 命令行, 更改 &lt;code&gt;/system/bin/sh&lt;/code&gt; 为 &lt;code&gt;/system/bin/bash&lt;/code&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/resources/130619-setting-shell.jpg&quot; alt=&quot;setting shell&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/resources/130619-setting-shell.jpg&quot; alt=&quot;setting shell&quot; /&gt;   &lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;初始命令, 加入:&lt;/li&gt;
 &lt;/ol&gt;
@@ -106,7 +106,7 @@
 &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python/lib
 &lt;span class=&quot;c&quot;&gt;#路径根据实际情况有可能需要更改&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/resources/130619-export-env.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/resources/130619-export-env.jpg&quot; alt=&quot;&quot; /&gt;   &lt;/p&gt;
 
 &lt;p&gt;9.启终端即可运行&lt;br /&gt;&lt;/p&gt;
 
