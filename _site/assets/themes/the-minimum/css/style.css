@@ -24,7 +24,7 @@ Calculation should be done via  http://j.mp/rNg5uA
 No styleguide reference.
 */
 body {
-  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, "MS PGothic", Sans-Serif, "STHeitiSC-Light", "Heiti SC Light", "Heiti SC", "Microsoft YaHei";
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, Sans-Serif, "STHeitiSC-Light", "Heiti SC Light", "Heiti SC", "Microsoft YaHei";
   font-size: 1em;
   line-height: 1.625em;
 }
@@ -51,7 +51,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: junctionregularRegular, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, "MS PGothic", Sans-Serif, "STHeitiSC-Light", "Heiti SC Light", "Heiti SC", "Microsoft YaHei";
+  font-family: junctionregularRegular, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, Sans-Serif, "STHeitiSC-Light", "Heiti SC Light", "Heiti SC", "Microsoft YaHei";
   font-weight: bold;
 }
 h1, .h1 {
@@ -62,20 +62,20 @@ h1, .h1 {
   letter-spacing: -1px;
 }
 h2, .h2 {
-  font-size: 38px;
+  font-size: 32px;
   line-height: 52px;
   margin-top: 52px;
   margin-bottom: 16px;
   letter-spacing: -1px;
 }
 h3, .h3 {
-  font-size: 25px;
+  font-size: 20px;
   line-height: 26px;
   margin-top: 26px;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
 }
 h4, .h4 {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 26px;
   margin-top: 26px;
   margin-bottom: 26px;
@@ -189,7 +189,7 @@ a:visited {
   text-decoration: none;
 }
 a:hover {
-  color: #474747;
+  color: #1a1a1a;
   text-decoration: none;
 }
 /* HIGHLIGHTER */
@@ -213,7 +213,7 @@ pre {
 /* HEADER
 --------------------------------------------------------------------------------- */
 .the-header .logo {
-  font-family: junctionregularRegular, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, "MS PGothic", Osaka, Sans-Serif;
+  font-family: junctionregularRegular, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, Sans-Serif;
   margin: 0;
 }
 .the-header .logo a:visited {
@@ -229,16 +229,18 @@ pre {
 /* MAIN
 --------------------------------------------------------------------------------- */
 .unit-article header {
-  background: url('/assets/themes/the-minimum/skin/100-90-5-monochrome.png');
+  /* background: url('/assets/themes/the-minimum/skin/100-90-5-monochrome.png');
   background-repeat: repeat;
-  background-position: 0 0;
-  background-color: #BADA55;
+  background-position: 0 0; */
+  background-color: #1a1a1a;
+  background-color: rgba(21, 25, 25, 0.8);
   margin-bottom: 1.325em;
-  padding-top: 1.325em;
-  padding-bottom: 1.325em;
+  padding-top: 1.125em;
+  padding-bottom: 1.125em;
 }
 .unit-article header h1 {
-  color: #2d2d2d;
+  color: #fafafa;
+  color: rgba(250, 250, 250, 0.8);
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -288,6 +290,10 @@ pre {
 }
 .unit-article a:hover {
   border-bottom: 1px dotted #bbddbb;
+  color: #fafafa;
+  color: rgba(250, 250, 250, 0.8);
+  background-color: #1a1a1a;
+  background-color: rgba(21, 25, 25, 0.8);
 }
 .unit-article blockquote {
   border-left: 1em solid rgba(21, 25, 25, 0.8);
@@ -345,9 +351,10 @@ pre {
 .unit-article p code, .unit-article li code {
   margin: 0 2px;
   padding: 2px 5px;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   border: 1px solid #CCC;
   background-color: #F8F8F8;
+  /* problem above when li pre code */
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -355,16 +362,33 @@ pre {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
+.unit-article li pre code {
+  color: #f2f2f2;
+  background-color: #393939;
+  border: 1px solid #393939;
+  margin: 0 0px;
+  padding: 0 0px;
+  font-family: "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+}
 .unit-article img {
-  display: block;
+  max-width: 43.125em;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 0;
 }
+
+.unit-article img.center {
+  display: block;
+}
+
 .unit-article img.left {
   margin-right: 16px;
+  float: none;
 }
 .unit-article img.right {
   margin-left: 16px;
+  float: none;
 }
 .unit-article .date-publish {
   margin-bottom: 0;
@@ -410,12 +434,14 @@ pre {
 }
 .unit-article .unit-foot a:link {
   color: #fafafa;
+  border-bottom: none;
 }
 .unit-article .unit-foot a:visited {
   color: #fafafa;
 }
 .unit-article .unit-foot a:hover {
-  color: #ffffff;
+  color: #bbddbb;
+  background-color: transparent;
 }
 .unit-article .unit-foot nav ul {
   list-style: none;
@@ -510,7 +536,7 @@ pre {
   background-color: rgba(21, 25, 25, 0.8);
   color: #fafafa;
   color: rgba(250, 250, 250, 0.8);
-  padding-bottom: 1.625em;
+  /* padding-bottom: 1.625em; */
 }
 .the-footer a:link {
   color: #99cc99;
@@ -648,7 +674,7 @@ pre {
   float: right;
 }
 .ie .the-footer .unit-foot {
-  width: 43.125em;
+  width: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -686,14 +712,25 @@ pre {
     content: "/";
   }
   .the-header .nav-global li {
-    display: inline-block;
-    *display: inline;
+    display: inline;
+    *display: inline-block;
     zoom: 1;
     line-height: normal;
     letter-spacing: normal;
     margin-right: 16px;
     word-spacing: normal;
     vertical-align: middle;
+  }
+  .the-header .nav-global li a {
+    padding: 2px 2px;
+  }
+  .the-header .nav-global li:hover {
+    background-color: #1a1a1a;
+    background-color: rgba(21, 25, 25, 0.8);
+  }
+  .the-header .nav-global li a:hover {
+    color: #fafafa;
+    color: rgba(250, 250, 250, 0.8);
   }
   .the-header .nav-global li:last-child {
     margin-right: 0;
@@ -705,7 +742,7 @@ pre {
     width: 26.25em;
   }
   .unit-article .unit-foot .gotop {
-    margin-top: 1.625em;
+    margin-top: 0.625em;
   }
   .layout-page .unit-body .unit-body-inner {
     width: 26.25em;
@@ -749,6 +786,9 @@ pre {
     width: 20.625em;
     float: right;
   }
+  .unit-article .unit-foot .gotop {
+    margin-top: 0.625em;
+  }
   .the-footer .unit-foot {
     width: 43.125em;
   }
@@ -777,13 +817,13 @@ pre {
   }
   .unit-article .unit-foot .pagination {
     float: left;
-    width: 37.5em;
+    width: 35.5em;
   }
   .unit-article .unit-foot .gotop {
     float: right;
     margin-top: 0;
     text-align: right;
-    width: 20.625em;
+    width: 7.375em;
   }
   .layout-page .unit-body .unit-body-inner {
     width: 43.125em;
@@ -820,7 +860,8 @@ pre {
     width: 88.125em;
   }
   .unit-article .unit-foot .pagination {
-    width: 54.375em;
+    padding-left: 360px;
+    width: 33.375em;
   }
   .unit-article .unit-foot .gotop {
     padding-right: 360px;

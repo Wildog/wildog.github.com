@@ -1,8 +1,9 @@
 
 http://wildog.net/about.html
 http://wildog.net/index.html
-http://wildog.net/pages.html
 http://wildog.net/rss.xml
 http://wildog.net/sitemap.txt
 
-http://wildog.net/2015/04/18/changelog
+http://wildog.net/2014/10/21/copy-and-paste-multiple-search-results-in-vim
+http://wildog.net/2013/07/11/arduino-processing-beat-detect
+http://wildog.net/2013/06/19/run-python-from-your-android-shell

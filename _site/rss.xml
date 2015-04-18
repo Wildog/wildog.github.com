@@ -5,103 +5,116 @@
         <description>Wildog - Wildog</description>
         <link>http://wildog.net</link>
         <link>http://wildog.net</link>
-        <lastBuildDate>2015-04-18T06:33:21+08:00</lastBuildDate>
-        <pubDate>2015-04-18T06:33:21+08:00</pubDate>
+        <lastBuildDate>2015-04-19T03:28:34+08:00</lastBuildDate>
+        <pubDate>2015-04-19T03:28:34+08:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
-                <title>test</title>
-                <description>&lt;p&gt;Public releases are all root nodes.&lt;br /&gt;
-Incremental version bumps that were not released publicly are nested where appropriate.&lt;/p&gt;
+                <title>在 Vim 里复制所有匹配结果</title>
+                <description>&lt;p&gt;今天突发奇想地想在 Vim 中一次性复制所有的正则匹配结果, 先是直接想到用 MultipleCursors 这个插件带的 MultipleCursorsFind, 复制后提示 yank 操作不能在多光标情况下使用, 这种奇技淫巧果然行不通…
+遂用 Vimscript 解决, 在 &lt;code&gt;.vimrc&lt;/code&gt; 中加入下列函数:&lt;/p&gt;
 
-&lt;p&gt;P.S. If there is a standard (popular) changelog format, please let me know.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; CopyMatches &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; .&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;a&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;m&lt;/span&gt; . &lt;span class=&quot;s2&quot;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;a&lt;/span&gt;:&lt;span class=&quot;k&quot;&gt;m&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;0.3.0 : 2013.02.24&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;Update twitter bootstrap to 2.2.2. Add responsiveness and update design a bit.&lt;/li&gt;
-      &lt;li&gt;@techotaku fixes custom tagline support (finally made it in!)&lt;/li&gt;
-      &lt;li&gt;@opie4624 adds ability to set tags from the command-line.&lt;/li&gt;
-      &lt;li&gt;@lax adds support for RSS feed. Adds rss and atom html links for discovery.&lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Small typo fixes.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;@xuhdev fixes theme:install bug which does not overwrite theme even if saying ‘yes’.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;0.2.13 : 2012.03.24&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;0.2.13 : @mjpieters Updates pages_list helper to only show pages having a title.&lt;/li&gt;
-      &lt;li&gt;0.2.12 : @sway recommends showing page tagline only if tagline is set.&lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;0.2.11 : @LukasKnuth adds ‘description’ meta-data field to post/page scaffold.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;0.2.10 : @koriroys fixes typo in atom feed&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;0.2.9 : 2012.03.01&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;0.2.9 : @alishutc Fixes the error on post creation if date was not specified.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;0.2.8 : 2012.03.01&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;0.2.8 : @metalelf0 Added option to specify a custom date when creating post.&lt;/li&gt;
-      &lt;li&gt;0.2.7 : @daz Updates twitter theme framework to use 2.x while still maintaining core layout. #50
-        @philips and @treggats add support for page.tagline metadata. #31 &amp;amp; #48&lt;/li&gt;
-      &lt;li&gt;0.2.6 : @koomar Adds Mixpanel analytics provider. #49&lt;/li&gt;
-      &lt;li&gt;0.2.5 : @nolith Adds ability to load custom rake scripts. #33&lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;0.2.4 : @tommyblue Updated disqus comments provider to be compatible with posts imported from Wordpress. #47&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;Bug Fixes&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;0.2.3 : @3martini Adds Windows MSYS Support and error checks for git system calls. #40&lt;/li&gt;
-      &lt;li&gt;0.2.2 : @sstar Resolved an issue preventing disabling comments for individual pages #44&lt;/li&gt;
-      &lt;li&gt;0.2.1 : Resolve incorrect HOME_PATH/BASE_PATH settings&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;0.2.0 : 2012.02.01&lt;/strong&gt; &lt;br /&gt;
-Features
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Add Theme Packages v 0.1.0
-All themes should be tracked and maintained outside of JB core.
-Themes get “installed” via the Theme Installer.
-Theme Packages versioning is done separately from JB core with
-the main intent being to make sure theme versions are compatible with the given installer.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;0.1.2 : @jamesFleeting adds facebook comments support&lt;/li&gt;
-      &lt;li&gt;0.1.1 : @SegFaultAX adds tagline as site-wide configuration&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;0.1.0 : 2012.01.24&lt;/strong&gt; &lt;br /&gt;
-First major versioned release. &lt;br /&gt;
-Features
-    &lt;ul&gt;
-      &lt;li&gt;Standardize Public API&lt;/li&gt;
-      &lt;li&gt;Use name-spacing and modulation where possible.&lt;/li&gt;
-      &lt;li&gt;Ability to override public methods with custom code.&lt;/li&gt;
-      &lt;li&gt;Publish the theme API.&lt;/li&gt;
-      &lt;li&gt;Ship with comments, analytics integration.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;0.0.1 : 2011.12.30&lt;/strong&gt;  &lt;br /&gt;
-First public release, lots of updates =p
-Thank you everybody for dealing with the fast changes and helping
-me work out the API to a manageable state.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;复制方法:&lt;/p&gt;
 
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;%&lt;span class=&quot;k&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;粘贴方法:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;c&quot;&gt;&amp;quot;+p&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;嫌麻烦可以设个快捷键, 如:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F4&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; :&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;cr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;:%&lt;span class=&quot;k&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;按 F4 后自己改掉 regex 就可以了.&lt;/p&gt;
+
+&lt;p&gt;示例:&lt;br /&gt;
+&lt;img src=&quot;/resources/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;/resources/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
-                <link>http://wildog.net/2015/04/18/changelog</link>
-                <guid>http://wildog.net/2015/04/18/changelog</guid>
-                <pubDate>2015-04-18T00:00:00+08:00</pubDate>
+                <link>http://wildog.net/2014/10/21/copy-and-paste-multiple-search-results-in-vim</link>
+                <guid>http://wildog.net/2014/10/21/copy-and-paste-multiple-search-results-in-vim</guid>
+                <pubDate>2014-10-21T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>用 Arduino + Processing 识别节拍</title>
+                <description>&lt;p&gt;一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;源码&lt;/strong&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://wildog.net/download/BeatWrite.zip&quot;&gt;点我下载&lt;/a&gt;&lt;br /&gt;
+# 把 &lt;code&gt;BeatWrite.pde&lt;/code&gt; 中的针脚配置改为你自己连接的针脚, 连接图示&lt;a href=&quot;/resources/circuit.jpg&quot;&gt;点我查看&lt;/a&gt;&lt;br /&gt;
+# 把 mp3 文件放入 &lt;code&gt;data&lt;/code&gt; 文件夹中, 将 &lt;code&gt;BeatWrite.pde&lt;/code&gt; 中 &lt;code&gt;&quot;minim.loadFile(&quot;aaa.mp3&quot;, 2048)&quot;&lt;/code&gt; 一行的 &lt;code&gt;&quot;aaa.mp3&quot;&lt;/code&gt; 改为你自己的 mp3 文件名&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;软件&lt;/strong&gt;:&lt;br /&gt;
+1. Arduino&lt;br /&gt;
+2. Processing&lt;br /&gt;
+   # 务必下载 1.5.1 版本的 Processing, 个人测试 2.0 的版本会出错&lt;br /&gt;
+3. Arduino 库&lt;br /&gt;
+   # 解压至 &lt;code&gt;Processing目录/modes/java/libraries/&lt;/code&gt;&lt;br /&gt;
+4. Minim 库&lt;br /&gt;
+   # 官方 Processing 已自带, 如果你的没有, 下载后解压至相同目录&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤&lt;/strong&gt;:&lt;br /&gt;
+1. 将 Examples 中 Firmata 库里的 StandardFirmata 上传到 Arduino 中&lt;br /&gt;
+2. 上传完毕等到 Arduino 上的 RX/TX LED 停止闪烁后再运行 Processing 源码&lt;/p&gt;
+
+&lt;p&gt;实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：&lt;a href=&quot;http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html&quot;&gt;视频戳我&lt;/a&gt;&lt;br /&gt;
+右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&amp;lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+                <link>http://wildog.net/2013/07/11/arduino-processing-beat-detect</link>
+                <guid>http://wildog.net/2013/07/11/arduino-processing-beat-detect</guid>
+                <pubDate>2013-07-11T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>在 Android 终端上运行 Python</title>
+                <description>&lt;p&gt;尝试了 &lt;a href=&quot;https://code.google.com/p/android-scripting/&quot;&gt;SL4A&lt;/a&gt; + &lt;a href=&quot;https://code.google.com/p/python-for-android/&quot;&gt;PythonForAndroid&lt;/a&gt; 和 &lt;a href=&quot;http://qpython.com/&quot;&gt;QPython&lt;/a&gt; 后发现 Python 并不能从 &lt;a href=&quot;https://play.google.com/store/apps/details?id=jackpal.androidterm&quot;&gt;Android Terminal Emulator&lt;/a&gt; 上直接运行，于是参考了下&lt;a href=&quot;https://code.google.com/p/python-for-android/wiki/RunPythonFromShell&quot;&gt;官方的方法&lt;/a&gt;，觉得这样调用有点麻烦，经我改进后在 Android 终端上运行 Python 的办法如下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;下载安装 &lt;a href=&quot;https://code.google.com/p/python-for-android/downloads/detail?name=PythonForAndroid_r4.apk&quot;&gt;PythonForAndroid_r4.apk&lt;/a&gt;&lt;br /&gt;
+# 这个版本是 Python 2.6, 你也可以选择 &lt;a href=&quot;https://code.google.com/p/python-for-android/downloads/detail?name=Python3ForAndroid_r6.apk&quot;&gt;Python 3&lt;/a&gt;, 后面的环境变量自行更改&lt;/li&gt;
+  &lt;li&gt;运行 Python for Android → Install (需要网络，最好在wifi环境下)&lt;/li&gt;
+  &lt;li&gt;Google Play 商店里安装 &lt;a href=&quot;https://play.google.com/store/apps/details?id=jackpal.androidterm&quot;&gt;Android Terminal Emulator&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;下载 Bash, 见 &lt;a href=&quot;http://forum.xda-developers.com/showthread.php?t=977051&quot;&gt;XDA 帖子附件&lt;/a&gt;&lt;br /&gt;
+# 帖子里的 BusyBox 有需要也可以装上替换 Android 阉割版&lt;/li&gt;
+  &lt;li&gt;解压, 把包里的 &lt;a href=&quot;http://pan.baidu.com/share/link?shareid=2088068197&amp;amp;uk=3103986771&quot;&gt;bash 文件&lt;/a&gt;复制到 &lt;code&gt;/system/bin/&lt;/code&gt; 下&lt;/li&gt;
+  &lt;li&gt;下载这里的 &lt;a href=&quot;http://pan.baidu.com/share/link?shareid=2088068197&amp;amp;uk=3103986771&quot;&gt;python 文件&lt;/a&gt; 文件复制到 &lt;code&gt;/system/bin/&lt;/code&gt; 下&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行终端 → 首选项 → 命令行, 更改 &lt;code&gt;/system/bin/sh&lt;/code&gt; 为 &lt;code&gt;/system/bin/bash&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/resources/130619-setting-shell.jpg&quot; alt=&quot;setting shell&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;初始命令, 加入:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;EXTERNAL_STORAGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard
+&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard/com.googlecode.pythonforandroid/extras/python
+&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:/data/data/com.googlecode.pythonforandroid/files/python/lib/python2.6/lib-dynload
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;PYTHONPATH
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TEMP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard/com.googlecode.pythonforandroid/extras/python/tmpexport &lt;span class=&quot;nv&quot;&gt;PYTHON_EGG_CACHE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TEMP&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONHOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python/lib
+&lt;span class=&quot;c&quot;&gt;#路径根据实际情况有可能需要更改&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/130619-export-env.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;9.启终端即可运行&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/130619-run.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+                <link>http://wildog.net/2013/06/19/run-python-from-your-android-shell</link>
+                <guid>http://wildog.net/2013/06/19/run-python-from-your-android-shell</guid>
+                <pubDate>2013-06-19T00:00:00+08:00</pubDate>
         </item>
 
 
