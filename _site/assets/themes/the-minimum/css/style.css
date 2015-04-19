@@ -377,11 +377,13 @@ pre {
   margin-right: auto;
   margin-bottom: 0;
 }
-
+.unit-article img.nonfullwidth {
+  max-width: 43.125em;
+  width: auto;
+}
 .unit-article img.center {
   display: block;
 }
-
 .unit-article img.left {
   margin-right: 16px;
   float: none;
@@ -685,6 +687,43 @@ pre {
   img {
     max-width: 100%;
   }
+  .the-header .unit-inner {
+    width: 20em;
+
+  }
+  .the-header .logo a {
+    font-size: 42px;
+    line-height: 52px;
+    letter-spacing: -1px;
+  }
+
+  .the-header .nav-global .home:after {
+    margin-left: 16px;
+    content: "/";
+  }
+  .the-header .nav-global li a {
+    padding: 2px 2px;
+  }
+  .the-header .nav-global li:last-child {
+    margin-right: 0;
+  }
+  .unit-article .unit-head-inner,
+  .unit-article .entry-content,
+  .unit-article .misc-content,
+  .unit-article .unit-foot-inner {
+    width: 20em;
+  }
+
+  .layout-page .unit-body .unit-body-inner {
+    width: 20em;
+  }
+  .layout-page .unit-body .article-list {
+    width: 20em;
+  }
+  .the-footer .unit-foot {
+    width: 20em;
+  }
+  
 }
 /*
     Wide Smartphone
