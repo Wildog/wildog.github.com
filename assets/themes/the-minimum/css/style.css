@@ -825,8 +825,15 @@ pre {
     width: 20.625em;
     float: right;
   }
+  .unit-article .unit-foot .pagination {
+    float: left;
+    width: 35.5em;
+  }
   .unit-article .unit-foot .gotop {
-    margin-top: 0.625em;
+    float: right;
+    margin-top: 0;
+    text-align: right;
+    width: 7.375em;
   }
   .the-footer .unit-foot {
     width: 43.125em;
