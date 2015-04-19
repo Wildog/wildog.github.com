@@ -5,46 +5,12 @@
 @import "syntaxhighlighter.css";
 
 @import "helper.css";
-/*
-Frameless           <http://framelessgrid.com/>
-by Joni Korpi       <http://jonikorpi.com/>
-licensed under CC0  <http://creativecommons.org/publicdomain/zero/1.0/>
 
-No styleguide reference.
-*/
-/*
-Font families
-
-No styleguide reference.
-*/
-/*
-Base font size should be larger than 16px.
-Calculation should be done via  http://j.mp/rNg5uA
-
-No styleguide reference.
-*/
 body {
   font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, Sans-Serif, "STHeitiSC-Light", "Heiti SC Light", "Heiti SC", "Microsoft YaHei";
   font-size: 1em;
   line-height: 1.625em;
 }
-/*
-Font size setting
-Using Golden ratio section (Caliculated via http://j.mp/sB6oxM):
-109.657 6.854   843.515 * h1
-82.241  5.14    632.623
-67.773  4.236   521.331
-50.829  3.177   390.992
-41.887  2.618   322.208 * h2
-31.415  1.963   241.654
-25.888  1.618   199.138 * h3
-19.416  1.214   149.354 * h4
-16.000  1       123.077 * Base font size
-12.000  0.75    92.308  * Minimum font size
-Vertical Rhythm is caluculated via http://j.mp/sUvKuN
-
-No styleguide reference.
-*/
 h1,
 h2,
 h3,
@@ -106,31 +72,6 @@ strong {
 em {
   font-weight: bold;
 }
-/*
-Color schemes
-
-No styleguide reference.
-*/
-/* solarized - http://j.mp/s9Xuw9
-
-@base03:    #002b36;
-@base02:    #073642;
-@base01:    #586e75;
-@base00:    #657b83;
-@base0:     #839496;
-@base1:     #93a1a1;
-@base2:     #eee8d5;
-@base3:     #fdf6e3;
-@yellow:    #b58900;
-@orange:    #cb4b16;
-@red:       #dc322f;
-// @magenta:   #d33682;
-@violet:    #6c71c4;
-@blue:      #268bd2;
-@cyan:      #2aa198;
-@green:     #859900;
-
-*/
 /* Junction Font
  * http://www.theleagueofmoveabletype.com/
  * Using for Logo and headers
@@ -739,7 +680,7 @@ pre {
     letter-spacing: -1px;
   }
   .the-header .nav-global {
-    margin-top: 1.625em;
+    margin-top: 21px;
     letter-spacing: -0.31em;
     *letter-spacing: normal;
     word-spacing: -0.43em;
@@ -794,55 +735,9 @@ pre {
   }
 }
 /*
-    Tablet
+   Tablet and Not that old computer layout 
 */
 @media only screen and (min-width: 768px) {
-  .the-header .unit-inner {
-    width: 43.125em;
-    text-align: center;
-  }
-  .unit-article .unit-head-inner,
-  .unit-article .entry-content,
-  .unit-article .misc-content,
-  .unit-article .unit-foot-inner {
-    width: 43.125em;
-  }
-  .unit-article .unit-head-inner .meta {
-    margin-bottom: 0;
-    text-align: right;
-    width: 20.625em;
-    float: right;
-  }
-  .layout-page .unit-body .unit-body-inner {
-    width: 43.125em;
-  }
-  .layout-page .unit-body .article-list {
-    width: 43.125em;
-  }
-  .layout-page .unit-body .article-list .meta {
-    margin-bottom: 0;
-    text-align: right;
-    width: 20.625em;
-    float: right;
-  }
-  .unit-article .unit-foot .pagination {
-    float: left;
-    width: 35.5em;
-  }
-  .unit-article .unit-foot .gotop {
-    float: right;
-    margin-top: 0;
-    text-align: right;
-    width: 7.375em;
-  }
-  .the-footer .unit-foot {
-    width: 43.125em;
-  }
-}
-/*
-    Not that old computer layout 
-*/
-@media only screen and (min-width: 1280px) {
   .the-header .unit-inner {
     width: 43.125em;
   }
