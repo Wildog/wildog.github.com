@@ -624,7 +624,7 @@ pre {
 /*
     Large Smartphone (>iPhone 5)
 */
-@media only screen and (min-width: 360px) and (max-width: 767px) {
+@media only screen and (min-width: 380px) and (max-width: 767px) {
   img {
     max-width: 100%;
   }
