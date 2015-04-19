@@ -622,9 +622,9 @@ pre {
   margin-right: auto;
 }
 /*
-    Large Smartphone (>iPhone 5)
+    Large Smartphone (>=iPhone 6)
 */
-@media only screen and (min-width: 360px) and (max-width: 767px) {
+@media only screen and (min-width: 370px) and (max-width: 767px) {
   img {
     max-width: 100%;
   }
