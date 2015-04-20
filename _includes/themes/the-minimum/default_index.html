@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 ie" lang="en"> <![endif]-->
@@ -7,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>About Me | Wildog</title>
-    <meta name="author" content="Wildog">
+    <title>{{ page.title }} | wildog</title>
+    <meta name="author" content="{{ site.author.name }}">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -26,8 +25,8 @@
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link href='/assets/themes/the-minimum/css/style.css' rel="stylesheet" media="all">
-    <link href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" media="all" />
+    <link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
+    <link href="{{ ASSET_PATH }}/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" media="all" />
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
     <script>
     var _hmt = _hmt || [];
@@ -45,7 +44,7 @@
     <header class="the-header">
         <div class="unit-head">
             <div class="unit-inner unit-head-inner">
-                <p class="logo"><a href="/">limbo.space</a></p>
+                <p class="logo"><a href="{{ HOME_PATH }}">{{ site.title }}</a></p>
                 <nav class="nav-global">
                     <ul>
                         <li class="index"><a href="/index.html">Home</a></li>
@@ -60,55 +59,12 @@
         <div class="unit-body">
             <div class="unit-inner unit-body-inner">
                 <div class="entry-content">
-                    
-<article class="unit-article layout-page">
-	<div class="unit-inner unit-article-inner">
-		<div class="content">
-			<header>
-				<div class="unit-head">
-					<div class="unit-inner unit-head-inner">
-						<h1 class="h2 entry-title">About Me</h1>
-					</div><!-- unit-inner -->
-				</div><!-- unit-head -->
-			</header>
-
-			<div class="bd">
-				<div class="entry-content">
-					
-
-<div class="misc vcard">
-    <h4>Links</h4>
-    <ul>
-        <li class="contact"><address><span class="author fn n">Email: </span><span class="fn email"><code>echo bnqitl@bnqitl.sjy | tr f-za-e a-z</code></span></address></li>
-        <li class="douban"><a href="http://douban.com/people/randyzew" rel="me">Douban/Wildog</a></li>
-        <li class="soundcloud"><a href="http://soundcloud.com/wildogmusic" rel="me">SoundCloud/WildogMusic</a></li>
-        <li class="github"><a href="http://github.com/Wildog/" rel="me">Github/Wildog</a></li>
-        <li class="twitter"><a href="http://twitter.com/WildogGo/" rel="me">Twitter@WildogGo</a></li>
-        <li class="instagram"><a href="https://instagram.com/wildoggo" rel="me">Instagram@WildogGo</a></li>
-    </ul>
-</div>
-
-				</div><!-- entry-content -->
-			</div><!-- bd -->
-
-			<footer class="unit-foot">
-				<div class="unit-inner unit-foot-inner">
-					<p class="gotop">
-						<a href="#page">Back to Top</a>
-					</p>
-				</div>
-			</footer>
-
-		</div><!-- content -->
-	</div><!-- unit-inner -->
-</article>
-
-
+                    {{ content }}
                 </div>
             </div><!-- unit-inner -->
         </div><!-- unit-body -->
     <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="{{ ASSET_PATH }}/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
     <script>
     // add attribute to pictures
     $(document).ready(function() {
@@ -162,7 +118,7 @@
         };
     load('//platform.twitter.com/widgets.js', 'tweetjs');
     // load('https://apis.google.com/js/plusone.js', 'gplus1js'); // Checkout http://j.mp/ApDgMr for usage html for this is <div class="g-plusone" data-size="medium"></div>
-    // load('//connect.facebook.net/en_US/all.js#xfbml=1', 'fbjssdk'); // Checkout http://j.mp/wZw2xR for using open graph protorol html for this is <div class="fb-like" data-href="/about.html" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="verdana"></div>
+    // load('//connect.facebook.net/en_US/all.js#xfbml=1', 'fbjssdk'); // Checkout http://j.mp/wZw2xR for using open graph protorol html for this is <div class="fb-like" data-href="{{ page.url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="verdana"></div>
     }(document, 'script'));
 </script>
 <script>
@@ -182,9 +138,6 @@ var duoshuoQuery = {short_name:"wildog"};
     })();
 </script>
 <!-- 多说公共JS代码 end -->
-  
-
-
+  {% include JB/analytics %}
 </body>
 </html>
-

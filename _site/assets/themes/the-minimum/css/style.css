@@ -472,6 +472,12 @@ pre {
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
 }
+#ds-thread .ds-powered-by {display:none!important;}
+#ds-thread .ds-login-buttons {display:none!important;}
+#ds-thread #ds-reset .ds-replybox {padding: 1em 0 10px 40px!important;}
+#ds-thread #ds-reset .ds-replybox .ds-avatar {margin: 1em 0 0 0px!important;}
+#ds-thread #ds-reset .ds-toolbar {padding-bottom: 0!important; padding-top: 1em!important;}
+#ds-thread #ds-reset .ds-account-control {padding-bottom: 0!important;}
 /* FOOTER
 ----------------------------------------------- */
 .the-footer {
@@ -720,9 +726,6 @@ pre {
   .unit-article .misc-content,
   .unit-article .unit-foot-inner {
     width: 26.25em;
-  }
-  .unit-article .unit-foot .gotop {
-    margin-top: 0.625em;
   }
   .layout-page .unit-body .unit-body-inner {
     width: 26.25em;
