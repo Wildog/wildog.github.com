@@ -28,7 +28,7 @@ h1, .h1 {
   letter-spacing: -1px;
 }
 h2, .h2 {
-  font-size: 32px;
+  font-size: 30px;
   line-height: 52px;
   margin-top: 52px;
   margin-bottom: 16px;
@@ -154,7 +154,7 @@ pre {
 /* HEADER
 --------------------------------------------------------------------------------- */
 .the-header .logo {
-  font-family: junctionregularRegular, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, Sans-Serif;
   margin: 0;
 }
 .the-header .logo a:visited {
@@ -175,9 +175,9 @@ pre {
   background-position: 0 0; */
   background-color: #1a1a1a;
   background-color: rgba(21, 25, 25, 0.8);
-  margin-bottom: 1.325em;
-  padding-top: 1.125em;
-  padding-bottom: 1.125em;
+  margin-bottom: 1.625em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .unit-article header h1 {
   color: #fafafa;
@@ -686,7 +686,7 @@ pre {
     letter-spacing: -1px;
   }
   .the-header .nav-global {
-    margin-top: 21px;
+    margin-top: 16px;
     letter-spacing: -0.31em;
     *letter-spacing: normal;
     word-spacing: -0.43em;
@@ -749,7 +749,7 @@ pre {
     text-align: center;
   }
   .the-header .nav-global {
-    margin-top: 21px;
+    margin-top: 16px;
     width: 43.125em;
     text-align: center;
   }
