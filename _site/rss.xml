@@ -2,11 +2,11 @@
 <rss version="2.0">
 <channel>
         <title>limbø.space</title>
-        <description>limbø.space - Wildog</description>
-        <link>http://wildog.net</link>
-        <link>http://wildog.net</link>
-        <lastBuildDate>2015-04-20T18:15:36+08:00</lastBuildDate>
-        <pubDate>2015-04-20T18:15:36+08:00</pubDate>
+        <description>limbø.space - wildog</description>
+        <link>http://limbo.space</link>
+        <link>http://limbo.space</link>
+        <lastBuildDate>2015-04-20T18:28:28+08:00</lastBuildDate>
+        <pubDate>2015-04-20T18:28:28+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -39,8 +39,8 @@
 &lt;img src=&quot;/resources/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
 &lt;img src=&quot;/resources/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
-                <link>http://wildog.net/2014/10/21/copy-and-paste-multiple-search-results-in-vim</link>
-                <guid>http://wildog.net/2014/10/21/copy-and-paste-multiple-search-results-in-vim</guid>
+                <link>http://limbo.space/2014/10/21/copy-and-paste-multiple-search-results-in-vim</link>
+                <guid>http://limbo.space/2014/10/21/copy-and-paste-multiple-search-results-in-vim</guid>
                 <pubDate>2014-10-21T00:00:00+08:00</pubDate>
         </item>
 
@@ -71,8 +71,8 @@
 
 &lt;p&gt;&lt;img src=&quot;/resources/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
-                <link>http://wildog.net/2013/07/11/arduino-processing-beat-detect</link>
-                <guid>http://wildog.net/2013/07/11/arduino-processing-beat-detect</guid>
+                <link>http://limbo.space/2013/07/11/arduino-processing-beat-detect</link>
+                <guid>http://limbo.space/2013/07/11/arduino-processing-beat-detect</guid>
                 <pubDate>2013-07-11T00:00:00+08:00</pubDate>
         </item>
 
@@ -112,8 +112,8 @@
 
 &lt;p&gt;&lt;img src=&quot;/resources/130619-run.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
-                <link>http://wildog.net/2013/06/19/run-python-from-your-android-shell</link>
-                <guid>http://wildog.net/2013/06/19/run-python-from-your-android-shell</guid>
+                <link>http://limbo.space/2013/06/19/run-python-from-your-android-shell</link>
+                <guid>http://limbo.space/2013/06/19/run-python-from-your-android-shell</guid>
                 <pubDate>2013-06-19T00:00:00+08:00</pubDate>
         </item>
 
