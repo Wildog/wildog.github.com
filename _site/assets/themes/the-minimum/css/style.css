@@ -628,6 +628,18 @@ pre {
   margin-right: auto;
 }
 /*
+    Small phone
+*/
+@media only screen and (max-width: 369px){
+  .unit-article header h1 {
+    line-height: 42px;
+  }
+  .unit-article .unit-foot {
+    padding-bottom: 24px;
+    padding-top: 24px;
+  }
+}
+/*
     Large Smartphone (>=iPhone 6)
 */
 @media only screen and (min-width: 370px) and (max-width: 767px) {
@@ -636,14 +648,12 @@ pre {
   }
   .the-header .unit-inner {
     width: 20em;
-
   }
   .the-header .logo a {
     font-size: 42px;
     line-height: 52px;
     letter-spacing: -1px;
   }
-
   .the-header .nav-global .home:after {
     margin-left: 16px;
     content: "/";
@@ -654,13 +664,19 @@ pre {
   .the-header .nav-global li:last-child {
     margin-right: 0;
   }
+  .unit-article header h1 {
+    line-height: 42px;
+  }
+  .unit-article .unit-foot {
+    padding-bottom: 24px;
+    padding-top: 24px;
+  }
   .unit-article .unit-head-inner,
   .unit-article .entry-content,
   .unit-article .misc-content,
   .unit-article .unit-foot-inner {
     width: 20em;
   }
-
   .layout-page .unit-body .unit-body-inner {
     width: 20em;
   }
