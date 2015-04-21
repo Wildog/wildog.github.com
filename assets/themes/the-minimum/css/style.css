@@ -402,6 +402,9 @@ pre {
 .unit-article .unit-foot .gotop {
   margin-bottom: 0;
 }
+.unit-article .misc-content .social {
+  display: none;
+}
 #home-foot {
   margin-top: 2.54em;
 }
