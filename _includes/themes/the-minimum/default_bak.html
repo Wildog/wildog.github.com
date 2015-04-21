@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 ie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 ie" lang="en"> <![endif]-->
@@ -7,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>用 Arduino + Processing 识别节拍 | Wildog</title>
-    <meta name="author" content="Wildog">
+    <title>{{ page.title }} | Wildog</title>
+    <meta name="author" content="{{ site.author.name }}">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -26,8 +25,8 @@
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link href='/assets/themes/the-minimum/css/style.css' rel="stylesheet" media="all">
-    <link href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" media="all" />
+    <link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
+    <link href="{{ ASSET_PATH }}/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" media="all" />
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -46,7 +45,7 @@
     <header class="the-header">
         <div class="unit-head">
             <div class="unit-inner unit-head-inner">
-                <p class="logo"><a href="/">limbø.space</a></p>
+                <p class="logo"><a href="{{ HOME_PATH }}">{{ site.title }}</a></p>
                 <nav class="nav-global">
                     <ul>
                         <li class="index"><a href="/index.html">Home</a></li>
@@ -61,111 +60,12 @@
         <div class="unit-body">
             <div class="unit-inner unit-body-inner">
                 <div class="entry-content">
-                    
-<article class="unit-article layout-post">
-    <div class="unit-inner unit-article-inner">
-        <div class="content">
-            <header>
-                <div class="unit-head">
-                    <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">用 Arduino + Processing 识别节拍</h1>
-                    </div><!-- unit-inner -->
-                </div><!-- unit-head -->
-            </header>
-
-            <div class="bd">
-                <div class="entry-content">
-                    <p>一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。</p>
-
-<p><strong>源码</strong>:<br />
-<a href="http://wildog.net/download/BeatWrite.zip">点我下载</a><br />
-# 把 <code>BeatWrite.pde</code> 中的针脚配置改为你自己连接的针脚, 连接图示<a href="/resources/circuit.jpg">点我查看</a><br />
-# 把 mp3 文件放入 <code>data</code> 文件夹中, 将 <code>BeatWrite.pde</code> 中 <code>"minim.loadFile("aaa.mp3", 2048)"</code> 一行的 <code>"aaa.mp3"</code> 改为你自己的 mp3 文件名</p>
-
-<p><strong>软件</strong>:<br />
-1. Arduino<br />
-2. Processing<br />
-   # 务必下载 1.5.1 版本的 Processing, 个人测试 2.0 的版本会出错<br />
-3. Arduino 库<br />
-   # 解压至 <code>Processing目录/modes/java/libraries/</code><br />
-4. Minim 库<br />
-   # 官方 Processing 已自带, 如果你的没有, 下载后解压至相同目录  </p>
-
-<p><strong>步骤</strong>:<br />
-1. 将 Examples 中 Firmata 库里的 StandardFirmata 上传到 Arduino 中<br />
-2. 上传完毕等到 Arduino 上的 RX/TX LED 停止闪烁后再运行 Processing 源码  </p>
-
-<p>实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：<a href="http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html">视频戳我</a><br />
-右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat</p>
-
-<p><img src="/resources/arduino.jpg" alt="" /></p>
-
-                    <div class="meta">
-                        <p class="date-publish">
-                            Published: 
-                            <date class="date-pub" title="2013-07-11T00:00:00+08:00" datetime="2013-07-11T00:00:00+08:00" pubdate>
-                            <span class="month"><abbr>July</abbr></span>
-                            <span class="day">11</span>
-                            <span class="year">2013</span>
-                            </date>
-                        </p>
-                    </div><!-- meta -->
-                </div><!-- entry-content -->
-                <div class="misc-content">
-                    <div class="social">
-                        <ul class="list-linear">
-                            <li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="WildogGo" data-lang="en">Tweet</a></div></li>
-                            <li><div class="twitter-follow"><a href="https://twitter.com/WildogGo" class="twitter-follow-button" data-show-count="false" data-lang="en"></a></div></li>
-                        </ul>
-                    </div>
-                    
-
-
-  <!-- 多说评论框 start -->
-    <div id="comments">
-        <div class="ds-thread" data-thread-key="/2013/07/11/arduino-processing-beat-detect" data-title="用 Arduino + Processing 识别节拍" data-url="http://limbo.space/2013/07/11/arduino-processing-beat-detect"></div>
-    </div>
-    <br/>
-<!-- 多说评论框 end -->
-
-
-
-
-
-                </div><!-- misc-content -->
-                
-            </div><!-- bd -->
-            <footer class="unit-foot">
-                <div class="unit-inner unit-foot-inner">
-                    <nav class="pagination">
-                        <ul>
-                            
-                            <li class="prev"><a class="internal" rel="prev"  href="/2013/06/19/run-python-from-your-android-shell" title="View 在 Android 终端上运行 Python">&laquo; 在 Android 终端上运行 Python</a></li>
-                            
-                            
-                            <li class="pipe"> | </li>
-                            
-                            
-                            <li class="next"><a class="internal" rel="next"  href="/2014/10/21/copy-and-paste-multiple-search-results-in-vim" title="View 在 Vim 里复制所有匹配结果">在 Vim 里复制所有匹配结果 &raquo;</a></li>
-                            
-                        </ul>
-                    </nav>
-                    <p class="gotop">
-                        <a href="#page">Back to Top</a>
-                    </p>
-                </div>
-            </footer>
-
-        </div><!-- content -->
-    </div><!-- unit-inner -->
-</article>
-
-
+                    {{ content }}
                 </div>
             </div><!-- unit-inner -->
         </div><!-- unit-body -->
     <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="{{ ASSET_PATH }}/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
     <script>
     // add attribute to pictures
     $(document).ready(function() {
@@ -210,6 +110,18 @@
         </div><!-- unit-foot -->
     </footer>
 </div><!-- page -->
+<script>
+    /* (function(d, s) {
+        var js, fjs = d.getElementsByTagName(s)[0], load = function(url, id) {
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.src = url; js.id = id;
+        fjs.parentNode.insertBefore(js, fjs);
+        };
+    load('//platform.twitter.com/widgets.js', 'tweetjs');
+    // load('https://apis.google.com/js/plusone.js', 'gplus1js'); // Checkout http://j.mp/ApDgMr for usage html for this is <div class="g-plusone" data-size="medium"></div>
+    // load('//connect.facebook.net/en_US/all.js#xfbml=1', 'fbjssdk'); // Checkout http://j.mp/wZw2xR for using open graph protorol html for this is <div class="fb-like" data-href="{{ page.url }}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="verdana"></div>
+    }(document, 'script')); */
+</script>
 <!--[if gt IE 8]><!-->
 <script src="/assets/themes/the-minimum/modernizr.min.js"></script>
 <!--<![endif]-->
@@ -230,9 +142,6 @@ var duoshuoQuery = {short_name:"wildog"};
     })();
 </script>
 <!-- 多说公共JS代码 end -->
-  
-
-
+  {% include JB/analytics %}
 </body>
 </html>
-
