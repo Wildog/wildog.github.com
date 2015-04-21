@@ -27,7 +27,6 @@
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link href='/assets/themes/the-minimum/css/style.css' rel="stylesheet" media="all">
-    <link href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" media="all" />
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -163,6 +162,13 @@
     <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
     <script>
+    // load fancybox css
+    $("<link>")
+    .attr({ rel: "stylesheet",
+        type: "text/css",
+        href: "/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5"
+    })
+    .appendTo("head");
     // add attribute to pictures
     $(document).ready(function() {
       $("p img").each(function() {
