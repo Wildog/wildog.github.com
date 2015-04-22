@@ -168,12 +168,12 @@
     <script type="text/javascript" src="/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
     <script>
     // colorize 'o' in logo
-    setTimeout(function() {
+    $(window).load(setTimeout(function() {
         $("#o").addClass("hover");
-    }, 300);
-    setTimeout(function() {
+    }, 300));
+    $(window).load(setTimeout(function() {
         $("#o").removeClass("hover");
-    }, 1000);
+    }, 1000));
     $(".logo a, .nav-global a").hover(function() {
         $("#o").addClass("hover");
         },
