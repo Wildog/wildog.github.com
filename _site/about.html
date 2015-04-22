@@ -45,11 +45,11 @@
     <header class="the-header">
         <div class="unit-head">
             <div class="unit-inner unit-head-inner">
-                <p class="logo"><a href="/?active=true">limb<span id="o">ø</span>.space</a></p>
+                <p class="logo"><a href="/">limb<span id="o">ø</span>.space</a></p>
                 <nav class="nav-global">
                     <ul>
-                        <li class="index"><a href="/index.html?active=true">Home</a></li>
-                        <li class="about"><a href="/about.html?active=true">About</a></li>
+                        <li class="index"><a href="/index.html">Home</a></li>
+                        <li class="about"><a href="/about.html">About</a></li>
                         <li class="rss"><a href="/rss.xml">Feed</a></li>
                     </ul>
                 </nav>
@@ -110,11 +110,13 @@
     <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
     <script>
-    // remember hover state after jumping/refreshing
-    if(window.location.href.indexOf('active=true') > 0) {
-        $('#o').addClass('hover');
-    }
     // colorize 'o' in logo
+    setTimeout(function() {
+        $("#o").addClass("hover");
+    }, 300);
+    setTimeout(function() {
+        $("#o").removeClass("hover");
+    }, 1000);
     $(".logo a, .nav-global a").hover(function() {
         $("#o").addClass("hover");
         },
