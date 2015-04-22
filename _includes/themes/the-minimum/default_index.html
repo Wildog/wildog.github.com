@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{{ page.title }} | wildog</title>
     <meta name="author" content="{{ site.author.name }}">
+    <meta name="description" content="Wildog in Limbo Space...">
     {% if page.tags.size > 0 %}<meta name="keywords" content="{% for post_tag in page.tags %}{{post_tag}}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}">{% endif %}
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -65,28 +66,21 @@
             </div><!-- unit-inner -->
         </div><!-- unit-body -->
     <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ ASSET_PATH }}/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
     <script>
     // colorize 'o' in logo
-    $(window).load(setTimeout(function() {
+    $(document).ready(setTimeout(function() {
+        console.log("all elements loaded");
         $("#o").addClass("hover");
-    }, 300));
-    $(window).load(setTimeout(function() {
+    }, 500));
+    $(document).ready(setTimeout(function() {
         $("#o").removeClass("hover");
-    }, 1000));
+    }, 1300));
     $(".logo a, .nav-global a").hover(function() {
         $("#o").addClass("hover");
         },
         function() {
         $("#o").removeClass("hover");
     });
-    // load fancybox css
-    $("<link>")
-    .attr({ rel: "stylesheet",
-        type: "text/css",
-        href: "{{ ASSET_PATH }}/fancybox/jquery.fancybox.css?v=2.1.5"
-    })
-    .appendTo("head");
     // add attribute to pictures
     $(document).ready(function() {
       $("p img").each(function() {
@@ -94,17 +88,29 @@
         $(this).wrapAll(strA);
       });
     });
-    // fancybox
-    $(".fancybox").fancybox({
-      openEffect    : 'elastic',
-      closeEffect   : 'elastic',
-    });
-    // get rid of the white padding
-    $(".fancybox")
-    .attr('rel', 'gallery')
-    .fancybox({
-        padding : 0
-    });
+    // lazy load fancybox
+    $(document).ready(function() { 
+        var $fancyboxes = $('a.fancybox'); 
+        if ($fancyboxes.length) { 
+            $('<link rel="stylesheet" type="text/css" href="{{ ASSET_PATH }}/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo('head'); 
+            $.ajax({ 
+                type:     'GET', 
+                dataType: 'script', 
+                url:      '{{ ASSET_PATH }}/fancybox/jquery.fancybox.pack.js?v=2.1.5', 
+                cache:    true, 
+                success:  function() { 
+                    $fancyboxes.fancybox({ 
+                        openEffect    : 'elastic',
+                        closeEffect   : 'elastic',
+                    }); 
+                    $fancyboxes.attr('rel', 'gallery')
+                    .fancybox({
+                        padding : 0
+                    });
+                } 
+            }); 
+        } 
+    }); 
     </script>
     <script>
     function addBlankTargetForLinks () {
