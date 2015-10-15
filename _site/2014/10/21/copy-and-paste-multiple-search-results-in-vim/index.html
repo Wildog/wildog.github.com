@@ -164,66 +164,6 @@
                 </div>
             </div><!-- unit-inner -->
         </div><!-- unit-body -->
-    <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
-    <script>
-    // colorize 'o' in logo
-    $(window).load(function() {
-        setTimeout(function() {
-            $("#o").addClass("hover");
-        }, 100)
-    });
-    $(window).load(function() {
-        setTimeout(function() {
-            $("#o").removeClass("hover");
-        }, 900);
-    });
-    $(".logo a").hover(function() {
-        $("#o").addClass("hover");
-        },
-        function() {
-        $("#o").removeClass("hover");
-    });
-    // add attribute to pictures
-    $(document).ready(function() {
-      $("p img").each(function() {
-        var strA = "<a class='fancybox' href='" + this.src + "'></a>";
-        $(this).wrapAll(strA);
-      });
-    });
-    // lazy load fancybox
-    $(document).ready(function() { 
-        var $fancyboxes = $('a.fancybox'); 
-        if ($fancyboxes.length) { 
-            $('<link rel="stylesheet" type="text/css" href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo('head'); 
-            $.ajax({ 
-                type:     'GET', 
-                dataType: 'script', 
-                url:      '/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5', 
-                cache:    true, 
-                success:  function() { 
-                    $fancyboxes.fancybox({ 
-                        openEffect    : 'elastic',
-                        closeEffect   : 'elastic',
-                    }); 
-                    $fancyboxes.attr('rel', 'gallery')
-                    .fancybox({
-                        padding : 0
-                    });
-                } 
-            }); 
-        } 
-    }); 
-    </script>
-    <script>
-    function addBlankTargetForLinks () {
-      $('a[href^="http"]').each(function(){
-          $(this).attr('target', '_blank');
-      });
-    }
-    $(document).bind('DOMNodeInserted', function(event) {
-      addBlankTargetForLinks();
-    });
-    </script>
     </div><!-- body -->
     <footer class="the-footer">
         <div class="unit-foot">
@@ -241,6 +181,66 @@
 <!--[if gt IE 8]><!-->
 <script src="/assets/themes/the-minimum/modernizr.min.js"></script>
 <!--<![endif]-->
+<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script>
+// colorize 'o' in logo
+$(window).load(function() {
+    setTimeout(function() {
+        $("#o").addClass("hover");
+    }, 100)
+});
+$(window).load(function() {
+    setTimeout(function() {
+        $("#o").removeClass("hover");
+    }, 900);
+});
+$(".logo a").hover(function() {
+    $("#o").addClass("hover");
+    },
+    function() {
+    $("#o").removeClass("hover");
+});
+// add attribute to pictures
+$(document).ready(function() {
+  $("p img").each(function() {
+    var strA = "<a class='fancybox' href='" + this.src + "'></a>";
+    $(this).wrapAll(strA);
+  });
+});
+// lazy load fancybox
+$(document).ready(function() { 
+    var $fancyboxes = $('a.fancybox'); 
+    if ($fancyboxes.length) { 
+        $('<link rel="stylesheet" type="text/css" href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo('head'); 
+        $.ajax({ 
+            type:     'GET', 
+            dataType: 'script', 
+            url:      '/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5', 
+            cache:    true, 
+            success:  function() { 
+                $fancyboxes.fancybox({ 
+                    openEffect    : 'elastic',
+                    closeEffect   : 'elastic',
+                }); 
+                $fancyboxes.attr('rel', 'gallery')
+                .fancybox({
+                    padding : 0
+                });
+            } 
+        }); 
+    } 
+}); 
+</script>
+<script>
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).bind('DOMNodeInserted', function(event) {
+  addBlankTargetForLinks();
+});
+</script>
 <script>
 /*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
 (function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
