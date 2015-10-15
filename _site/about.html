@@ -50,8 +50,8 @@
                 <nav class="nav-global">
                     <ul>
                         <li class="index"><a href="/index.html">Home</a></li>
+                        <li class="lofter"><a href="http://in.limbo.space">Lofter</a></li>
                         <li class="about"><a href="/about.html">About</a></li>
-                        <li class="rss"><a href="/rss.xml">Feed</a></li>
                     </ul>
                 </nav>
             </div><!-- unit-inner -->
@@ -63,19 +63,19 @@
                 <div class="entry-content">
                     
 <article class="unit-article layout-page">
-	<div class="unit-inner unit-article-inner">
-		<div class="content">
-			<header>
-				<div class="unit-head">
-					<div class="unit-inner unit-head-inner">
-						<h1 class="h2 entry-title">About Me</h1>
-					</div><!-- unit-inner -->
-				</div><!-- unit-head -->
-			</header>
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title">About Me</h1>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
 
-			<div class="bd">
-				<div class="entry-content">
-					
+            <div class="bd">
+                <div class="entry-content">
+                    
 
 <div class="misc vcard">
     <h4>Links</h4>
@@ -86,22 +86,25 @@
         <li class="github"><a href="http://github.com/Wildog/" rel="me">Github/Wildog</a></li>
         <li class="twitter"><a href="http://twitter.com/WildogGo/" rel="me">Twitter@WildogGo</a></li>
         <li class="instagram"><a href="https://instagram.com/wildoggo" rel="me">Instagram@WildogGo</a></li>
+        <li class="lofter"><a href="https://in.limbo.space" rel="me">Lofter@Wildog</a></li>
     </ul>
 </div>
 
-				</div><!-- entry-content -->
-			</div><!-- bd -->
+                </div><!-- entry-content -->
+            </div><!-- bd -->
 
-			<footer class="unit-foot">
-				<div class="unit-inner unit-foot-inner">
-					<p class="gotop">
-						<a href="#page">Back to Top</a>
-					</p>
-				</div>
-			</footer>
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <p class="gotop">
+                        <a href="#page">Back to Top</a>
+                         | 
+                        <a href="/rss.xml">Feed</a>
+                    </p>
+                </div>
+            </footer>
 
-		</div><!-- content -->
-	</div><!-- unit-inner -->
+        </div><!-- content -->
+    </div><!-- unit-inner -->
 </article>
 
 
@@ -114,14 +117,14 @@
     $(window).load(function() {
         setTimeout(function() {
             $("#o").addClass("hover");
-        }, 300)
+        }, 100)
     });
     $(window).load(function() {
         setTimeout(function() {
             $("#o").removeClass("hover");
-        }, 1100);
+        }, 900);
     });
-    $(".logo a, .nav-global a").hover(function() {
+    $(".logo a").hover(function() {
         $("#o").addClass("hover");
         },
         function() {
