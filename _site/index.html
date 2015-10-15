@@ -219,6 +219,9 @@ $(window).load(function() {
     setTimeout(function() {
         $(".entry-title").typeTo("A Start of a Start of a Start of a...");
     }, 2000);
+    setTimeout(function() {
+        $(".from-left, .from-right, header").css("width", "");
+    }, 700);
     $(".logo a").hover(function() {
         $("#o").addClass("hover");
     }, function() {
