@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -74,22 +78,23 @@
 </div><!-- page -->
 <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script>
-// colorize 'o' in logo
 $(window).load(function() {
+    var oldIE;
+    if ($('html').is('.ie6, .ie7, .ie8, .ie9'))
+        oldIE = true;
+    if (oldIE)
+        alert("Please update your IE to make a better world!");
     setTimeout(function() {
         $("#o").addClass("hover");
-    }, 100)
-});
-$(window).load(function() {
+    }, 100);
     setTimeout(function() {
         $("#o").removeClass("hover");
     }, 900);
-});
-$(".logo a").hover(function() {
-    $("#o").addClass("hover");
-    },
-    function() {
-    $("#o").removeClass("hover");
+    $(".logo a").hover(function() {
+        $("#o").addClass("hover");
+    }, function() {
+        $("#o").removeClass("hover");
+    });
 });
 // add attribute to pictures
 $(document).ready(function() {

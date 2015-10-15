@@ -1,6 +1,10 @@
 
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -194,6 +198,11 @@ jQuery.fn.animateAuto = function(prop, speed, callback){
     });  
 }
 $(window).load(function() {
+    var oldIE;
+    if ($('html').is('.ie6, .ie7, .ie8, .ie9'))
+        oldIE = true;
+    if (oldIE)
+        alert("Please update your IE to make a better world!");
     $("header").css("opacity", 1).animateAuto("width", 600);
     $(".from-left").css("opacity", 1).animateAuto("width", 600);
     $(".from-right").css("opacity", 1).animateAuto("widthfromright", 600);
@@ -216,36 +225,6 @@ $(window).load(function() {
         $("#o").removeClass("hover");
     });
 });
-// add attribute to pictures
-$(document).ready(function() {
-  $("p img").each(function() {
-    var strA = "<a class='fancybox' href='" + this.src + "'></a>";
-    $(this).wrapAll(strA);
-  });
-});
-// lazy load fancybox
-$(document).ready(function() { 
-    var $fancyboxes = $('a.fancybox'); 
-    if ($fancyboxes.length) { 
-        $('<link rel="stylesheet" type="text/css" href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo('head'); 
-        $.ajax({ 
-            type:     'GET', 
-            dataType: 'script', 
-            url:      '/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5', 
-            cache:    true, 
-            success:  function() { 
-                $fancyboxes.fancybox({ 
-                    openEffect    : 'elastic',
-                    closeEffect   : 'elastic',
-                }); 
-                $fancyboxes.attr('rel', 'gallery')
-                .fancybox({
-                    padding : 0
-                });
-            } 
-        }); 
-    } 
-}); 
 </script>
 <script>
 function addBlankTargetForLinks () {
