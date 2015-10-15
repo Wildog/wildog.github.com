@@ -51,8 +51,8 @@
                 <nav class="nav-global">
                     <ul>
                         <li class="index"><a href="/index.html">Home</a></li>
+                        <li class="lofter"><a href="http://in.limbo.space">Lofter</a></li>
                         <li class="about"><a href="/about.html">About</a></li>
-                        <li class="rss"><a href="/rss.xml">Feed</a></li>
                     </ul>
                 </nav>
             </div><!-- unit-inner -->
@@ -148,6 +148,8 @@
                 <div class="unit-inner unit-foot-inner">
                     <p class="gotop">
                         <a href="#page">Back to Top</a>
+                         | 
+                        <a href="/rss.xml">Feed</a>
                     </p>
                 </div>
             </footer>
@@ -167,14 +169,14 @@
     $(window).load(function() {
         setTimeout(function() {
             $("#o").addClass("hover");
-        }, 300)
+        }, 100)
     });
     $(window).load(function() {
         setTimeout(function() {
             $("#o").removeClass("hover");
-        }, 1100);
+        }, 900);
     });
-    $(".logo a, .nav-global a").hover(function() {
+    $(".logo a").hover(function() {
         $("#o").addClass("hover");
         },
         function() {
