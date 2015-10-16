@@ -10,23 +10,10 @@
     <title>{{ page.title }} | Wildog</title>
     <meta name="author" content="{{ site.author.name }}">
     {% if page.tags.size > 0 %}<meta name="keywords" content="{% for post_tag in page.tags %}{{post_tag}}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}">{% endif %}
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
     <script>
     var _hmt = _hmt || [];
@@ -37,6 +24,8 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
+    <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+    <script src="/assets/themes/the-minimum/jquery.typer.js"></script>
 </head>
 <body>
 <div id="page" class="hentry">
@@ -82,80 +71,8 @@
         </div><!-- unit-foot -->
     </footer>
 </div><!-- page -->
-<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/assets/themes/the-minimum/jquery.typer.js"></script>
 <script>
-jQuery.fn.animateAuto = function(prop, speed, callback){
-    var elem, height, width;
-    return this.each(function(i, el){
-        el = jQuery(el), elem = el.clone().css({"height":"auto","width":"auto"}).appendTo("body");
-        height = elem.css("height"),
-        width = elem.css("width"),
-        elem.remove();
-        if(prop === "height")
-            el.animate({"height":height}, speed, callback);
-        else if(prop === "width")
-            el.animate({"width":width}, {duration: speed, queue: false}, callback);  
-        else if(prop === "widthfromright") {
-            el.css("marginLeft", width);
-            el.animate({"width":width, marginLeft:0}, {duration: speed, queue: false}, callback);  
-        }
-        else if(prop === "both")
-            el.animate({"width":width,"height":height}, speed, callback);
-    });  
-}
-$(window).load(function() {
-    var oldIE;
-    if ($('html').is('.ie6, .ie7, .ie8, .ie9'))
-        oldIE = true;
-    if (oldIE)
-        alert("Please update your IE to make a better world!");
-    $(".from-left").css("opacity", 1).animateAuto("width", 600);
-    $(".from-right").css("opacity", 1).animateAuto("widthfromright", 600);
-    $(".the-header").fadeTo(1200, 1);
-    var offset = $(window).height() - $('.the-footer').position().top - $('.the-footer').height();
-    if (offset > 0)
-        $(".fade-in").css("padding-top", offset);
-    else
-        $(".fade-in").css("padding-top", 30);
-    setTimeout(function() {
-        $(".fade-in").fadeTo(300, 1);
-        $(".fade-in").animate({"padding-top": 0}, {duration: 300, queue: false});
-    }, 600);
-    setTimeout(function() {
-        $(".fade-in").fadeTo(300, 1);
-    }, 600);
-    setTimeout(function() {
-        $("#o").addClass("hover");
-    }, 700);
-    setTimeout(function() {
-        $("#o").removeClass("hover");
-    }, 1500);
-    setTimeout(function() {
-        $(".entry-title").typeTo("Hello. I write code");
-        $("[data-typer-targets]").typer();
-    }, 2000);
-    setTimeout(function() {
-        $(".from-left, .from-right, header").css("width", "");
-    }, 700);
-    $(".logo a").hover(function() {
-        $("#o").addClass("hover");
-    }, function() {
-        $("#o").removeClass("hover");
-    });
-});
-</script>
-<script>
-function addBlankTargetForLinks () {
-  $('a[href^="http"]').each(function(){
-      $(this).attr('target', '_blank');
-  });
-}
-$(document).bind('DOMNodeInserted', function(event) {
-  addBlankTargetForLinks();
-});
-</script>
-<script>
+jQuery.fn.animateAuto=function(prop,speed,callback){var elem,height,width;return this.each(function(i,el){el=jQuery(el),elem=el.clone().css({"height":"auto","width":"auto"}).appendTo("body");height=elem.css("height"),width=elem.css("width"),elem.remove();if(prop==="height"){el.animate({"height":height},speed,callback)}else{if(prop==="width"){el.animate({"width":width},{duration:speed,queue:false},callback)}else{if(prop==="widthfromright"){el.css("marginLeft",width);el.animate({"width":width,marginLeft:0},{duration:speed,queue:false},callback)}else{if(prop==="both"){el.animate({"width":width,"height":height},speed,callback)}}}}})};$(window).load(function(){var oldIE;if($("html").is(".ie6, .ie7, .ie8, .ie9")){oldIE=true}if(oldIE){alert("Please update your IE to make a better world!")}$(".from-left").css("opacity",1).animateAuto("width",600);$(".from-right").css("opacity",1).animateAuto("widthfromright",600);$(".the-header").fadeTo(1200,1);var offset=$(window).height()-$(".the-footer").position().top-$(".the-footer").height();if(offset>0){$(".fade-in").css("padding-top",offset)}else{$(".fade-in").css("padding-top",30)}setTimeout(function(){$(".fade-in").fadeTo(300,1);$(".fade-in").animate({"padding-top":0},{duration:300,queue:false})},600);setTimeout(function(){$(".fade-in").fadeTo(300,1)},600);setTimeout(function(){$("#o").addClass("hover")},700);setTimeout(function(){$("#o").removeClass("hover")},1500);setTimeout(function(){$(".entry-title").typeTo("Hello. I write code");$("[data-typer-targets]").typer()},2000);setTimeout(function(){$(".from-left, .from-right, header").css("width","")},700);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")})});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(event){addBlankTargetForLinks()});
 /*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
 (function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
 </script>
