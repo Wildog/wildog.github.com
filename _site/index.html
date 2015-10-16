@@ -73,7 +73,7 @@
             <header style="width:0;opacity:0;">
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">A Copy of a Copy of a Copy of a...</h1>
+                        <h1 data-typer-targets="A Start of a Start of a Start of a..., A Space of a Space of a Space of a..., A Limbo of a Limbo of a Limbo of a..., A Copy of a Copy of a Copy of a..." class="h2 entry-title">A Copy of a Copy of a Copy of a...</h1>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
             </header>
@@ -213,8 +213,14 @@ $(window).load(function() {
     $(".from-left").css("opacity", 1).animateAuto("width", 600);
     $(".from-right").css("opacity", 1).animateAuto("widthfromright", 600);
     $(".the-header").fadeTo(1200, 1);
+    var offset = $(window).height() - $('.the-footer').position().top - $('.the-footer').height();
+    if (offset > 0)
+        $(".fade-in").css("padding-top", offset);
+    else
+        $(".fade-in").css("padding-top", 30);
     setTimeout(function() {
         $(".fade-in").fadeTo(300, 1);
+        $(".fade-in").animate({"padding-top": 0}, {duration: 300, queue: false});
     }, 700);
     setTimeout(function() {
         $("#o").addClass("hover");
@@ -224,7 +230,8 @@ $(window).load(function() {
     }, 1500);
     setTimeout(function() {
         $(".entry-title").typeTo("A Start of a Start of a Start of a...");
-    }, 2000);
+        $("[data-typer-targets]").typer();
+    }, 2200);
     setTimeout(function() {
         $(".from-left, .from-right, header").css("width", "");
     }, 700);

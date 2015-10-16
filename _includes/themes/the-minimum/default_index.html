@@ -115,8 +115,14 @@ $(window).load(function() {
     $(".from-left").css("opacity", 1).animateAuto("width", 600);
     $(".from-right").css("opacity", 1).animateAuto("widthfromright", 600);
     $(".the-header").fadeTo(1200, 1);
+    var offset = $(window).height() - $('.the-footer').position().top - $('.the-footer').height();
+    if (offset > 0)
+        $(".fade-in").css("padding-top", offset);
+    else
+        $(".fade-in").css("padding-top", 30);
     setTimeout(function() {
         $(".fade-in").fadeTo(300, 1);
+        $(".fade-in").animate({"padding-top": 0}, {duration: 300, queue: false});
     }, 700);
     setTimeout(function() {
         $("#o").addClass("hover");
@@ -126,7 +132,8 @@ $(window).load(function() {
     }, 1500);
     setTimeout(function() {
         $(".entry-title").typeTo("A Start of a Start of a Start of a...");
-    }, 2000);
+        $("[data-typer-targets]").typer();
+    }, 2200);
     setTimeout(function() {
         $(".from-left, .from-right, header").css("width", "");
     }, 700);
