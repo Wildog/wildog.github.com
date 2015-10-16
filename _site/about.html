@@ -56,6 +56,12 @@
         </div><!-- unit-head -->
     </header>
     <div class="body" role="main">
+        <h1 id="jscheck" align="center">Please enable JavaScript!</h1>
+        <script>
+        (function(){
+            document.getElementById('jscheck').style.display='none';
+        })();
+        </script>
         <div class="unit-body">
             <div class="unit-inner unit-body-inner">
                 <div class="entry-content">
@@ -66,12 +72,12 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">About Me</h1>
+                        <h1 data-typer-targets="Hello. I make electronic music, Hello. I design stuff, Hello. I take photos" class="h2 entry-title">Hello. I am Wildog</h1>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
             </header>
 
-            <div class="bd">
+            <div class="bd fade-in" style="opacity:0;">
                 <div class="entry-content">
                     
 
@@ -91,13 +97,18 @@
                 </div><!-- entry-content -->
             </div><!-- bd -->
 
-            <footer class="unit-foot">
+            <footer class="unit-foot from-right" id="home-foot" style="opacity:0;">
                 <div class="unit-inner unit-foot-inner">
-                    <p class="gotop">
-                        <a href="#page">Back to Top</a>
-                         | 
-                        <a href="/rss.xml">Feed</a>
-                    </p>
+                    <nav class="pagination">
+                        <ul class="social">
+                            <a href="http://douban.com/people/randyzew"><img src="/assets/themes/the-minimum/skin/douban-48.png" alt="豆瓣" width="24" style="width: 24px"/></a>
+                            <a href="http://twitter.com/wildoggo"><img src="/assets/themes/the-minimum/skin/twitter-48.png" alt="Twitter" width="24" style="width: 24px"/></a>
+                            <a href="http://soundcloud.com/wildogmusic"><img src="/assets/themes/the-minimum/skin/soundcloud-48.png" alt="SoundCloud" width="24" style="width: 24px"/></a>
+                            <a href="http://github.com/wildog"><img src="/assets/themes/the-minimum/skin/github-48.png" alt="Github" width="24" style="width: 24px"/></a>
+                            <a href="http://instagram.com/wildoggo"><img src="/assets/themes/the-minimum/skin/instagram-48.png" alt="instagram" width="24" style="width: 24px"/></a>
+                            <a href="/rss.xml"><img src="/assets/themes/the-minimum/skin/rss-48.png" alt="Feed" width="24" style="width: 24px"/></a>
+                        </ul>
+                    </nav>
                 </div>
             </footer>
 
@@ -106,11 +117,13 @@
 </article>
 
 
+
+
                 </div>
             </div><!-- unit-inner -->
         </div><!-- unit-body -->
     </div><!-- body -->
-    <footer class="the-footer">
+    <footer class="the-footer from-left" style="opacity:0;width:0;">
         <div class="unit-foot">
             <div class="unit-inner unit-foot-inner">
                 <p class="licence">
@@ -124,55 +137,67 @@
     </footer>
 </div><!-- page -->
 <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/assets/themes/the-minimum/jquery.typer.js"></script>
 <script>
+jQuery.fn.animateAuto = function(prop, speed, callback){
+    var elem, height, width;
+    return this.each(function(i, el){
+        el = jQuery(el), elem = el.clone().css({"height":"auto","width":"auto"}).appendTo("body");
+        height = elem.css("height"),
+        width = elem.css("width"),
+        elem.remove();
+        if(prop === "height")
+            el.animate({"height":height}, speed, callback);
+        else if(prop === "width")
+            el.animate({"width":width}, {duration: speed, queue: false}, callback);  
+        else if(prop === "widthfromright") {
+            el.css("marginLeft", width);
+            el.animate({"width":width, marginLeft:0}, {duration: speed, queue: false}, callback);  
+        }
+        else if(prop === "both")
+            el.animate({"width":width,"height":height}, speed, callback);
+    });  
+}
 $(window).load(function() {
     var oldIE;
     if ($('html').is('.ie6, .ie7, .ie8, .ie9'))
         oldIE = true;
     if (oldIE)
         alert("Please update your IE to make a better world!");
+    $(".from-left").css("opacity", 1).animateAuto("width", 600);
+    $(".from-right").css("opacity", 1).animateAuto("widthfromright", 600);
+    $(".the-header").fadeTo(1200, 1);
+    var offset = $(window).height() - $('.the-footer').position().top - $('.the-footer').height();
+    if (offset > 0)
+        $(".fade-in").css("padding-top", offset);
+    else
+        $(".fade-in").css("padding-top", 30);
+    setTimeout(function() {
+        $(".fade-in").fadeTo(300, 1);
+        $(".fade-in").animate({"padding-top": 0}, {duration: 300, queue: false});
+    }, 600);
+    setTimeout(function() {
+        $(".fade-in").fadeTo(300, 1);
+    }, 600);
     setTimeout(function() {
         $("#o").addClass("hover");
-    }, 100);
+    }, 700);
     setTimeout(function() {
         $("#o").removeClass("hover");
-    }, 900);
+    }, 1500);
+    setTimeout(function() {
+        $(".entry-title").typeTo("Hello. I write code");
+        $("[data-typer-targets]").typer();
+    }, 2000);
+    setTimeout(function() {
+        $(".from-left, .from-right, header").css("width", "");
+    }, 700);
     $(".logo a").hover(function() {
         $("#o").addClass("hover");
     }, function() {
         $("#o").removeClass("hover");
     });
 });
-// add attribute to pictures
-$(document).ready(function() {
-  $("p img").each(function() {
-    var strA = "<a class='fancybox' href='" + this.src + "'></a>";
-    $(this).wrapAll(strA);
-  });
-});
-// lazy load fancybox
-$(document).ready(function() { 
-    var $fancyboxes = $('a.fancybox'); 
-    if ($fancyboxes.length) { 
-        $('<link rel="stylesheet" type="text/css" href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo('head'); 
-        $.ajax({ 
-            type:     'GET', 
-            dataType: 'script', 
-            url:      '/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5', 
-            cache:    true, 
-            success:  function() { 
-                $fancyboxes.fancybox({ 
-                    openEffect    : 'elastic',
-                    closeEffect   : 'elastic',
-                }); 
-                $fancyboxes.attr('rel', 'gallery')
-                .fancybox({
-                    padding : 0
-                });
-            } 
-        }); 
-    } 
-}); 
 </script>
 <script>
 function addBlankTargetForLinks () {
@@ -188,19 +213,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 /*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
 (function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
 </script>
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"wildog"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
   
 
 
