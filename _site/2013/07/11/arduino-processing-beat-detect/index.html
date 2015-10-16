@@ -11,23 +11,10 @@
     <title>用 Arduino + Processing 识别节拍 | Wildog</title>
     <meta name="author" content="Wildog">
     <meta name="keywords" content="Arduino, Processing, beat detect, 节拍">
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link href='/assets/themes/the-minimum/css/style.css' rel="stylesheet" media="all">
     <script>
     var _hmt = _hmt || [];
@@ -38,6 +25,7 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
+    <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
 <div id="page" class="hentry">
@@ -149,7 +137,7 @@
                         </ul>
                     </nav>
                     <p class="gotop">
-                        <a href="#page">Back to Top</a>
+                        <a href="javascript:$(document.body).animate({'scrollTop':0},1000);">Back to Top</a>
                     </p>
                 </div>
             </footer>
@@ -176,84 +164,11 @@
         </div><!-- unit-foot -->
     </footer>
 </div><!-- page -->
-<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script>
-$(window).load(function() {
-    var oldIE;
-    if ($('html').is('.ie6, .ie7, .ie8, .ie9'))
-        oldIE = true;
-    if (oldIE)
-        alert("Please update your IE to make a better world!");
-    setTimeout(function() {
-        $("#o").addClass("hover");
-    }, 100);
-    setTimeout(function() {
-        $("#o").removeClass("hover");
-    }, 900);
-    $(".logo a").hover(function() {
-        $("#o").addClass("hover");
-    }, function() {
-        $("#o").removeClass("hover");
-    });
-});
-// add attribute to pictures
-$(document).ready(function() {
-  $("p img").each(function() {
-    var strA = "<a class='fancybox' href='" + this.src + "'></a>";
-    $(this).wrapAll(strA);
-  });
-});
-// lazy load fancybox
-$(document).ready(function() { 
-    var $fancyboxes = $('a.fancybox'); 
-    if ($fancyboxes.length) { 
-        $('<link rel="stylesheet" type="text/css" href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo('head'); 
-        $.ajax({ 
-            type:     'GET', 
-            dataType: 'script', 
-            url:      '/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5', 
-            cache:    true, 
-            success:  function() { 
-                $fancyboxes.fancybox({ 
-                    openEffect    : 'elastic',
-                    closeEffect   : 'elastic',
-                }); 
-                $fancyboxes.attr('rel', 'gallery')
-                .fancybox({
-                    padding : 0
-                });
-            } 
-        }); 
-    } 
-}); 
-</script>
-<script>
-function addBlankTargetForLinks () {
-  $('a[href^="http"]').each(function(){
-      $(this).attr('target', '_blank');
-  });
-}
-$(document).bind('DOMNodeInserted', function(event) {
-  addBlankTargetForLinks();
-});
-</script>
-<script>
+$(window).load(function(){var oldIE;if($("html").is(".ie6, .ie7, .ie8, .ie9")){oldIE=true}if(oldIE){alert("Please update your IE to make a better world!")}setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")})});$(document).ready(function(){$("p img").each(function(){var strA="<a class='fancybox' href='"+this.src+"'></a>";$(this).wrapAll(strA)})});$(document).ready(function(){var $fancyboxes=$("a.fancybox");if($fancyboxes.length){$('<link rel="stylesheet" type="text/css" href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo("head");$.ajax({type:"GET",dataType:"script",url:"/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5",cache:true,success:function(){$fancyboxes.fancybox({openEffect:"elastic",closeEffect:"elastic",});$fancyboxes.attr("rel","gallery").fancybox({padding:0})}})}});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(event){addBlankTargetForLinks()});var duoshuoQuery={short_name:"wildog"};(function(){var ds=document.createElement("script");ds.type="text/javascript";ds.async=true;ds.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";ds.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(ds)})();
 /*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
 (function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
 </script>
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"wildog"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
   
 
 

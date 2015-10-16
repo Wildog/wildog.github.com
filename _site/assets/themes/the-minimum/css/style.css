@@ -188,6 +188,8 @@ a:hover{color:#1a1a1a;text-decoration:none;}
 pre{margin-bottom:1.625em;}
 pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;font-family:"Bitstream Vera Sans Mono", "Courier New", Courier, monospace;margin-left:0;margin-right:0;padding:1.625em;overflow:auto;-webkit-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.6);-moz-box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.6);box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.6);}
 .the-header .logo{font-family:"Gill Sans", "Gill Sans MT", "gillsansWeb", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, Sans-Serif;margin:0;}
+.to-blur img{-moz-box-shadow:0 2px 2px rgba(0,0,0,.1);-webkit-box-shadow:0 2px 2px rgba(0,0,0,.1);box-shadow:0 2px 2px rgba(0,0,0,.1);-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-ms-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease;}
+.to-blur:hover img:not(:hover){-webkit-filter:blur(2px) grayscale(1);-moz-filter:blur(2px) grayscale(1);-o-filter:blur(2px) grayscale(1);-ms-filter:blur(2px) grayscale(1);filter:blur(2px) grayscale(1);opacity:.7;}
 .the-header .logo a:visited{color:#2d2d2d;}
 .the-header .nav-global{text-transform:uppercase;}
 .the-header .nav-global .forkme{position:relative;top:2px;}
