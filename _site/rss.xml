@@ -5,8 +5,8 @@
         <description>limbø.space - wildog</description>
         <link>http://limbo.space</link>
         <link>http://limbo.space</link>
-        <lastBuildDate>2015-11-28T23:18:30+08:00</lastBuildDate>
-        <pubDate>2015-11-28T23:18:30+08:00</pubDate>
+        <lastBuildDate>2015-11-28T23:51:17+08:00</lastBuildDate>
+        <pubDate>2015-11-28T23:51:17+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -52,7 +52,7 @@
       &lt;li&gt;重启后自动进入诊断模式, 选择&lt;code&gt;D) Exit, Reboot or Disable Diags&lt;/code&gt; 后选择 &lt;code&gt;R) Reboot System&lt;/code&gt;, 再选择 &lt;code&gt;Q) To continue&lt;/code&gt;, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考&lt;a href=&quot;http://www.mobileread.com/forums/showthread.php?t=88004&quot;&gt;此页&lt;/a&gt;)&lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;
-  &lt;li&gt;越狱后安装 USB networking, 从&lt;a href=&quot;http://www.mobileread.com/forums/showthread.php?t=88004&quot;&gt;此贴&lt;/a&gt;下载对应 Kindle 的版本, 解压后把 &lt;code&gt;update_usbnetwork_0.45.N_k4_install.bin&lt;/code&gt; 文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.&lt;/li&gt;
+  &lt;li&gt;越狱后安装 USB networking, 从&lt;a href=&quot;http://www.mobileread.com/forums/showthread.php?t=88004&quot;&gt;此贴&lt;/a&gt;下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;断开 Kindle 和电脑的连接&lt;/strong&gt;, 在主界面按键盘键, 输入 &lt;code&gt;;debugOn&lt;/code&gt; 后回车, 接着输入 &lt;code&gt;~usbNetwork&lt;/code&gt; 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 &lt;code&gt;192.168.15.201&lt;/code&gt;, 其他版本的 Kindle 把这个 IP 设为 &lt;code&gt;192.168.2.1&lt;/code&gt;,  如图:
 &lt;img src=&quot;/resources/interface.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;通过 &lt;code&gt;ssh root@192.168.15.244&lt;/code&gt; 连接到 K4, 其他版本 Kindle 通过 &lt;code&gt;ssh root@192.168.2.2&lt;/code&gt; 连接, 密码通常为 mario&lt;/li&gt;
@@ -62,7 +62,7 @@
   &lt;li&gt;执行 &lt;code&gt;/mnt/base-us/weather&lt;/code&gt; 创建文件夹
 &lt;img src=&quot;/resources/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;在主机上把 &lt;code&gt;display-weather.sh&lt;/code&gt; 里面的 &lt;code&gt;URL&lt;/code&gt; 改为你自己主机上 weather.png 的 URL&lt;/li&gt;
-  &lt;li&gt;通过 &lt;code&gt;scp display-weather.sh root@192.168.15.244:/usr/bin/&lt;/code&gt; 把 &lt;code&gt;display-weather.sh&lt;/code&gt; 传到 Kindle 上的 /usr/bin 目录下&lt;/li&gt;
+  &lt;li&gt;通过 &lt;code&gt;scp display-weather.sh root@192.168.15.244:/usr/bin/&lt;/code&gt; 把 &lt;code&gt;display-weather.sh&lt;/code&gt; 传到 Kindle 上的 &lt;code&gt;/usr/bin&lt;/code&gt; 目录下&lt;/li&gt;
   &lt;li&gt;回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:&lt;/li&gt;
 &lt;/ul&gt;
 
