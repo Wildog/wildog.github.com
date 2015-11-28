@@ -5,8 +5,8 @@
         <description>limbø.space - wildog</description>
         <link>http://limbo.space</link>
         <link>http://limbo.space</link>
-        <lastBuildDate>2015-11-28T23:51:17+08:00</lastBuildDate>
-        <pubDate>2015-11-28T23:51:17+08:00</pubDate>
+        <lastBuildDate>2015-11-28T23:53:14+08:00</lastBuildDate>
+        <pubDate>2015-11-28T23:53:14+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -57,8 +57,8 @@
 &lt;img src=&quot;/resources/interface.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;通过 &lt;code&gt;ssh root@192.168.15.244&lt;/code&gt; 连接到 K4, 其他版本 Kindle 通过 &lt;code&gt;ssh root@192.168.2.2&lt;/code&gt; 连接, 密码通常为 mario&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;mntroot rw&lt;/code&gt; 挂载 rootfs 为可写&lt;/li&gt;
-  &lt;li&gt;进入 powerd 文件夹 &lt;code&gt;cd /etc/kdb.src/yoshi/system/daemon/powerd/&lt;/code&gt;, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同&lt;/li&gt;
-  &lt;li&gt;执行 &lt;code&gt;less suspend_levels&lt;/code&gt; 查看 suspend_levels, 把最后一行的数字改为 1152, 比如我的是 1218, 执行 &lt;code&gt;sed -i -e &#39;s/1218/1152/&#39; suspend_levels&lt;/code&gt;, 完毕即可在睡眠模式下执行 crontab.&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code&gt;cd /etc/kdb.src/yoshi/system/daemon/powerd/&lt;/code&gt;, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code&gt;less suspend_levels&lt;/code&gt;, 查看 suspend_levels, 把最后一行的数字改为 1152, 比如我的是 1218, 执行 &lt;code&gt;sed -i -e &#39;s/1218/1152/&#39; suspend_levels&lt;/code&gt;, 完毕即可在睡眠模式下执行 crontab.&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;/mnt/base-us/weather&lt;/code&gt; 创建文件夹
 &lt;img src=&quot;/resources/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;在主机上把 &lt;code&gt;display-weather.sh&lt;/code&gt; 里面的 &lt;code&gt;URL&lt;/code&gt; 改为你自己主机上 weather.png 的 URL&lt;/li&gt;
