@@ -101,7 +101,7 @@
       <li>重启后自动进入诊断模式, 选择<code>D) Exit, Reboot or Disable Diags</code> 后选择 <code>R) Reboot System</code>, 再选择 <code>Q) To continue</code>, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此页</a>)</li>
     </ol>
   </li>
-  <li>越狱后安装 USB networking, 从<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此贴</a>下载对应 Kindle 的版本, 解压后把 <code>update_usbnetwork_0.45.N_k4_install.bin</code> 文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.</li>
+  <li>越狱后安装 USB networking, 从<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此贴</a>下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.</li>
   <li><strong>断开 Kindle 和电脑的连接</strong>, 在主界面按键盘键, 输入 <code>;debugOn</code> 后回车, 接着输入 <code>~usbNetwork</code> 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 <code>192.168.15.201</code>, 其他版本的 Kindle 把这个 IP 设为 <code>192.168.2.1</code>,  如图:
 <img src="/resources/interface.png" alt="" /></li>
   <li>通过 <code>ssh root@192.168.15.244</code> 连接到 K4, 其他版本 Kindle 通过 <code>ssh root@192.168.2.2</code> 连接, 密码通常为 mario</li>
@@ -111,7 +111,7 @@
   <li>执行 <code>/mnt/base-us/weather</code> 创建文件夹
 <img src="/resources/ssh.png" alt="" /></li>
   <li>在主机上把 <code>display-weather.sh</code> 里面的 <code>URL</code> 改为你自己主机上 weather.png 的 URL</li>
-  <li>通过 <code>scp display-weather.sh root@192.168.15.244:/usr/bin/</code> 把 <code>display-weather.sh</code> 传到 Kindle 上的 /usr/bin 目录下</li>
+  <li>通过 <code>scp display-weather.sh root@192.168.15.244:/usr/bin/</code> 把 <code>display-weather.sh</code> 传到 Kindle 上的 <code>/usr/bin</code> 目录下</li>
   <li>回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:</li>
 </ul>
 

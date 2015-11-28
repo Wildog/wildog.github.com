@@ -34,7 +34,7 @@ __接下来配置 Kindle__:
 1. K4 下载此[压缩包](http://www.mobileread.com/forums/attachment.php?attachmentid=141180&d=1439936080), 
 解压后把 `data.tar.gz`, `ENABLE_DIAGS` 两个文件和 `diagnostic_logs` 文件夹复制到 Kindle 根目录,
 2. 重启后自动进入诊断模式, 选择`D) Exit, Reboot or Disable Diags` 后选择 `R) Reboot System`, 再选择 `Q) To continue`, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考[此页](http://www.mobileread.com/forums/showthread.php?t=88004))
-* 越狱后安装 USB networking, 从[此贴](http://www.mobileread.com/forums/showthread.php?t=88004)下载对应 Kindle 的版本, 解压后把文件 `update_usbnetwork_0.45.N_k4_install.bin` 复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.
+* 越狱后安装 USB networking, 从[此贴](http://www.mobileread.com/forums/showthread.php?t=88004)下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.
 * __断开 Kindle 和电脑的连接__, 在主界面按键盘键, 输入 `;debugOn` 后回车, 接着输入 `~usbNetwork` 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 `192.168.15.201`, 其他版本的 Kindle 把这个 IP 设为 `192.168.2.1`,  如图:
 ![](/resources/interface.png)
 * 通过 `ssh root@192.168.15.244` 连接到 K4, 其他版本 Kindle 通过 `ssh root@192.168.2.2` 连接, 密码通常为 mario
