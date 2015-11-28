@@ -6,7 +6,7 @@ tags: ["kindle", "天气", "diy"]
 
 ![](/resources/kindle.jpg)  
 
-源地址: [https://github.com/cathay4t/kindle-weather](https://github.com/cathay4t/kindle-weather)
+参考 Repo: [https://github.com/cathay4t/kindle-weather](https://github.com/cathay4t/kindle-weather)
 
 看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场.
 
