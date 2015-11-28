@@ -39,8 +39,8 @@ __接下来配置 Kindle__:
 ![](/resources/interface.png)
 * 通过 `ssh root@192.168.15.244` 连接到 K4, 其他版本 Kindle 通过 `ssh root@192.168.2.2` 连接, 密码通常为 mario
 * 执行 `mntroot rw` 挂载 rootfs 为可写
-* 进入 powerd 文件夹 `cd /etc/kdb.src/yoshi/system/daemon/powerd/`, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同
-* 执行 `less suspend_levels` 查看 suspend_levels, 把最后一行的数字改为 1152, 比如我的是 1218, 执行 `sed -i -e 's/1218/1152/' suspend_levels`, 完毕即可在睡眠模式下执行 crontab.
+* 执行 `cd /etc/kdb.src/yoshi/system/daemon/powerd/`, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同
+* 执行 `less suspend_levels`, 查看 suspend_levels, 把最后一行的数字改为 1152, 比如我的是 1218, 执行 `sed -i -e 's/1218/1152/' suspend_levels`, 完毕即可在睡眠模式下执行 crontab.
 * 执行 `/mnt/base-us/weather` 创建文件夹
 ![](/resources/ssh.png)
 * 在主机上把 `display-weather.sh` 里面的 `URL` 改为你自己主机上 weather.png 的 URL
