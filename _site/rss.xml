@@ -5,8 +5,8 @@
         <description>limbø.space - wildog</description>
         <link>http://limbo.space</link>
         <link>http://limbo.space</link>
-        <lastBuildDate>2015-11-29T00:11:52+08:00</lastBuildDate>
-        <pubDate>2015-11-29T00:11:52+08:00</pubDate>
+        <lastBuildDate>2015-11-29T00:42:39+08:00</lastBuildDate>
+        <pubDate>2015-11-29T00:42:39+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -58,8 +58,8 @@
   &lt;li&gt;通过 &lt;code&gt;ssh root@192.168.15.244&lt;/code&gt; 连接到 K4, 其他版本 Kindle 通过 &lt;code&gt;ssh root@192.168.2.2&lt;/code&gt; 连接, 密码通常为 mario&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;mntroot rw&lt;/code&gt; 挂载 rootfs 为可写&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;cd /etc/kdb.src/yoshi/system/daemon/powerd/&lt;/code&gt;, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同&lt;/li&gt;
-  &lt;li&gt;执行 &lt;code&gt;less suspend_levels&lt;/code&gt;, 查看 suspend_levels, 把最后一行的数字改为 1152, 比如我的是 1218, 执行 &lt;code&gt;sed -i -e &#39;s/1218/1152/&#39; suspend_levels&lt;/code&gt;, 完毕即可在睡眠模式下执行 crontab.&lt;/li&gt;
-  &lt;li&gt;执行 &lt;code&gt;/mnt/base-us/weather&lt;/code&gt; 创建文件夹
+  &lt;li&gt;执行 &lt;code&gt;vi suspend_levels&lt;/code&gt;, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code&gt;mkdir /mnt/base-us/weather&lt;/code&gt; 创建文件夹
 &lt;img src=&quot;/resources/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;在主机上把 &lt;code&gt;display-weather.sh&lt;/code&gt; 里面的 &lt;code&gt;URL&lt;/code&gt; 改为你自己主机上 weather.png 的 URL&lt;/li&gt;
   &lt;li&gt;通过 &lt;code&gt;scp display-weather.sh root@192.168.15.244:/usr/bin/&lt;/code&gt; 把 &lt;code&gt;display-weather.sh&lt;/code&gt; 传到 Kindle 上的 &lt;code&gt;/usr/bin&lt;/code&gt; 目录下&lt;/li&gt;
@@ -70,6 +70,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;执行 &lt;code&gt;/usr/bin/display-weather.sh&lt;/code&gt;, 在 Kindle 上测试效果&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code&gt;reboot&lt;/code&gt; 以重启 Kindle&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;至此 Kindle 桌面气象站就设置好了, 每小时会自动更新天气, 如果中途解锁了再锁定, 锁屏界面会变成普通锁屏画面, 一小时内等到下次执行 crontab 任务的时候会重新显示天气界面.&lt;/p&gt;

@@ -40,8 +40,8 @@ __接下来配置 Kindle__:
 * 通过 `ssh root@192.168.15.244` 连接到 K4, 其他版本 Kindle 通过 `ssh root@192.168.2.2` 连接, 密码通常为 mario
 * 执行 `mntroot rw` 挂载 rootfs 为可写
 * 执行 `cd /etc/kdb.src/yoshi/system/daemon/powerd/`, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同
-* 执行 `less suspend_levels`, 查看 suspend_levels, 把最后一行的数字改为 1152, 比如我的是 1218, 执行 `sed -i -e 's/1218/1152/' suspend_levels`, 完毕即可在睡眠模式下执行 crontab.
-* 执行 `/mnt/base-us/weather` 创建文件夹
+* 执行 `vi suspend_levels`, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.
+* 执行 `mkdir /mnt/base-us/weather` 创建文件夹
 ![](/resources/ssh.png)
 * 在主机上把 `display-weather.sh` 里面的 `URL` 改为你自己主机上 weather.png 的 URL
 * 通过 `scp display-weather.sh root@192.168.15.244:/usr/bin/` 把 `display-weather.sh` 传到 Kindle 上的 `/usr/bin` 目录下
@@ -50,5 +50,6 @@ __接下来配置 Kindle__:
 echo "*/60 6-22 * * * /usr/bin/display-weather.sh" >> /etc/crontab/root
 {% endhighlight %}
 * 执行 `/usr/bin/display-weather.sh`, 在 Kindle 上测试效果
+* 执行 `reboot` 以重启 Kindle
 
 至此 Kindle 桌面气象站就设置好了, 每小时会自动更新天气, 如果中途解锁了再锁定, 锁屏界面会变成普通锁屏画面, 一小时内等到下次执行 crontab 任务的时候会重新显示天气界面.
