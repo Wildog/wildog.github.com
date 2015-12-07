@@ -32,7 +32,7 @@ Usage:
       <ul class="date-list">
     {% endif %}
   
-    <li class="home-entry"><span>{{ post.date | date: "%B %e, %Y" }} &raquo; </span><a href="{{ BASE_PATH }}{{ post.url }}/">{{ post.title }}</a></li>
+    <li class="home-entry"><span class="list-timestamp">{{ post.date | date: "%b %d" }} &raquo;&nbsp;</span><a href="{{ BASE_PATH }}{{ post.url }}/">{{ post.title }}</a></li>
   
     {% if forloop.last %}
       </ul>
