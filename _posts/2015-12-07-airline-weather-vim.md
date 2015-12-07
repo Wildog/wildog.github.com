@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 在 vim-airline 上显示天气
+title: 在 Vim-airline 上显示天气
 tags: ["vim", "天气", "airline", "vim-airline", "weather"]
 ---
 

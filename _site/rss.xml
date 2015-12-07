@@ -5,13 +5,13 @@
         <description>limbø.space - wildog</description>
         <link>http://limbo.space</link>
         <link>http://limbo.space</link>
-        <lastBuildDate>2015-12-07T18:32:10+08:00</lastBuildDate>
-        <pubDate>2015-12-07T18:32:10+08:00</pubDate>
+        <lastBuildDate>2015-12-07T19:31:09+08:00</lastBuildDate>
+        <pubDate>2015-12-07T19:31:09+08:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
-                <title>在 vim-airline 上显示天气</title>
+                <title>在 Vim-airline 上显示天气</title>
                 <description>&lt;p&gt;&lt;img src=&quot;/resources/airline-weather-vim-screenshot.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这两天把 Vim 的 Powerline 插件换成了 &lt;a href=&quot;https://github.com/bling/vim-airline&quot;&gt;vim-airline&lt;/a&gt;, 相比 Powerline, vim-airline 更轻量, 完全用 Vimscript 实现, 让我摆脱了 Vim 中的 Powerline 插件在我的 tmux 环境下经常闪烁的问题.&lt;/p&gt;
