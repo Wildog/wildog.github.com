@@ -8,9 +8,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>把你的旧 Kindle 变成桌面气象站 | Wildog</title>
+    <title>在 vim-airline 上显示天气 | Wildog</title>
     <meta name="author" content="Wildog">
-    <meta name="keywords" content="kindle, 天气, diy">
+    <meta name="keywords" content="vim, 天气, airline, vim-airline, weather">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -54,82 +54,93 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">把你的旧 Kindle 变成桌面气象站</h1>
+                        <h1 class="h2 entry-title">在 vim-airline 上显示天气</h1>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
             </header>
 
             <div class="bd">
                 <div class="entry-content">
-                    <p><img src="/resources/kindle.jpg" alt="" />  </p>
+                    <p><img src="/resources/airline-weather-vim-screenshot.png" alt="screenshot" /></p>
 
-<p>参考 Repo: <a href="https://github.com/cathay4t/kindle-weather">https://github.com/cathay4t/kindle-weather</a></p>
+<p>这两天把 Vim 的 Powerline 插件换成了 <a href="https://github.com/bling/vim-airline">vim-airline</a>, 相比 Powerline, vim-airline 更轻量, 完全用 Vimscript 实现, 让我摆脱了 Vim 中的 Powerline 插件在我的 tmux 环境下经常闪烁的问题.</p>
 
-<p>看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场.</p>
+<p>但是 vim-airline 缺了 Powerline 插件的天气扩展, 于是自己写了一个 vim-airline 的天气扩展, 效果图如上, 在右下角显示天气图标和当前温度, 借助了 webapi-vim 插件和 OpenWeatherMap 的 API.</p>
 
-<p>分享下自己的流程:</p>
+<p>Github Repo 地址: <a href="https://github.com/Wildog/airline-weather.vim">https://github.com/Wildog/airline-weather.vim</a></p>
 
-<ul>
-  <li>首先, 你需要一台长期联网的 Kindle (K3, K4 测试通过)</li>
-  <li>其次, 你需要一台长期联网的主机或者 VPS</li>
-</ul>
-
-<p><strong>然后先配置主机</strong>:</p>
+<h2 id="section">安装</h2>
 
 <ul>
-  <li>安装好 httpd, pngcrush, librsvg2</li>
-  <li>启动 httpd 服务</li>
-  <li>建立文件夹 <code>/var/www/html/weather</code> 并设置权限</li>
-  <li>下载上面这个 <a href="https://github.com/cathay4t/kindle-weather">Repo</a> 里的源码</li>
-  <li><a href="http://www.wunderground.com/weather/api/d/login.html">申请 Weather Underground 的 API</a> 并记录 KEY</li>
-  <li><code>crontab -e</code> 添加定时任务, 在每天 6 点到 22 点期间每 29 分钟更新产生一次天气图片, <code>&lt;PATH&gt;</code> 改成源码所在路径, <code>&lt;API_KEY&gt;</code> 改成得到的 KEY, <code>&lt;LAT&gt; &lt;LON&gt;</code> 改成所在城市的经纬度, <a href="http://wunderground.com">Weather Underground</a> 上搜索城市可以得到经纬度</li>
-</ul>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">*/29 6-22 * * * &lt;PATH&gt;/weather_script.py &lt;API_KEY&gt; &lt;LAT&gt; &lt;LON&gt;</code></pre></div>
-
-<ul>
-  <li>运行 <code>weather_script.py &lt;API_KEY&gt; &lt;LAT&gt; &lt;LON&gt;</code>, 测试 <code>http://&lt;主机域名&gt;/weather/weather.png</code> 能否得到正确显示的图片.</li>
-</ul>
-
-<p><strong>接下来配置 Kindle</strong>:</p>
-
-<ul>
-  <li>首先给 Kindle 越狱
-    <ol>
-      <li>K4 下载此<a href="http://www.mobileread.com/forums/attachment.php?attachmentid=141180&amp;d=1439936080">压缩包</a>, 
-解压后把 <code>data.tar.gz</code>, <code>ENABLE_DIAGS</code> 两个文件和 <code>diagnostic_logs</code> 文件夹复制到 Kindle 根目录,</li>
-      <li>重启后自动进入诊断模式, 选择<code>D) Exit, Reboot or Disable Diags</code> 后选择 <code>R) Reboot System</code>, 再选择 <code>Q) To continue</code>, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此页</a>)</li>
-    </ol>
+  <li>
+    <h4 id="vundle-">使用 Vundle 安装</h4>
   </li>
-  <li>越狱后安装 USB networking, 从<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此贴</a>下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.</li>
-  <li><strong>断开 Kindle 和电脑的连接</strong>, 在主界面按键盘键, 输入 <code>;debugOn</code> 后回车, 接着输入 <code>~usbNetwork</code> 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 <code>192.168.15.201</code>, 其他版本的 Kindle 把这个 IP 设为 <code>192.168.2.1</code>,  如图:
-<img src="/resources/interface.png" alt="" /></li>
-  <li>通过 <code>ssh root@192.168.15.244</code> 连接到 K4, 其他版本 Kindle 通过 <code>ssh root@192.168.2.2</code> 连接, 密码通常为 mario</li>
-  <li>执行 <code>mntroot rw</code> 挂载 rootfs 为可写</li>
-  <li>执行 <code>cd /etc/kdb.src/yoshi/system/daemon/powerd/</code>, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同</li>
-  <li>执行 <code>vi suspend_levels</code>, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.</li>
-  <li>执行 <code>mkdir /mnt/base-us/weather</code> 创建文件夹
-<img src="/resources/ssh.png" alt="" /></li>
-  <li>在主机上把 <code>display-weather.sh</code> 里面的 <code>URL</code> 改为你自己主机上 weather.png 的 URL</li>
-  <li>通过 <code>scp display-weather.sh root@192.168.15.244:/usr/bin/</code> 把 <code>display-weather.sh</code> 传到 Kindle 上的 <code>/usr/bin</code> 目录下</li>
-  <li>回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&quot;*/60 6-22 * * * /usr/bin/display-weather.sh&quot;</span> &gt;&gt; /etc/crontab/root</code></pre></div>
+<p>扩展依赖 vim-airline 和 webapi-vim, 确保你的 .vimrc 中有以下几行:</p>
+
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">Plugin <span class="s1">&#39;bling/vim-airline&#39;</span>
+Plugin <span class="s1">&#39;mattn/webapi-vim&#39;</span>
+Plugin <span class="s1">&#39;Wildog/airline-weather.vim&#39;</span></code></pre></div>
+
+<p>然后执行 <code>:PluginInstall</code></p>
+
+<h2 id="section-1">使用</h2>
 
 <ul>
-  <li>执行 <code>/usr/bin/display-weather.sh</code>, 在 Kindle 上测试效果</li>
-  <li>执行 <code>reboot</code> 以重启 Kindle</li>
+  <li>设置位置</li>
 </ul>
 
-<p>至此 Kindle 桌面气象站就设置好了, 每小时会自动更新天气, 如果中途解锁了再锁定, 锁屏界面会变成普通锁屏画面, 一小时内等到下次执行 crontab 任务的时候会重新显示天气界面.</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="k">g</span>:weather#area <span class="p">=</span> <span class="s1">&#39;beijing,china&#39;</span></code></pre></div>
+
+<ul>
+  <li>设置单位 (‘metric’ 显示 ºC, ‘imperial’ 显示 ºF.):</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="k">g</span>:weather#unit <span class="p">=</span> <span class="s1">&#39;metric&#39;</span></code></pre></div>
+
+<ul>
+  <li>设置 API Key, 默认为我的 API Key, 你最好申请并设置一个自己的 API Key: <a href="http://openweathermap.org/appid">http://openweathermap.org/appid</a></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="k">g</span>:weather#appid <span class="p">=</span> <span class="s1">&#39;2de143494c0b295cca9337e1e96b00e0&#39;</span></code></pre></div>
+
+<ul>
+  <li>设置缓存文件路径和缓存更新周期, 缓存文件默认为<code>~/.cache/.weather</code>, 更新周期默认为 1 小时. (如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿)</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="k">g</span>:weather#cache_file <span class="p">=</span> <span class="s1">&#39;~/.cache/.weather&#39;</span>
+<span class="k">let</span> <span class="k">g</span>:weather#cache_ttl <span class="p">=</span> <span class="s1">&#39;3600&#39;</span></code></pre></div>
+
+<ul>
+  <li>设置天气格式, <code>%s</code>为天气图标, <code>%f</code>为温度数字</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="k">g</span>:weather#format <span class="p">=</span> <span class="s1">&#39;%s %.0f&#39;</span></code></pre></div>
+
+<ul>
+  <li>设置天气图标, 数字含义可参考 OpenWeatherMap 的 API: <a href="http://openweathermap.org/weather-conditions">http://openweathermap.org/weather-conditions</a></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="k">g</span>:weather#status_map <span class="p">=</span> {
+\ <span class="s2">&quot;01&quot;</span>: <span class="s2">&quot;☀&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;02&quot;</span>: <span class="s2">&quot;☁&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;03&quot;</span>: <span class="s2">&quot;☁&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;04&quot;</span>: <span class="s2">&quot;☁&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;09&quot;</span>: <span class="s2">&quot;☂&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;10&quot;</span>: <span class="s2">&quot;☂&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;11&quot;</span>: <span class="s2">&quot;☈&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;13&quot;</span>: <span class="s2">&quot;❅&quot;</span><span class="p">,</span>
+\ <span class="s2">&quot;50&quot;</span>: <span class="s2">&quot;≡&quot;</span><span class="p">,</span>
+\}<span class="p">)</span></code></pre></div>
+
 
                     <div class="meta">
                         <p class="date-publish">
                             Published: 
-                            <date class="date-pub" title="2015-11-28T00:00:00+08:00" datetime="2015-11-28T00:00:00+08:00" pubdate>
-                            <span class="month"><abbr>November</abbr></span>
-                            <span class="day">28</span>
+                            <date class="date-pub" title="2015-12-07T00:00:00+08:00" datetime="2015-12-07T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>December</abbr></span>
+                            <span class="day">07</span>
                             <span class="year">2015</span>
                             </date>
                         </p>
@@ -147,7 +158,7 @@
 
   <!-- 多说评论框 start -->
     <div id="comments">
-        <div class="ds-thread" data-thread-key="/2015/11/28/display-weather-on-kindle-lock-screen" data-title="把你的旧 Kindle 变成桌面气象站" data-url="http://limbo.space/2015/11/28/display-weather-on-kindle-lock-screen"></div>
+        <div class="ds-thread" data-thread-key="/2015/12/07/airline-weather-vim" data-title="在 vim-airline 上显示天气" data-url="http://limbo.space/2015/12/07/airline-weather-vim"></div>
     </div>
     <br/>
 <!-- 多说评论框 end -->
@@ -164,13 +175,9 @@
                     <nav class="pagination">
                         <ul>
                             
-                            <li class="prev"><a class="internal" rel="prev"  href="/2014/10/21/copy-and-paste-multiple-search-results-in-vim/" title="View 在 Vim 里复制所有匹配结果">&laquo; 在 Vim 里复制所有匹配结果</a></li>
+                            <li class="prev"><a class="internal" rel="prev"  href="/2015/11/28/display-weather-on-kindle-lock-screen/" title="View 把你的旧 Kindle 变成桌面气象站">&laquo; 把你的旧 Kindle 变成桌面气象站</a></li>
                             
                             
-                            <li class="pipe"> | </li>
-                            
-                            
-                            <li class="next"><a class="internal" rel="next"  href="/2015/12/07/airline-weather-vim/" title="View 在 vim-airline 上显示天气">在 vim-airline 上显示天气 &raquo;</a></li>
                             
                         </ul>
                     </nav>
