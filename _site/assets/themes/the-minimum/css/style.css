@@ -323,6 +323,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;font-family:
 .layout-page .unit-body .unit-body-inner{width:15em;margin-left:auto;margin-right:auto;}
 .layout-page .unit-body .article-list .meta{margin-bottom:1.625em;}
 .the-footer .unit-foot{width:15em;margin-left:auto;margin-right:auto;}
+.fill{height:0px;background-color:#1a1a1a;background-color:rgba(21, 25, 25, 0.8);}
 .ie .the-header .unit-inner{width:43.125em;margin-top:1.625em;margin-bottom:1.625em;margin-left:auto;margin-right:auto;}
 .ie .the-header .logo{width:43.125em;text-align:center;}
 .ie .the-header .nav-global{margin-top:50px;text-align:center;width:43.125em;}
