@@ -72,7 +72,7 @@ let g:weather#status_map = {
 \ "11": "☈",
 \ "13": "❅",
 \ "50": "≡",
-\})
+\}
 {% endhighlight %}
 
 * 强制刷新天气
