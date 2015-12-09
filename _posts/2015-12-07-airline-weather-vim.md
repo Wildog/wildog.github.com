@@ -74,3 +74,9 @@ let g:weather#status_map = {
 \ "50": "≡",
 \})
 {% endhighlight %}
+
+* 强制刷新天气
+
+{% highlight vim %}
+:call RefreshWeather()
+{% endhighlight %}
