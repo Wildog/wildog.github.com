@@ -5,8 +5,8 @@
         <description>limbø.space - wildog</description>
         <link>http://limbo.space</link>
         <link>http://limbo.space</link>
-        <lastBuildDate>2015-12-09T11:47:27+08:00</lastBuildDate>
-        <pubDate>2015-12-09T11:47:27+08:00</pubDate>
+        <lastBuildDate>2016-01-01T16:23:18+08:00</lastBuildDate>
+        <pubDate>2016-01-01T16:23:18+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -83,7 +83,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
 \ &lt;span class=&quot;s2&quot;&gt;&amp;quot;11&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☈&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 \ &lt;span class=&quot;s2&quot;&gt;&amp;quot;13&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;❅&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 \ &lt;span class=&quot;s2&quot;&gt;&amp;quot;50&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;≡&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\}&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+\}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;强制刷新天气&lt;/li&gt;
