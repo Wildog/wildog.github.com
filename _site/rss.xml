@@ -5,8 +5,8 @@
         <description>limbø.space - wildog</description>
         <link>http://limbo.space</link>
         <link>http://limbo.space</link>
-        <lastBuildDate>2016-01-01T16:23:18+08:00</lastBuildDate>
-        <pubDate>2016-01-01T16:23:18+08:00</pubDate>
+        <lastBuildDate>2016-01-19T11:48:19+08:00</lastBuildDate>
+        <pubDate>2016-01-19T11:48:19+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -74,15 +74,24 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
 &lt;/ul&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;:weather#status_map &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; {
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;01&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☀&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;02&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;03&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;04&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;09&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☂&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;10&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☂&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;11&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☈&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;13&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;❅&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;50&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;≡&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;01d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☀&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;02d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;03d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;04d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;09d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☂&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;10d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☂&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;11d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☈&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;13d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;❅&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;50d&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;≡&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;01n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☽&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;02n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;03n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;04n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☁&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;09n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☂&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;10n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☂&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;11n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;☈&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;13n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;❅&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+\ &lt;span class=&quot;s2&quot;&gt;&amp;quot;50n&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;≡&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 \}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ul&gt;
