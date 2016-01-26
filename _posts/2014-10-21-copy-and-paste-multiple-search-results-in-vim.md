@@ -32,5 +32,5 @@ endfunction
 按 F4 后自己改掉 regex 就可以了.
 
 示例:  
-![](/resources/vim-1.png)  
-![](/resources/vim-2.png)
+![](http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-1.png)  
+![](http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-2.png)
