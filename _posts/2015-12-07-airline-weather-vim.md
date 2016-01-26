@@ -4,7 +4,7 @@ title: 在 Vim-airline 上显示天气
 tags: ["vim", "天气", "airline", "vim-airline", "weather"]
 ---
 
-![screenshot](/resources/airline-weather-vim-screenshot.png)
+![screenshot](http://7xqhhm.com1.z0.glb.clouddn.com/images/airline-weather-vim-screenshot.png)
 
 这两天把 Vim 的 Powerline 插件换成了 [vim-airline](https://github.com/bling/vim-airline), 相比 Powerline, vim-airline 更轻量, 完全用 Vimscript 实现, 让我摆脱了 Vim 中的 Powerline 插件在我的 tmux 环境下经常闪烁的问题.
 

@@ -5,14 +5,14 @@
         <description>limbø.space - wildog</description>
         <link>http://limbo.space</link>
         <link>http://limbo.space</link>
-        <lastBuildDate>2016-01-19T11:48:19+08:00</lastBuildDate>
-        <pubDate>2016-01-19T11:48:19+08:00</pubDate>
+        <lastBuildDate>2016-01-26T11:58:41+08:00</lastBuildDate>
+        <pubDate>2016-01-26T11:58:41+08:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
                 <title>在 Vim-airline 上显示天气</title>
-                <description>&lt;p&gt;&lt;img src=&quot;/resources/airline-weather-vim-screenshot.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/airline-weather-vim-screenshot.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这两天把 Vim 的 Powerline 插件换成了 &lt;a href=&quot;https://github.com/bling/vim-airline&quot;&gt;vim-airline&lt;/a&gt;, 相比 Powerline, vim-airline 更轻量, 完全用 Vimscript 实现, 让我摆脱了 Vim 中的 Powerline 插件在我的 tmux 环境下经常闪烁的问题.&lt;/p&gt;
 
@@ -108,7 +108,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
 
         <item>
                 <title>把你的旧 Kindle 变成桌面气象站</title>
-                <description>&lt;p&gt;&lt;img src=&quot;/resources/kindle.jpg&quot; alt=&quot;&quot; /&gt;  &lt;/p&gt;
+                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/kindle.jpg&quot; alt=&quot;&quot; /&gt;  &lt;/p&gt;
 
 &lt;p&gt;参考 Repo: &lt;a href=&quot;https://github.com/cathay4t/kindle-weather&quot;&gt;https://github.com/cathay4t/kindle-weather&lt;/a&gt;&lt;/p&gt;
 
@@ -150,13 +150,13 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
   &lt;/li&gt;
   &lt;li&gt;越狱后安装 USB networking, 从&lt;a href=&quot;http://www.mobileread.com/forums/showthread.php?t=88004&quot;&gt;此贴&lt;/a&gt;下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;断开 Kindle 和电脑的连接&lt;/strong&gt;, 在主界面按键盘键, 输入 &lt;code&gt;;debugOn&lt;/code&gt; 后回车, 接着输入 &lt;code&gt;~usbNetwork&lt;/code&gt; 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 &lt;code&gt;192.168.15.201&lt;/code&gt;, 其他版本的 Kindle 把这个 IP 设为 &lt;code&gt;192.168.2.1&lt;/code&gt;,  如图:
-&lt;img src=&quot;/resources/interface.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/interface.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;通过 &lt;code&gt;ssh root@192.168.15.244&lt;/code&gt; 连接到 K4, 其他版本 Kindle 通过 &lt;code&gt;ssh root@192.168.2.2&lt;/code&gt; 连接, 密码通常为 mario&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;mntroot rw&lt;/code&gt; 挂载 rootfs 为可写&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;cd /etc/kdb.src/yoshi/system/daemon/powerd/&lt;/code&gt;, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;vi suspend_levels&lt;/code&gt;, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.&lt;/li&gt;
   &lt;li&gt;执行 &lt;code&gt;mkdir /mnt/base-us/weather&lt;/code&gt; 创建文件夹
-&lt;img src=&quot;/resources/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;在主机上把 &lt;code&gt;display-weather.sh&lt;/code&gt; 里面的 &lt;code&gt;URL&lt;/code&gt; 改为你自己主机上 weather.png 的 URL&lt;/li&gt;
   &lt;li&gt;通过 &lt;code&gt;scp display-weather.sh root@192.168.15.244:/usr/bin/&lt;/code&gt; 把 &lt;code&gt;display-weather.sh&lt;/code&gt; 传到 Kindle 上的 &lt;code&gt;/usr/bin&lt;/code&gt; 目录下&lt;/li&gt;
   &lt;li&gt;回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:&lt;/li&gt;
@@ -202,8 +202,8 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
 &lt;p&gt;按 F4 后自己改掉 regex 就可以了.&lt;/p&gt;
 
 &lt;p&gt;示例:&lt;br /&gt;
-&lt;img src=&quot;/resources/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;/resources/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
                 <link>http://limbo.space/2014/10/21/copy-and-paste-multiple-search-results-in-vim</link>
                 <guid>http://limbo.space/2014/10/21/copy-and-paste-multiple-search-results-in-vim</guid>
@@ -235,7 +235,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
 &lt;p&gt;实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：&lt;a href=&quot;http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html&quot;&gt;视频戳我&lt;/a&gt;&lt;br /&gt;
 右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&amp;lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/resources/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
                 <link>http://limbo.space/2013/07/11/arduino-processing-beat-detect</link>
                 <guid>http://limbo.space/2013/07/11/arduino-processing-beat-detect</guid>
@@ -258,7 +258,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
   &lt;li&gt;
     &lt;p&gt;运行终端 → 首选项 → 命令行, 更改 &lt;code&gt;/system/bin/sh&lt;/code&gt; 为 &lt;code&gt;/system/bin/bash&lt;/code&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/resources/130619-setting-shell.jpg&quot; alt=&quot;setting shell&quot; /&gt;   &lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-setting-shell.jpg&quot; alt=&quot;setting shell&quot; /&gt;   &lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;初始命令, 加入:&lt;/li&gt;
 &lt;/ol&gt;
@@ -272,11 +272,11 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&amp;#39;Wildog/airline-weather.vim&amp;
 &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python/lib
 &lt;span class=&quot;c&quot;&gt;#路径根据实际情况有可能需要更改&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/resources/130619-export-env.jpg&quot; alt=&quot;&quot; /&gt;   &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-export-env.jpg&quot; alt=&quot;&quot; /&gt;   &lt;/p&gt;
 
 &lt;p&gt;9.启终端即可运行&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/resources/130619-run.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-run.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
                 <link>http://limbo.space/2013/06/19/run-python-from-your-android-shell</link>
                 <guid>http://limbo.space/2013/06/19/run-python-from-your-android-shell</guid>
