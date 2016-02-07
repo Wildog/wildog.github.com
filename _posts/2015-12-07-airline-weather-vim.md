@@ -12,9 +12,9 @@ tags: ["vim", "天气", "airline", "vim-airline", "weather"]
 
 Github Repo 地址: [https://github.com/Wildog/airline-weather.vim](https://github.com/Wildog/airline-weather.vim)
 
-##安装
+## 安装
 
-* ####使用 Vundle 安装
+* #### 使用 Vundle 安装
 
 扩展依赖 vim-airline 和 webapi-vim, 确保你的 .vimrc 中有以下几行:
 
@@ -26,7 +26,7 @@ Plugin 'Wildog/airline-weather.vim'
 
 然后执行 `:PluginInstall`
 
-##使用
+## 使用
 
 * 设置位置
 

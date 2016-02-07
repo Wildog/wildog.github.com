@@ -1,0 +1,184 @@
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在 Android 终端上运行 Python | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="Android, Python, 终端, sl4a">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?11c959e4e7e61e03218d8ffeeacdb15d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+    <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about/">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title">在 Android 终端上运行 Python</h1>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p>尝试了 <a href="https://code.google.com/p/android-scripting/">SL4A</a> + <a href="https://code.google.com/p/python-for-android/">PythonForAndroid</a> 和 <a href="http://qpython.com/">QPython</a> 后发现 Python 并不能从 <a href="https://play.google.com/store/apps/details?id=jackpal.androidterm">Android Terminal Emulator</a> 上直接运行，于是参考了下<a href="https://code.google.com/p/python-for-android/wiki/RunPythonFromShell">官方的方法</a>，觉得这样调用有点麻烦，经我改进后在 Android 终端上运行 Python 的办法如下：</p>
+
+<ol>
+  <li>下载安装 <a href="https://code.google.com/p/python-for-android/downloads/detail?name=PythonForAndroid_r4.apk">PythonForAndroid_r4.apk</a><br />
+# 这个版本是 Python 2.6, 你也可以选择 <a href="https://code.google.com/p/python-for-android/downloads/detail?name=Python3ForAndroid_r6.apk">Python 3</a>, 后面的环境变量自行更改</li>
+  <li>运行 Python for Android → Install (需要网络，最好在wifi环境下)</li>
+  <li>Google Play 商店里安装 <a href="https://play.google.com/store/apps/details?id=jackpal.androidterm">Android Terminal Emulator</a></li>
+  <li>下载 Bash, 见 <a href="http://forum.xda-developers.com/showthread.php?t=977051">XDA 帖子附件</a><br />
+# 帖子里的 BusyBox 有需要也可以装上替换 Android 阉割版</li>
+  <li>解压, 把包里的 <a href="http://pan.baidu.com/share/link?shareid=2088068197&amp;uk=3103986771">bash 文件</a>复制到 <code class="highlighter-rouge">/system/bin/</code> 下</li>
+  <li>下载这里的 <a href="http://pan.baidu.com/share/link?shareid=2088068197&amp;uk=3103986771">python 文件</a> 文件复制到 <code class="highlighter-rouge">/system/bin/</code> 下</li>
+  <li>
+    <p>运行终端 → 首选项 → 命令行, 更改 <code class="highlighter-rouge">/system/bin/sh</code> 为 <code class="highlighter-rouge">/system/bin/bash</code></p>
+
+    <p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-setting-shell.jpg" alt="setting shell" /></p>
+  </li>
+  <li>初始命令, 加入:</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">EXTERNAL_STORAGE</span><span class="o">=</span>/mnt/sdcard
+<span class="nv">PYTHONPATH</span><span class="o">=</span>/mnt/sdcard/com.googlecode.pythonforandroid/extras/python
+<span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">PYTHONPATH</span><span class="k">}</span>:/data/data/com.googlecode.pythonforandroid/files/python/lib/python2.6/lib-dynload
+<span class="nb">export </span>PYTHONPATH
+<span class="nb">export </span><span class="nv">TEMP</span><span class="o">=</span>/mnt/sdcard/com.googlecode.pythonforandroid/extras/python/tmpexport <span class="nv">PYTHON_EGG_CACHE</span><span class="o">=</span><span class="nv">$TEMP</span>
+<span class="nb">export </span><span class="nv">PYTHONHOME</span><span class="o">=</span>/data/data/com.googlecode.pythonforandroid/files/python
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/data/data/com.googlecode.pythonforandroid/files/python/lib
+<span class="c">#路径根据实际情况有可能需要更改</span></code></pre></figure>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-export-env.jpg" alt="" /></p>
+
+<p>9.启终端即可运行<br /></p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-run.jpg" alt="" /></p>
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2013-06-19T00:00:00+08:00" datetime="2013-06-19T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>June</abbr></span>
+                            <span class="day">19</span>
+                            <span class="year">2013</span>
+                            </date>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/2013/06/19/run-python-from-your-android-shell" data-title="在 Android 终端上运行 Python" data-url="http://limbo.space/2013/06/19/run-python-from-your-android-shell/"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            
+                            
+                            <li class="next"><a class="internal" rel="next"  href="/2013/07/11/arduino-processing-beat-detect//" title="View 用 Arduino + Processing 识别节拍">用 Arduino + Processing 识别节拍 &raquo;</a></li>
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:$(document.body).animate({'scrollTop':0},1000);">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="licence">
+                    <br>
+                    ©2013-2016 <a href="/about.html">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){var oldIE;if($("html").is(".ie6, .ie7, .ie8, .ie9")){oldIE=true}if(oldIE){alert("Please update your IE to make a better world!")}var offset=$(window).height()-$(".the-footer").position().top-$(".the-footer").height();if(offset>0){$(".fill").css("height",offset)}setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});var expanded=0;function expandMymore(){expanded=1;$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapseMymore(){expanded=0;$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}$(".nav-global .my").mouseenter(expandMymore);$(".nav-global").mouseleave(collapseMymore);$(".nav-global .my .expand").click(function(){if(expanded==1){collapseMymore()}else{expandMymore()}})});$(document).ready(function(){$("p img").each(function(){var strA="<a class='fancybox' href='"+this.src+"'></a>";$(this).wrapAll(strA)})});$(document).ready(function(){var $fancyboxes=$("a.fancybox");if($fancyboxes.length){$('<link rel="stylesheet" type="text/css" href="/assets/themes/wildog/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo("head");$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/fancybox/jquery.fancybox.pack.js?v=2.1.5",cache:true,success:function(){$fancyboxes.fancybox({openEffect:"elastic",closeEffect:"elastic",});$fancyboxes.attr("rel","gallery").fancybox({padding:0})}})}});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(event){addBlankTargetForLinks()});var duoshuoQuery={short_name:"wildog"};(function(){var ds=document.createElement("script");ds.type="text/javascript";ds.async=true;ds.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";ds.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(ds)})();
+/*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
+(function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
+</script>
+  
+
+
+</body>
+</html>
+

@@ -4,10 +4,6 @@ title: 在 Vim 里复制所有匹配结果
 tags: ["vim", "vimscript", "复制"]
 ---
 
-## Test
-
-###### Test
-
 今天突发奇想地想在 Vim 中一次性复制所有的正则匹配结果, 先是直接想到用 MultipleCursors 这个插件带的 MultipleCursorsFind, 复制后提示 yank 操作不能在多光标情况下使用, 这种奇技淫巧果然行不通...
 遂用 Vimscript 解决, 在 `.vimrc` 中加入下列函数:
 
