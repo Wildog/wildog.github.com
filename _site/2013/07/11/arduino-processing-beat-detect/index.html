@@ -8,9 +8,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>在 Vim-airline 上显示天气 | Wildog</title>
+    <title>用 Arduino + Processing 识别节拍 | Wildog</title>
     <meta name="author" content="Wildog">
-    <meta name="keywords" content="vim, 天气, airline, vim-airline, weather">
+    <meta name="keywords" content="Arduino, Processing, beat detect, 节拍">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -60,109 +60,45 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">在 Vim-airline 上显示天气</h1>
+                        <h1 class="h2 entry-title">用 Arduino + Processing 识别节拍</h1>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
             </header>
 
             <div class="bd">
                 <div class="entry-content">
-                    <p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/airline-weather-vim-screenshot.png" alt="screenshot" /></p>
+                    <p>一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。</p>
 
-<p>这两天把 Vim 的 Powerline 插件换成了 <a href="https://github.com/bling/vim-airline">vim-airline</a>, 相比 Powerline, vim-airline 更轻量, 完全用 Vimscript 实现, 让我摆脱了 Vim 中的 Powerline 插件在我的 tmux 环境下经常闪烁的问题.</p>
+<p><strong>源码</strong>:<br />
+<a href="http://wildog.net/download/BeatWrite.zip">点我下载</a><br />
+# 把 <code class="highlighter-rouge">BeatWrite.pde</code> 中的针脚配置改为你自己连接的针脚, 连接图示<a href="/resources/circuit.jpg">点我查看</a><br />
+# 把 mp3 文件放入 <code class="highlighter-rouge">data</code> 文件夹中, 将 <code class="highlighter-rouge">BeatWrite.pde</code> 中 <code class="highlighter-rouge">"minim.loadFile("aaa.mp3", 2048)"</code> 一行的 <code class="highlighter-rouge">"aaa.mp3"</code> 改为你自己的 mp3 文件名</p>
 
-<p>但是 vim-airline 缺了 Powerline 插件的天气扩展, 于是自己写了一个 vim-airline 的天气扩展, 效果图如上, 在右下角显示天气图标和当前温度, 借助了 webapi-vim 插件和 OpenWeatherMap 的 API.</p>
+<p><strong>软件</strong>:<br />
+1. Arduino<br />
+2. Processing<br />
+   # 务必下载 1.5.1 版本的 Processing, 个人测试 2.0 的版本会出错<br />
+3. Arduino 库<br />
+   # 解压至 <code class="highlighter-rouge">Processing目录/modes/java/libraries/</code><br />
+4. Minim 库<br />
+   # 官方 Processing 已自带, 如果你的没有, 下载后解压至相同目录</p>
 
-<p>Github Repo 地址: <a href="https://github.com/Wildog/airline-weather.vim">https://github.com/Wildog/airline-weather.vim</a></p>
+<p><strong>步骤</strong>:<br />
+1. 将 Examples 中 Firmata 库里的 StandardFirmata 上传到 Arduino 中<br />
+2. 上传完毕等到 Arduino 上的 RX/TX LED 停止闪烁后再运行 Processing 源码</p>
 
-<h2 id="section">安装</h2>
+<p>实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：<a href="http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html">视频戳我</a><br />
+右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat</p>
 
-<ul>
-  <li>
-    <h4 id="vundle-">使用 Vundle 安装</h4>
-  </li>
-</ul>
-
-<p>扩展依赖 vim-airline 和 webapi-vim, 确保你的 .vimrc 中有以下几行:</p>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim">Plugin <span class="s1">'bling/vim-airline'</span>
-Plugin <span class="s1">'mattn/webapi-vim'</span>
-Plugin <span class="s1">'Wildog/airline-weather.vim'</span></code></pre></figure>
-
-<p>然后执行 <code class="highlighter-rouge">:PluginInstall</code></p>
-
-<h2 id="section-1">使用</h2>
-
-<ul>
-  <li>设置位置</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#area <span class="p">=</span> <span class="s1">'beijing,china'</span></code></pre></figure>
-
-<ul>
-  <li>设置单位 (‘metric’ 显示 ºC, ‘imperial’ 显示 ºF.):</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#unit <span class="p">=</span> <span class="s1">'metric'</span></code></pre></figure>
-
-<ul>
-  <li>设置 API Key, 默认为我的 API Key, 你最好申请并设置一个自己的 API Key: <a href="http://openweathermap.org/appid">http://openweathermap.org/appid</a></li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#appid <span class="p">=</span> <span class="s1">'2de143494c0b295cca9337e1e96b00e0'</span></code></pre></figure>
-
-<ul>
-  <li>设置缓存文件路径和缓存更新周期, 缓存文件默认为<code class="highlighter-rouge">~/.cache/.weather</code>, 更新周期默认为 1 小时. (如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿)</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#cache_file <span class="p">=</span> <span class="s1">'~/.cache/.weather'</span>
-<span class="k">let</span> <span class="nv">g:weather</span>#cache_ttl <span class="p">=</span> <span class="s1">'3600'</span></code></pre></figure>
-
-<ul>
-  <li>设置天气格式, <code class="highlighter-rouge">%s</code>为天气图标, <code class="highlighter-rouge">%f</code>为温度数字</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#format <span class="p">=</span> <span class="s1">'%s %.0f'</span></code></pre></figure>
-
-<ul>
-  <li>设置天气图标, 数字含义可参考 OpenWeatherMap 的 API: <a href="http://openweathermap.org/weather-conditions">http://openweathermap.org/weather-conditions</a></li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#status_map <span class="p">=</span> <span class="p">{</span>
-<span class="se">\</span> <span class="s2">"01d"</span><span class="p">:</span> <span class="s2">"☀"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"02d"</span><span class="p">:</span> <span class="s2">"☁"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"03d"</span><span class="p">:</span> <span class="s2">"☁"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"04d"</span><span class="p">:</span> <span class="s2">"☁"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"09d"</span><span class="p">:</span> <span class="s2">"☂"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"10d"</span><span class="p">:</span> <span class="s2">"☂"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"11d"</span><span class="p">:</span> <span class="s2">"☈"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"13d"</span><span class="p">:</span> <span class="s2">"❅"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"50d"</span><span class="p">:</span> <span class="s2">"≡"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"01n"</span><span class="p">:</span> <span class="s2">"☽"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"02n"</span><span class="p">:</span> <span class="s2">"☁"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"03n"</span><span class="p">:</span> <span class="s2">"☁"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"04n"</span><span class="p">:</span> <span class="s2">"☁"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"09n"</span><span class="p">:</span> <span class="s2">"☂"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"10n"</span><span class="p">:</span> <span class="s2">"☂"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"11n"</span><span class="p">:</span> <span class="s2">"☈"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"13n"</span><span class="p">:</span> <span class="s2">"❅"</span><span class="p">,</span>
-<span class="se">\</span> <span class="s2">"50n"</span><span class="p">:</span> <span class="s2">"≡"</span><span class="p">,</span>
-<span class="se">\</span><span class="p">}</span></code></pre></figure>
-
-<ul>
-  <li>强制刷新天气</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">call</span> RefreshWeather<span class="p">()</span></code></pre></figure>
-
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg" alt="" /></p>
 
                     <div class="meta">
                         <p class="date-publish">
                             Published: 
-                            <date class="date-pub" title="2015-12-07T00:00:00+08:00" datetime="2015-12-07T00:00:00+08:00" pubdate>
-                            <span class="month"><abbr>December</abbr></span>
-                            <span class="day">07</span>
-                            <span class="year">2015</span>
+                            <date class="date-pub" title="2013-07-11T00:00:00+08:00" datetime="2013-07-11T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>July</abbr></span>
+                            <span class="day">11</span>
+                            <span class="year">2013</span>
                             </date>
                         </p>
                     </div><!-- meta -->
@@ -173,7 +109,7 @@ Plugin <span class="s1">'Wildog/airline-weather.vim'</span></code></pre></figure
 
   <!-- 多说评论框 start -->
     <div id="comments">
-        <div class="ds-thread" data-thread-key="/2015/12/07/airline-weather-vim" data-title="在 Vim-airline 上显示天气" data-url="http://limbo.space/2015/12/07/airline-weather-vim"></div>
+        <div class="ds-thread" data-thread-key="/2013/07/11/arduino-processing-beat-detect" data-title="用 Arduino + Processing 识别节拍" data-url="http://limbo.space/2013/07/11/arduino-processing-beat-detect/"></div>
     </div>
     <br/>
 <!-- 多说评论框 end -->
@@ -190,9 +126,13 @@ Plugin <span class="s1">'Wildog/airline-weather.vim'</span></code></pre></figure
                     <nav class="pagination">
                         <ul>
                             
-                            <li class="prev"><a class="internal" rel="prev"  href="/2015/11/28/display-weather-on-kindle-lock-screen/" title="View 把你的旧 Kindle 变成桌面气象站">&laquo; 把你的旧 Kindle 变成桌面气象站</a></li>
+                            <li class="prev"><a class="internal" rel="prev"  href="/2013/06/19/run-python-from-your-android-shell//" title="View 在 Android 终端上运行 Python">&laquo; 在 Android 终端上运行 Python</a></li>
                             
                             
+                            <li class="pipe"> | </li>
+                            
+                            
+                            <li class="next"><a class="internal" rel="next"  href="/2014/10/21/copy-and-paste-multiple-search-results-in-vim//" title="View 在 Vim 里复制所有匹配结果">在 Vim 里复制所有匹配结果 &raquo;</a></li>
                             
                         </ul>
                     </nav>

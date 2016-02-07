@@ -8,9 +8,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>把你的旧 Kindle 变成桌面气象站 | Wildog</title>
+    <title>在 Android 终端上运行 Python | Wildog</title>
     <meta name="author" content="Wildog">
-    <meta name="keywords" content="kindle, 天气, diy">
+    <meta name="keywords" content="Android, Python, 终端, sl4a">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -60,83 +60,54 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">把你的旧 Kindle 变成桌面气象站</h1>
+                        <h1 class="h2 entry-title">在 Android 终端上运行 Python</h1>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
             </header>
 
             <div class="bd">
                 <div class="entry-content">
-                    <p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/kindle.jpg" alt="" /></p>
+                    <p>尝试了 <a href="https://code.google.com/p/android-scripting/">SL4A</a> + <a href="https://code.google.com/p/python-for-android/">PythonForAndroid</a> 和 <a href="http://qpython.com/">QPython</a> 后发现 Python 并不能从 <a href="https://play.google.com/store/apps/details?id=jackpal.androidterm">Android Terminal Emulator</a> 上直接运行，于是参考了下<a href="https://code.google.com/p/python-for-android/wiki/RunPythonFromShell">官方的方法</a>，觉得这样调用有点麻烦，经我改进后在 Android 终端上运行 Python 的办法如下：</p>
 
-<p>参考 Repo: <a href="https://github.com/cathay4t/kindle-weather">https://github.com/cathay4t/kindle-weather</a></p>
+<ol>
+  <li>下载安装 <a href="https://code.google.com/p/python-for-android/downloads/detail?name=PythonForAndroid_r4.apk">PythonForAndroid_r4.apk</a><br />
+# 这个版本是 Python 2.6, 你也可以选择 <a href="https://code.google.com/p/python-for-android/downloads/detail?name=Python3ForAndroid_r6.apk">Python 3</a>, 后面的环境变量自行更改</li>
+  <li>运行 Python for Android → Install (需要网络，最好在wifi环境下)</li>
+  <li>Google Play 商店里安装 <a href="https://play.google.com/store/apps/details?id=jackpal.androidterm">Android Terminal Emulator</a></li>
+  <li>下载 Bash, 见 <a href="http://forum.xda-developers.com/showthread.php?t=977051">XDA 帖子附件</a><br />
+# 帖子里的 BusyBox 有需要也可以装上替换 Android 阉割版</li>
+  <li>解压, 把包里的 <a href="http://pan.baidu.com/share/link?shareid=2088068197&amp;uk=3103986771">bash 文件</a>复制到 <code class="highlighter-rouge">/system/bin/</code> 下</li>
+  <li>下载这里的 <a href="http://pan.baidu.com/share/link?shareid=2088068197&amp;uk=3103986771">python 文件</a> 文件复制到 <code class="highlighter-rouge">/system/bin/</code> 下</li>
+  <li>
+    <p>运行终端 → 首选项 → 命令行, 更改 <code class="highlighter-rouge">/system/bin/sh</code> 为 <code class="highlighter-rouge">/system/bin/bash</code></p>
 
-<p>看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场.</p>
-
-<p>分享下自己的流程:</p>
-
-<ul>
-  <li>首先, 你需要一台长期联网的 Kindle (K3, K4 测试通过)</li>
-  <li>其次, 你需要一台长期联网的主机或者 VPS</li>
-</ul>
-
-<p><strong>然后先配置主机</strong>:</p>
-
-<ul>
-  <li>安装好 httpd, pngcrush, librsvg2</li>
-  <li>启动 httpd 服务</li>
-  <li>建立文件夹 <code class="highlighter-rouge">/var/www/html/weather</code> 并设置权限</li>
-  <li>下载上面这个 <a href="https://github.com/cathay4t/kindle-weather">Repo</a> 里的源码</li>
-  <li><a href="http://www.wunderground.com/weather/api/d/login.html">申请 Weather Underground 的 API</a> 并记录 KEY</li>
-  <li><code class="highlighter-rouge">crontab -e</code> 添加定时任务, 在每天 6 点到 22 点期间每 29 分钟更新产生一次天气图片, <code class="highlighter-rouge">&lt;PATH&gt;</code> 改成源码所在路径, <code class="highlighter-rouge">&lt;API_KEY&gt;</code> 改成得到的 KEY, <code class="highlighter-rouge">&lt;LAT&gt; &lt;LON&gt;</code> 改成所在城市的经纬度, <a href="http://wunderground.com">Weather Underground</a> 上搜索城市可以得到经纬度</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">*</span>/29 6-22 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> &lt;PATH&gt;/weather_script.py &lt;API_KEY&gt; &lt;LAT&gt; &lt;LON&gt;</code></pre></figure>
-
-<ul>
-  <li>运行 <code class="highlighter-rouge">weather_script.py &lt;API_KEY&gt; &lt;LAT&gt; &lt;LON&gt;</code>, 测试 <code class="highlighter-rouge">http://&lt;主机域名&gt;/weather/weather.png</code> 能否得到正确显示的图片.</li>
-</ul>
-
-<p><strong>接下来配置 Kindle</strong>:</p>
-
-<ul>
-  <li>首先给 Kindle 越狱
-    <ol>
-      <li>K4 下载此<a href="http://www.mobileread.com/forums/attachment.php?attachmentid=141180&amp;d=1439936080">压缩包</a>, 
-解压后把 <code class="highlighter-rouge">data.tar.gz</code>, <code class="highlighter-rouge">ENABLE_DIAGS</code> 两个文件和 <code class="highlighter-rouge">diagnostic_logs</code> 文件夹复制到 Kindle 根目录,</li>
-      <li>重启后自动进入诊断模式, 选择<code class="highlighter-rouge">D) Exit, Reboot or Disable Diags</code> 后选择 <code class="highlighter-rouge">R) Reboot System</code>, 再选择 <code class="highlighter-rouge">Q) To continue</code>, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此页</a>)</li>
-    </ol>
+    <p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-setting-shell.jpg" alt="setting shell" /></p>
   </li>
-  <li>越狱后安装 USB networking, 从<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此贴</a>下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.</li>
-  <li><strong>断开 Kindle 和电脑的连接</strong>, 在主界面按键盘键, 输入 <code class="highlighter-rouge">;debugOn</code> 后回车, 接着输入 <code class="highlighter-rouge">~usbNetwork</code> 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 <code class="highlighter-rouge">192.168.15.201</code>, 其他版本的 Kindle 把这个 IP 设为 <code class="highlighter-rouge">192.168.2.1</code>,  如图:
-<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/interface.png" alt="" /></li>
-  <li>通过 <code class="highlighter-rouge">ssh root@192.168.15.244</code> 连接到 K4, 其他版本 Kindle 通过 <code class="highlighter-rouge">ssh root@192.168.2.2</code> 连接, 密码通常为 mario</li>
-  <li>执行 <code class="highlighter-rouge">mntroot rw</code> 挂载 rootfs 为可写</li>
-  <li>执行 <code class="highlighter-rouge">cd /etc/kdb.src/yoshi/system/daemon/powerd/</code>, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同</li>
-  <li>执行 <code class="highlighter-rouge">vi suspend_levels</code>, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.</li>
-  <li>执行 <code class="highlighter-rouge">mkdir /mnt/base-us/weather</code> 创建文件夹
-<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/ssh.png" alt="" /></li>
-  <li>在主机上把 <code class="highlighter-rouge">display-weather.sh</code> 里面的 <code class="highlighter-rouge">URL</code> 改为你自己主机上 weather.png 的 URL</li>
-  <li>通过 <code class="highlighter-rouge">scp display-weather.sh root@192.168.15.244:/usr/bin/</code> 把 <code class="highlighter-rouge">display-weather.sh</code> 传到 Kindle 上的 <code class="highlighter-rouge">/usr/bin</code> 目录下</li>
-  <li>回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:</li>
-</ul>
+  <li>初始命令, 加入:</li>
+</ol>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">"*/60 6-22 * * * /usr/bin/display-weather.sh"</span> &gt;&gt; /etc/crontab/root</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">EXTERNAL_STORAGE</span><span class="o">=</span>/mnt/sdcard
+<span class="nv">PYTHONPATH</span><span class="o">=</span>/mnt/sdcard/com.googlecode.pythonforandroid/extras/python
+<span class="nv">PYTHONPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">PYTHONPATH</span><span class="k">}</span>:/data/data/com.googlecode.pythonforandroid/files/python/lib/python2.6/lib-dynload
+<span class="nb">export </span>PYTHONPATH
+<span class="nb">export </span><span class="nv">TEMP</span><span class="o">=</span>/mnt/sdcard/com.googlecode.pythonforandroid/extras/python/tmpexport <span class="nv">PYTHON_EGG_CACHE</span><span class="o">=</span><span class="nv">$TEMP</span>
+<span class="nb">export </span><span class="nv">PYTHONHOME</span><span class="o">=</span>/data/data/com.googlecode.pythonforandroid/files/python
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/data/data/com.googlecode.pythonforandroid/files/python/lib
+<span class="c">#路径根据实际情况有可能需要更改</span></code></pre></figure>
 
-<ul>
-  <li>执行 <code class="highlighter-rouge">/usr/bin/display-weather.sh</code>, 在 Kindle 上测试效果</li>
-  <li>执行 <code class="highlighter-rouge">reboot</code> 以重启 Kindle</li>
-</ul>
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-export-env.jpg" alt="" /></p>
 
-<p>至此 Kindle 桌面气象站就设置好了, 每小时会自动更新天气, 如果中途解锁了再锁定, 锁屏界面会变成普通锁屏画面, 一小时内等到下次执行 crontab 任务的时候会重新显示天气界面.</p>
+<p>9.启终端即可运行<br /></p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-run.jpg" alt="" /></p>
 
                     <div class="meta">
                         <p class="date-publish">
                             Published: 
-                            <date class="date-pub" title="2015-11-28T00:00:00+08:00" datetime="2015-11-28T00:00:00+08:00" pubdate>
-                            <span class="month"><abbr>November</abbr></span>
-                            <span class="day">28</span>
-                            <span class="year">2015</span>
+                            <date class="date-pub" title="2013-06-19T00:00:00+08:00" datetime="2013-06-19T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>June</abbr></span>
+                            <span class="day">19</span>
+                            <span class="year">2013</span>
                             </date>
                         </p>
                     </div><!-- meta -->
@@ -147,7 +118,7 @@
 
   <!-- 多说评论框 start -->
     <div id="comments">
-        <div class="ds-thread" data-thread-key="/2015/11/28/display-weather-on-kindle-lock-screen" data-title="把你的旧 Kindle 变成桌面气象站" data-url="http://limbo.space/2015/11/28/display-weather-on-kindle-lock-screen"></div>
+        <div class="ds-thread" data-thread-key="/2013/06/19/run-python-from-your-android-shell" data-title="在 Android 终端上运行 Python" data-url="http://limbo.space/2013/06/19/run-python-from-your-android-shell/"></div>
     </div>
     <br/>
 <!-- 多说评论框 end -->
@@ -164,13 +135,9 @@
                     <nav class="pagination">
                         <ul>
                             
-                            <li class="prev"><a class="internal" rel="prev"  href="/2014/10/21/copy-and-paste-multiple-search-results-in-vim/" title="View 在 Vim 里复制所有匹配结果">&laquo; 在 Vim 里复制所有匹配结果</a></li>
                             
                             
-                            <li class="pipe"> | </li>
-                            
-                            
-                            <li class="next"><a class="internal" rel="next"  href="/2015/12/07/airline-weather-vim/" title="View 在 Vim-airline 上显示天气">在 Vim-airline 上显示天气 &raquo;</a></li>
+                            <li class="next"><a class="internal" rel="next"  href="/2013/07/11/arduino-processing-beat-detect//" title="View 用 Arduino + Processing 识别节拍">用 Arduino + Processing 识别节拍 &raquo;</a></li>
                             
                         </ul>
                     </nav>
