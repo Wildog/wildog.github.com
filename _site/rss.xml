@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-02-07T20:10:28+08:00</lastBuildDate>
-        <pubDate>2016-02-07T20:10:28+08:00</pubDate>
+        <lastBuildDate>2016-02-07T20:17:32+08:00</lastBuildDate>
+        <pubDate>2016-02-07T20:17:32+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -101,7 +101,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; RefreshWeather&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-                <link>http://wil.dog/2015/12/07/airline-weather-vim</link>
+                <link>http://wil.dog/2015/12/07/airline-weather-vim/</link>
                 <guid>http://wil.dog/2015/12/07/airline-weather-vim</guid>
                 <pubDate>2015-12-07T00:00:00+08:00</pubDate>
         </item>
@@ -171,7 +171,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;至此 Kindle 桌面气象站就设置好了, 每小时会自动更新天气, 如果中途解锁了再锁定, 锁屏界面会变成普通锁屏画面, 一小时内等到下次执行 crontab 任务的时候会重新显示天气界面.&lt;/p&gt;
 </description>
-                <link>http://wil.dog/2015/11/28/display-weather-on-kindle-lock-screen</link>
+                <link>http://wil.dog/2015/11/28/display-weather-on-kindle-lock-screen/</link>
                 <guid>http://wil.dog/2015/11/28/display-weather-on-kindle-lock-screen</guid>
                 <pubDate>2015-11-28T00:00:00+08:00</pubDate>
         </item>
@@ -205,7 +205,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 &lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
 &lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
-                <link>http://wil.dog/2014/10/21/copy-and-paste-multiple-search-results-in-vim</link>
+                <link>http://wil.dog/2014/10/21/copy-and-paste-multiple-search-results-in-vim/</link>
                 <guid>http://wil.dog/2014/10/21/copy-and-paste-multiple-search-results-in-vim</guid>
                 <pubDate>2014-10-21T00:00:00+08:00</pubDate>
         </item>
@@ -237,7 +237,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
-                <link>http://wil.dog/2013/07/11/arduino-processing-beat-detect</link>
+                <link>http://wil.dog/2013/07/11/arduino-processing-beat-detect/</link>
                 <guid>http://wil.dog/2013/07/11/arduino-processing-beat-detect</guid>
                 <pubDate>2013-07-11T00:00:00+08:00</pubDate>
         </item>
@@ -278,7 +278,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-run.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
-                <link>http://wil.dog/2013/06/19/run-python-from-your-android-shell</link>
+                <link>http://wil.dog/2013/06/19/run-python-from-your-android-shell/</link>
                 <guid>http://wil.dog/2013/06/19/run-python-from-your-android-shell</guid>
                 <pubDate>2013-06-19T00:00:00+08:00</pubDate>
         </item>
