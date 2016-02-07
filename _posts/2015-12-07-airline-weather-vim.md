@@ -14,7 +14,7 @@ Github Repo 地址: [https://github.com/Wildog/airline-weather.vim](https://gith
 
 ##安装
 
-* ######使用 Vundle 安装
+* ####使用 Vundle 安装
 
 扩展依赖 vim-airline 和 webapi-vim, 确保你的 .vimrc 中有以下几行:
 
