@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在 Vim 里复制所有匹配结果 | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="vim, vimscript, 复制">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes/the-minimum/css/style.css' rel="stylesheet" media="all">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?11c959e4e7e61e03218d8ffeeacdb15d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+    <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/index.html">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about.html">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title">在 Vim 里复制所有匹配结果</h1>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p>今天突发奇想地想在 Vim 中一次性复制所有的正则匹配结果, 先是直接想到用 MultipleCursors 这个插件带的 MultipleCursorsFind, 复制后提示 yank 操作不能在多光标情况下使用, 这种奇技淫巧果然行不通…
+遂用 Vimscript 解决, 在 <code class="highlighter-rouge">.vimrc</code> 中加入下列函数:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">function</span><span class="p">!</span> CopyMatches <span class="p">(</span><span class="k">m</span><span class="p">)</span> 
+    <span class="k">let</span> @<span class="p">+</span> <span class="p">.=</span> <span class="nv">a:m</span> <span class="p">.</span> <span class="s2">"\n"</span> 
+    <span class="k">return</span> <span class="nv">a:m</span>
+<span class="k">endfunction</span></code></pre></figure>
+
+<p>复制方法:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">let</span> @<span class="p">+</span> <span class="p">=</span> <span class="s1">''</span>
+<span class="p">:</span>%s<span class="sr">/regex/</span>\<span class="p">=</span>CopyMatches<span class="p">(</span>submatch<span class="p">(</span><span class="m">0</span><span class="p">))</span>/<span class="k">g</span></code></pre></figure>
+
+<p>粘贴方法:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="c">"+p</span></code></pre></figure>
+
+<p>嫌麻烦可以设个快捷键, 如:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span>map <span class="p">&lt;</span>F4<span class="p">&gt;</span> <span class="p">:</span><span class="k">let</span> @<span class="p">+</span> <span class="p">=</span> <span class="s1">''</span><span class="p">&lt;</span><span class="k">cr</span><span class="p">&gt;:</span>%s<span class="sr">/regex/</span>\<span class="p">=</span>CopyMatches<span class="p">(</span>submatch<span class="p">(</span><span class="m">0</span><span class="p">))</span>/<span class="k">g</span></code></pre></figure>
+
+<p>按 F4 后自己改掉 regex 就可以了.</p>
+
+<p>示例:<br />
+<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-1.png" alt="" /><br />
+<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-2.png" alt="" /></p>
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2014-10-21T00:00:00+08:00" datetime="2014-10-21T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>October</abbr></span>
+                            <span class="day">21</span>
+                            <span class="year">2014</span>
+                            </date>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/2014/10/21/copy-and-paste-multiple-search-results-in-vim" data-title="在 Vim 里复制所有匹配结果" data-url="http://limbo.space/2014/10/21/copy-and-paste-multiple-search-results-in-vim"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            <li class="prev"><a class="internal" rel="prev"  href="/2013/07/11/arduino-processing-beat-detect/" title="View 用 Arduino + Processing 识别节拍">&laquo; 用 Arduino + Processing 识别节拍</a></li>
+                            
+                            
+                            <li class="pipe"> | </li>
+                            
+                            
+                            <li class="next"><a class="internal" rel="next"  href="/2015/11/28/display-weather-on-kindle-lock-screen/" title="View 把你的旧 Kindle 变成桌面气象站">把你的旧 Kindle 变成桌面气象站 &raquo;</a></li>
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:$(document.body).animate({'scrollTop':0},1000);">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="licence">
+                    <br>
+                    ©2013-2016 <a href="/about.html">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){var oldIE;if($("html").is(".ie6, .ie7, .ie8, .ie9")){oldIE=true}if(oldIE){alert("Please update your IE to make a better world!")}var offset=$(window).height()-$(".the-footer").position().top-$(".the-footer").height();if(offset>0){$(".fill").css("height",offset)}setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});var expanded=0;function expandMymore(){expanded=1;$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapseMymore(){expanded=0;$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}$(".nav-global .my").mouseenter(expandMymore);$(".nav-global").mouseleave(collapseMymore);$(".nav-global .my .expand").click(function(){if(expanded==1){collapseMymore()}else{expandMymore()}})});$(document).ready(function(){$("p img").each(function(){var strA="<a class='fancybox' href='"+this.src+"'></a>";$(this).wrapAll(strA)})});$(document).ready(function(){var $fancyboxes=$("a.fancybox");if($fancyboxes.length){$('<link rel="stylesheet" type="text/css" href="/assets/themes/the-minimum/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo("head");$.ajax({type:"GET",dataType:"script",url:"/assets/themes/the-minimum/fancybox/jquery.fancybox.pack.js?v=2.1.5",cache:true,success:function(){$fancyboxes.fancybox({openEffect:"elastic",closeEffect:"elastic",});$fancyboxes.attr("rel","gallery").fancybox({padding:0})}})}});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(event){addBlankTargetForLinks()});var duoshuoQuery={short_name:"wildog"};(function(){var ds=document.createElement("script");ds.type="text/javascript";ds.async=true;ds.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";ds.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(ds)})();
+/*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
+(function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
+</script>
+  
+
+
+</body>
+</html>
+
