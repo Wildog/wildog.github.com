@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>把你的旧 Kindle 变成桌面气象站 | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="kindle, 天气, diy">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes//css/style.css' rel="stylesheet" media="all">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?11c959e4e7e61e03218d8ffeeacdb15d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+    <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/index.html">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about.html">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title">把你的旧 Kindle 变成桌面气象站</h1>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/kindle.jpg" alt="" /></p>
+
+<p>参考 Repo: <a href="https://github.com/cathay4t/kindle-weather">https://github.com/cathay4t/kindle-weather</a></p>
+
+<p>看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场.</p>
+
+<p>分享下自己的流程:</p>
+
+<ul>
+  <li>首先, 你需要一台长期联网的 Kindle (K3, K4 测试通过)</li>
+  <li>其次, 你需要一台长期联网的主机或者 VPS</li>
+</ul>
+
+<p><strong>然后先配置主机</strong>:</p>
+
+<ul>
+  <li>安装好 httpd, pngcrush, librsvg2</li>
+  <li>启动 httpd 服务</li>
+  <li>建立文件夹 <code class="highlighter-rouge">/var/www/html/weather</code> 并设置权限</li>
+  <li>下载上面这个 <a href="https://github.com/cathay4t/kindle-weather">Repo</a> 里的源码</li>
+  <li><a href="http://www.wunderground.com/weather/api/d/login.html">申请 Weather Underground 的 API</a> 并记录 KEY</li>
+  <li><code class="highlighter-rouge">crontab -e</code> 添加定时任务, 在每天 6 点到 22 点期间每 29 分钟更新产生一次天气图片, <code class="highlighter-rouge">&lt;PATH&gt;</code> 改成源码所在路径, <code class="highlighter-rouge">&lt;API_KEY&gt;</code> 改成得到的 KEY, <code class="highlighter-rouge">&lt;LAT&gt; &lt;LON&gt;</code> 改成所在城市的经纬度, <a href="http://wunderground.com">Weather Underground</a> 上搜索城市可以得到经纬度</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">*</span>/29 6-22 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> &lt;PATH&gt;/weather_script.py &lt;API_KEY&gt; &lt;LAT&gt; &lt;LON&gt;</code></pre></figure>
+
+<ul>
+  <li>运行 <code class="highlighter-rouge">weather_script.py &lt;API_KEY&gt; &lt;LAT&gt; &lt;LON&gt;</code>, 测试 <code class="highlighter-rouge">http://&lt;主机域名&gt;/weather/weather.png</code> 能否得到正确显示的图片.</li>
+</ul>
+
+<p><strong>接下来配置 Kindle</strong>:</p>
+
+<ul>
+  <li>首先给 Kindle 越狱
+    <ol>
+      <li>K4 下载此<a href="http://www.mobileread.com/forums/attachment.php?attachmentid=141180&amp;d=1439936080">压缩包</a>, 
+解压后把 <code class="highlighter-rouge">data.tar.gz</code>, <code class="highlighter-rouge">ENABLE_DIAGS</code> 两个文件和 <code class="highlighter-rouge">diagnostic_logs</code> 文件夹复制到 Kindle 根目录,</li>
+      <li>重启后自动进入诊断模式, 选择<code class="highlighter-rouge">D) Exit, Reboot or Disable Diags</code> 后选择 <code class="highlighter-rouge">R) Reboot System</code>, 再选择 <code class="highlighter-rouge">Q) To continue</code>, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此页</a>)</li>
+    </ol>
+  </li>
+  <li>越狱后安装 USB networking, 从<a href="http://www.mobileread.com/forums/showthread.php?t=88004">此贴</a>下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.</li>
+  <li><strong>断开 Kindle 和电脑的连接</strong>, 在主界面按键盘键, 输入 <code class="highlighter-rouge">;debugOn</code> 后回车, 接着输入 <code class="highlighter-rouge">~usbNetwork</code> 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 <code class="highlighter-rouge">192.168.15.201</code>, 其他版本的 Kindle 把这个 IP 设为 <code class="highlighter-rouge">192.168.2.1</code>,  如图:
+<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/interface.png" alt="" /></li>
+  <li>通过 <code class="highlighter-rouge">ssh root@192.168.15.244</code> 连接到 K4, 其他版本 Kindle 通过 <code class="highlighter-rouge">ssh root@192.168.2.2</code> 连接, 密码通常为 mario</li>
+  <li>执行 <code class="highlighter-rouge">mntroot rw</code> 挂载 rootfs 为可写</li>
+  <li>执行 <code class="highlighter-rouge">cd /etc/kdb.src/yoshi/system/daemon/powerd/</code>, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同</li>
+  <li>执行 <code class="highlighter-rouge">vi suspend_levels</code>, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.</li>
+  <li>执行 <code class="highlighter-rouge">mkdir /mnt/base-us/weather</code> 创建文件夹
+<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/ssh.png" alt="" /></li>
+  <li>在主机上把 <code class="highlighter-rouge">display-weather.sh</code> 里面的 <code class="highlighter-rouge">URL</code> 改为你自己主机上 weather.png 的 URL</li>
+  <li>通过 <code class="highlighter-rouge">scp display-weather.sh root@192.168.15.244:/usr/bin/</code> 把 <code class="highlighter-rouge">display-weather.sh</code> 传到 Kindle 上的 <code class="highlighter-rouge">/usr/bin</code> 目录下</li>
+  <li>回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">"*/60 6-22 * * * /usr/bin/display-weather.sh"</span> &gt;&gt; /etc/crontab/root</code></pre></figure>
+
+<ul>
+  <li>执行 <code class="highlighter-rouge">/usr/bin/display-weather.sh</code>, 在 Kindle 上测试效果</li>
+  <li>执行 <code class="highlighter-rouge">reboot</code> 以重启 Kindle</li>
+</ul>
+
+<p>至此 Kindle 桌面气象站就设置好了, 每小时会自动更新天气, 如果中途解锁了再锁定, 锁屏界面会变成普通锁屏画面, 一小时内等到下次执行 crontab 任务的时候会重新显示天气界面.</p>
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2015-11-28T00:00:00+08:00" datetime="2015-11-28T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>November</abbr></span>
+                            <span class="day">28</span>
+                            <span class="year">2015</span>
+                            </date>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/2015/11/28/display-weather-on-kindle-lock-screen" data-title="把你的旧 Kindle 变成桌面气象站" data-url="http://limbo.space/2015/11/28/display-weather-on-kindle-lock-screen"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            <li class="prev"><a class="internal" rel="prev"  href="/2014/10/21/copy-and-paste-multiple-search-results-in-vim/" title="View 在 Vim 里复制所有匹配结果">&laquo; 在 Vim 里复制所有匹配结果</a></li>
+                            
+                            
+                            <li class="pipe"> | </li>
+                            
+                            
+                            <li class="next"><a class="internal" rel="next"  href="/2015/12/07/airline-weather-vim/" title="View 在 Vim-airline 上显示天气">在 Vim-airline 上显示天气 &raquo;</a></li>
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:$(document.body).animate({'scrollTop':0},1000);">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="licence">
+                    <br>
+                    ©2013-2016 <a href="/about.html">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){var oldIE;if($("html").is(".ie6, .ie7, .ie8, .ie9")){oldIE=true}if(oldIE){alert("Please update your IE to make a better world!")}var offset=$(window).height()-$(".the-footer").position().top-$(".the-footer").height();if(offset>0){$(".fill").css("height",offset)}setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});var expanded=0;function expandMymore(){expanded=1;$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapseMymore(){expanded=0;$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}$(".nav-global .my").mouseenter(expandMymore);$(".nav-global").mouseleave(collapseMymore);$(".nav-global .my .expand").click(function(){if(expanded==1){collapseMymore()}else{expandMymore()}})});$(document).ready(function(){$("p img").each(function(){var strA="<a class='fancybox' href='"+this.src+"'></a>";$(this).wrapAll(strA)})});$(document).ready(function(){var $fancyboxes=$("a.fancybox");if($fancyboxes.length){$('<link rel="stylesheet" type="text/css" href="/assets/themes//fancybox/jquery.fancybox.css?v=2.1.5">').appendTo("head");$.ajax({type:"GET",dataType:"script",url:"/assets/themes//fancybox/jquery.fancybox.pack.js?v=2.1.5",cache:true,success:function(){$fancyboxes.fancybox({openEffect:"elastic",closeEffect:"elastic",});$fancyboxes.attr("rel","gallery").fancybox({padding:0})}})}});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(event){addBlankTargetForLinks()});var duoshuoQuery={short_name:"wildog"};(function(){var ds=document.createElement("script");ds.type="text/javascript";ds.async=true;ds.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";ds.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(ds)})();
+/*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
+(function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
+</script>
+  
+
+
+</body>
+</html>
+
