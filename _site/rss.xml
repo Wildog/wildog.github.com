@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+        <title>wil.døg</title>
+        <description>wil.døg - wildog</description>
+        <link>http://wil.dog</link>
+        <link>http://wil.dog</link>
+        <lastBuildDate>2016-02-08T00:25:03+08:00</lastBuildDate>
+        <pubDate>2016-02-08T00:25:03+08:00</pubDate>
+        <ttl>1800</ttl>
+
+
+        <item>
+                <title>在 Vim-airline 上显示天气</title>
+                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/airline-weather-vim-screenshot.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这两天把 Vim 的 Powerline 插件换成了 &lt;a href=&quot;https://github.com/bling/vim-airline&quot;&gt;vim-airline&lt;/a&gt;, 相比 Powerline, vim-airline 更轻量, 完全用 Vimscript 实现, 让我摆脱了 Vim 中的 Powerline 插件在我的 tmux 环境下经常闪烁的问题.&lt;/p&gt;
+
+&lt;p&gt;但是 vim-airline 缺了 Powerline 插件的天气扩展, 于是自己写了一个 vim-airline 的天气扩展, 效果图如上, 在右下角显示天气图标和当前温度, 借助了 webapi-vim 插件和 OpenWeatherMap 的 API.&lt;/p&gt;
+
+&lt;p&gt;Github Repo 地址: &lt;a href=&quot;https://github.com/Wildog/airline-weather.vim&quot;&gt;https://github.com/Wildog/airline-weather.vim&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;安装&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;vundle-&quot;&gt;使用 Vundle 安装&lt;/h4&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;扩展依赖 vim-airline 和 webapi-vim, 确保你的 .vimrc 中有以下几行:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;Plugin &lt;span class=&quot;s1&quot;&gt;&#39;bling/vim-airline&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;mattn/webapi-vim&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;然后执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;:PluginInstall&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;使用&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置位置&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#area &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;beijing,china&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置单位 (‘metric’ 显示 ºC, ‘imperial’ 显示 ºF.):&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#unit &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;metric&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置 API Key, 默认为我的 API Key, 你最好申请并设置一个自己的 API Key: &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;http://openweathermap.org/appid&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#appid &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;2de143494c0b295cca9337e1e96b00e0&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置缓存文件路径和缓存更新周期, 缓存文件默认为&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.cache/.weather&lt;/code&gt;, 更新周期默认为 1 小时. (如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_file &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;~/.cache/.weather&#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_ttl &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;3600&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置天气格式, &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;为天气图标, &lt;code class=&quot;highlighter-rouge&quot;&gt;%f&lt;/code&gt;为温度数字&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#format &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;%s %.0f&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置天气图标, 数字含义可参考 OpenWeatherMap 的 API: &lt;a href=&quot;http://openweathermap.org/weather-conditions&quot;&gt;http://openweathermap.org/weather-conditions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#status_map &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;01d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☀&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;02d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☁&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;03d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☁&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;04d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☁&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;09d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☂&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;10d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☂&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;11d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☈&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;13d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;❅&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;50d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;≡&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;01n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☽&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;02n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☁&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;03n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☁&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;04n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☁&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;09n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☂&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;10n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☂&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;11n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☈&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;13n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;❅&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;50n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;≡&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;强制刷新天气&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; RefreshWeather&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+                <link>http://wil.dog/2015/12/07/airline-weather-vim/</link>
+                <guid>http://wil.dog/2015/12/07/airline-weather-vim</guid>
+                <pubDate>2015-12-07T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>把你的旧 Kindle 变成桌面气象站</title>
+                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/kindle.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;参考 Repo: &lt;a href=&quot;https://github.com/cathay4t/kindle-weather&quot;&gt;https://github.com/cathay4t/kindle-weather&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场.&lt;/p&gt;
+
+&lt;p&gt;分享下自己的流程:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;首先, 你需要一台长期联网的 Kindle (K3, K4 测试通过)&lt;/li&gt;
+  &lt;li&gt;其次, 你需要一台长期联网的主机或者 VPS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;然后先配置主机&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;安装好 httpd, pngcrush, librsvg2&lt;/li&gt;
+  &lt;li&gt;启动 httpd 服务&lt;/li&gt;
+  &lt;li&gt;建立文件夹 &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/weather&lt;/code&gt; 并设置权限&lt;/li&gt;
+  &lt;li&gt;下载上面这个 &lt;a href=&quot;https://github.com/cathay4t/kindle-weather&quot;&gt;Repo&lt;/a&gt; 里的源码&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.wunderground.com/weather/api/d/login.html&quot;&gt;申请 Weather Underground 的 API&lt;/a&gt; 并记录 KEY&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;crontab -e&lt;/code&gt; 添加定时任务, 在每天 6 点到 22 点期间每 29 分钟更新产生一次天气图片, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;PATH&amp;gt;&lt;/code&gt; 改成源码所在路径, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;API_KEY&amp;gt;&lt;/code&gt; 改成得到的 KEY, &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;LAT&amp;gt; &amp;lt;LON&amp;gt;&lt;/code&gt; 改成所在城市的经纬度, &lt;a href=&quot;http://wunderground.com&quot;&gt;Weather Underground&lt;/a&gt; 上搜索城市可以得到经纬度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/29 6-22 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &amp;lt;PATH&amp;gt;/weather_script.py &amp;lt;API_KEY&amp;gt; &amp;lt;LAT&amp;gt; &amp;lt;LON&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;weather_script.py &amp;lt;API_KEY&amp;gt; &amp;lt;LAT&amp;gt; &amp;lt;LON&amp;gt;&lt;/code&gt;, 测试 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://&amp;lt;主机域名&amp;gt;/weather/weather.png&lt;/code&gt; 能否得到正确显示的图片.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;接下来配置 Kindle&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;首先给 Kindle 越狱
+    &lt;ol&gt;
+      &lt;li&gt;K4 下载此&lt;a href=&quot;http://www.mobileread.com/forums/attachment.php?attachmentid=141180&amp;amp;d=1439936080&quot;&gt;压缩包&lt;/a&gt;, 
+解压后把 &lt;code class=&quot;highlighter-rouge&quot;&gt;data.tar.gz&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ENABLE_DIAGS&lt;/code&gt; 两个文件和 &lt;code class=&quot;highlighter-rouge&quot;&gt;diagnostic_logs&lt;/code&gt; 文件夹复制到 Kindle 根目录,&lt;/li&gt;
+      &lt;li&gt;重启后自动进入诊断模式, 选择&lt;code class=&quot;highlighter-rouge&quot;&gt;D) Exit, Reboot or Disable Diags&lt;/code&gt; 后选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;R) Reboot System&lt;/code&gt;, 再选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q) To continue&lt;/code&gt;, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考&lt;a href=&quot;http://www.mobileread.com/forums/showthread.php?t=88004&quot;&gt;此页&lt;/a&gt;)&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;越狱后安装 USB networking, 从&lt;a href=&quot;http://www.mobileread.com/forums/showthread.php?t=88004&quot;&gt;此贴&lt;/a&gt;下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;断开 Kindle 和电脑的连接&lt;/strong&gt;, 在主界面按键盘键, 输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;;debugOn&lt;/code&gt; 后回车, 接着输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;~usbNetwork&lt;/code&gt; 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.15.201&lt;/code&gt;, 其他版本的 Kindle 把这个 IP 设为 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.2.1&lt;/code&gt;,  如图:
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/interface.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh root@192.168.15.244&lt;/code&gt; 连接到 K4, 其他版本 Kindle 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh root@192.168.2.2&lt;/code&gt; 连接, 密码通常为 mario&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;mntroot rw&lt;/code&gt; 挂载 rootfs 为可写&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;cd /etc/kdb.src/yoshi/system/daemon/powerd/&lt;/code&gt;, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;vi suspend_levels&lt;/code&gt;, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;mkdir /mnt/base-us/weather&lt;/code&gt; 创建文件夹
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;在主机上把 &lt;code class=&quot;highlighter-rouge&quot;&gt;display-weather.sh&lt;/code&gt; 里面的 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt; 改为你自己主机上 weather.png 的 URL&lt;/li&gt;
+  &lt;li&gt;通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;scp display-weather.sh root@192.168.15.244:/usr/bin/&lt;/code&gt; 把 &lt;code class=&quot;highlighter-rouge&quot;&gt;display-weather.sh&lt;/code&gt; 传到 Kindle 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/bin&lt;/code&gt; 目录下&lt;/li&gt;
+  &lt;li&gt;回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;*/60 6-22 * * * /usr/bin/display-weather.sh&quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/crontab/root&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/bin/display-weather.sh&lt;/code&gt;, 在 Kindle 上测试效果&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;reboot&lt;/code&gt; 以重启 Kindle&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;至此 Kindle 桌面气象站就设置好了, 每小时会自动更新天气, 如果中途解锁了再锁定, 锁屏界面会变成普通锁屏画面, 一小时内等到下次执行 crontab 任务的时候会重新显示天气界面.&lt;/p&gt;
+</description>
+                <link>http://wil.dog/2015/11/28/display-weather-on-kindle-lock-screen/</link>
+                <guid>http://wil.dog/2015/11/28/display-weather-on-kindle-lock-screen</guid>
+                <pubDate>2015-11-28T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>在 Vim 里复制所有匹配结果</title>
+                <description>&lt;p&gt;今天突发奇想地想在 Vim 中一次性复制所有的正则匹配结果, 先是直接想到用 MultipleCursors 这个插件带的 MultipleCursorsFind, 复制后提示 yank 操作不能在多光标情况下使用, 这种奇技淫巧果然行不通…
+遂用 Vimscript 解决, 在 &lt;code class=&quot;highlighter-rouge&quot;&gt;.vimrc&lt;/code&gt; 中加入下列函数:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; CopyMatches &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:m&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;\n&quot;&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a:m&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;复制方法:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;%s&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;粘贴方法:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;c&quot;&gt;&quot;+p&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;嫌麻烦可以设个快捷键, 如:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F4&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;cr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;:&lt;/span&gt;%s&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;按 F4 后自己改掉 regex 就可以了.&lt;/p&gt;
+
+&lt;p&gt;示例:&lt;br /&gt;
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+                <link>http://wil.dog/2014/10/21/copy-and-paste-multiple-search-results-in-vim/</link>
+                <guid>http://wil.dog/2014/10/21/copy-and-paste-multiple-search-results-in-vim</guid>
+                <pubDate>2014-10-21T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>用 Arduino + Processing 识别节拍</title>
+                <description>&lt;p&gt;一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;源码&lt;/strong&gt;:&lt;br /&gt;
+&lt;a href=&quot;http://wildog.net/download/BeatWrite.zip&quot;&gt;点我下载&lt;/a&gt;&lt;br /&gt;
+# 把 &lt;code class=&quot;highlighter-rouge&quot;&gt;BeatWrite.pde&lt;/code&gt; 中的针脚配置改为你自己连接的针脚, 连接图示&lt;a href=&quot;/resources/circuit.jpg&quot;&gt;点我查看&lt;/a&gt;&lt;br /&gt;
+# 把 mp3 文件放入 &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; 文件夹中, 将 &lt;code class=&quot;highlighter-rouge&quot;&gt;BeatWrite.pde&lt;/code&gt; 中 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;minim.loadFile(&quot;aaa.mp3&quot;, 2048)&quot;&lt;/code&gt; 一行的 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;aaa.mp3&quot;&lt;/code&gt; 改为你自己的 mp3 文件名&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;软件&lt;/strong&gt;:&lt;br /&gt;
+1. Arduino&lt;br /&gt;
+2. Processing&lt;br /&gt;
+   # 务必下载 1.5.1 版本的 Processing, 个人测试 2.0 的版本会出错&lt;br /&gt;
+3. Arduino 库&lt;br /&gt;
+   # 解压至 &lt;code class=&quot;highlighter-rouge&quot;&gt;Processing目录/modes/java/libraries/&lt;/code&gt;&lt;br /&gt;
+4. Minim 库&lt;br /&gt;
+   # 官方 Processing 已自带, 如果你的没有, 下载后解压至相同目录&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤&lt;/strong&gt;:&lt;br /&gt;
+1. 将 Examples 中 Firmata 库里的 StandardFirmata 上传到 Arduino 中&lt;br /&gt;
+2. 上传完毕等到 Arduino 上的 RX/TX LED 停止闪烁后再运行 Processing 源码&lt;/p&gt;
+
+&lt;p&gt;实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：&lt;a href=&quot;http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html&quot;&gt;视频戳我&lt;/a&gt;&lt;br /&gt;
+右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&amp;lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+                <link>http://wil.dog/2013/07/11/arduino-processing-beat-detect/</link>
+                <guid>http://wil.dog/2013/07/11/arduino-processing-beat-detect</guid>
+                <pubDate>2013-07-11T00:00:00+08:00</pubDate>
+        </item>
+
+        <item>
+                <title>在 Android 终端上运行 Python</title>
+                <description>&lt;p&gt;尝试了 &lt;a href=&quot;https://code.google.com/p/android-scripting/&quot;&gt;SL4A&lt;/a&gt; + &lt;a href=&quot;https://code.google.com/p/python-for-android/&quot;&gt;PythonForAndroid&lt;/a&gt; 和 &lt;a href=&quot;http://qpython.com/&quot;&gt;QPython&lt;/a&gt; 后发现 Python 并不能从 &lt;a href=&quot;https://play.google.com/store/apps/details?id=jackpal.androidterm&quot;&gt;Android Terminal Emulator&lt;/a&gt; 上直接运行，于是参考了下&lt;a href=&quot;https://code.google.com/p/python-for-android/wiki/RunPythonFromShell&quot;&gt;官方的方法&lt;/a&gt;，觉得这样调用有点麻烦，经我改进后在 Android 终端上运行 Python 的办法如下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;下载安装 &lt;a href=&quot;https://code.google.com/p/python-for-android/downloads/detail?name=PythonForAndroid_r4.apk&quot;&gt;PythonForAndroid_r4.apk&lt;/a&gt;&lt;br /&gt;
+# 这个版本是 Python 2.6, 你也可以选择 &lt;a href=&quot;https://code.google.com/p/python-for-android/downloads/detail?name=Python3ForAndroid_r6.apk&quot;&gt;Python 3&lt;/a&gt;, 后面的环境变量自行更改&lt;/li&gt;
+  &lt;li&gt;运行 Python for Android → Install (需要网络，最好在wifi环境下)&lt;/li&gt;
+  &lt;li&gt;Google Play 商店里安装 &lt;a href=&quot;https://play.google.com/store/apps/details?id=jackpal.androidterm&quot;&gt;Android Terminal Emulator&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;下载 Bash, 见 &lt;a href=&quot;http://forum.xda-developers.com/showthread.php?t=977051&quot;&gt;XDA 帖子附件&lt;/a&gt;&lt;br /&gt;
+# 帖子里的 BusyBox 有需要也可以装上替换 Android 阉割版&lt;/li&gt;
+  &lt;li&gt;解压, 把包里的 &lt;a href=&quot;http://pan.baidu.com/share/link?shareid=2088068197&amp;amp;uk=3103986771&quot;&gt;bash 文件&lt;/a&gt;复制到 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/&lt;/code&gt; 下&lt;/li&gt;
+  &lt;li&gt;下载这里的 &lt;a href=&quot;http://pan.baidu.com/share/link?shareid=2088068197&amp;amp;uk=3103986771&quot;&gt;python 文件&lt;/a&gt; 文件复制到 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/&lt;/code&gt; 下&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行终端 → 首选项 → 命令行, 更改 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/sh&lt;/code&gt; 为 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/bash&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-setting-shell.jpg&quot; alt=&quot;setting shell&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;初始命令, 加入:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;EXTERNAL_STORAGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard
+&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard/com.googlecode.pythonforandroid/extras/python
+&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:/data/data/com.googlecode.pythonforandroid/files/python/lib/python2.6/lib-dynload
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;PYTHONPATH
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TEMP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard/com.googlecode.pythonforandroid/extras/python/tmpexport &lt;span class=&quot;nv&quot;&gt;PYTHON_EGG_CACHE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TEMP&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONHOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python/lib
+&lt;span class=&quot;c&quot;&gt;#路径根据实际情况有可能需要更改&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-export-env.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;9.启终端即可运行&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-run.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+                <link>http://wil.dog/2013/06/19/run-python-from-your-android-shell/</link>
+                <guid>http://wil.dog/2013/06/19/run-python-from-your-android-shell</guid>
+                <pubDate>2013-06-19T00:00:00+08:00</pubDate>
+        </item>
+
+
+</channel>
+</rss>
