@@ -377,6 +377,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;font-family:
 .ie .layout-page .unit-body .article-list .meta{width:20.625em;float:right;}
 .ie .the-footer .unit-foot{width:auto;margin-left:auto;margin-right:auto;}
 @media only screen and (max-width:369px){.unit-article header h1{line-height:42px;}
+.the-header .unit-inner{width:15em;}
 .unit-article .unit-foot{padding-bottom:24px;padding-top:24px;}
 }
 @media only screen and (min-width:370px) and (max-width:767px){img{max-width:100%;}
