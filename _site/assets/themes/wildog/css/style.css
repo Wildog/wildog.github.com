@@ -283,7 +283,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;font-family:
 .unit-article img.left{margin-right:16px;float:none;}
 .unit-article img.right{margin-left:16px;float:none;}
 .unit-article .date-publish{margin-bottom:0;}
-#cc{display:inline-block;height:13px;width:70}
+#cc{display:inline-block;height:13px;width:70px;}
 .unit-article .list-linear .list-head{margin-right:4px;}
 .unit-article .list-category a, .unit-article .list-tag a{border:0 none;}
 .unit-article .list-category a:hover span, .unit-article .list-tag a:hover span{background-color:#f99157;}
