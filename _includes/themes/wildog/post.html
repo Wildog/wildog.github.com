@@ -14,10 +14,10 @@
                     {{ content }}
                     <div class="meta">
                         <p class="date-publish">
-                            Published: 
+                            Published on 
                             <date class="date-pub" title="{{ page.date | date_to_xmlschema }}" datetime="{{ page.date | date_to_xmlschema }}" pubdate>
                             <span class="month"><abbr>{{ page.date | date: '%B' }}</abbr></span>
-                            <span class="day">{{ page.date | date: '%d' }}</span>
+                            <span class="day">{{ page.date | date: '%-d,' }}</span>
                             <span class="year">{{ page.date | date: '%Y' }}</span>
                             </date>
                             <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="http://7xqhhm.com1.z0.glb.clouddn.com/cc.png" /></a><span>
