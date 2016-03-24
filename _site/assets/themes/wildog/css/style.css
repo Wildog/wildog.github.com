@@ -262,7 +262,15 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .unit-article dt .hasGrid,
 .unit-article dd .hasGrid{margin-left:0;margin-right:0}
 .unit-article p code, .unit-article li code{margin:0 2px;padding:2px 5px;border:1px solid #CCC;background-color:#F8F8F8;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box}
-.unit-article .entry-content a:not(#cc){position: relative;padding:1px 0px 1px 0px;border-bottom:1px dashed #99cc99}
+.unit-article .entry-content a:not(#cc):not(.fancybox){position: relative;padding:1px 0px 1px 0px;display:inline-block;line-height:18px;border-bottom:1px dashed #99cc99}
+#cc{display:inline-block;height:13px;width:70px;bottom:-2px}
+#cc a,
+#cc a:before,
+#cc a:hover,
+#cc a:hover:before,
+.fancybox:before,
+.fancybox:hover,
+.fancybox:hover:before{border-bottom:0px !important;}
 .unit-article .entry-content a:before{content:'';position:absolute;width:100%;height:0px;border-bottom:1px solid #77bb77;bottom:-1px;-webkit-transform: scaleX(0); -ms-transform: scaleX(0); -moz-transform: scaleX(0); transform: scaleX(0); -webkit-transition: -webkit-transform 0.2s ease-in; -ms-transition: -ms-transform 0.2s ease-in; -moz-transition: -moz-transform 0.2s ease-in; transition: transform 0.2s ease-in}
 .unit-article .entry-content a:hover:before{-webkit-transform: scaleX(1); -ms-transform: scaleX(1); -moz-transform: scaleX(1); transform: scaleX(1)}
 .unit-article .entry-content img{max-width:43.125em;width:100%;display:block;margin:0 auto}
@@ -272,7 +280,6 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .unit-article img.left{margin-right:16px;float:none}
 .unit-article img.right{margin-left:16px;float:none}
 .unit-article .date-publish{margin-bottom:0}
-#cc{display:inline-block;height:13px;width:70px;bottom:-1px}
 .unit-article .list-linear .list-head{margin-right:4px}
 .unit-article .list-category a, .unit-article .list-tag a{border:0 none}
 .unit-article .list-category a:hover span, .unit-article .list-tag a:hover span{background-color:#f99157}
