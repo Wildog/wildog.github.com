@@ -155,7 +155,7 @@ hr{-moz-box-sizing:content-box;}
 .right{*display:inline;float:right;}
 span.list-timestamp{font-family:"Courier New";font-weight:Bold;}
 nav.nav-global{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb;}
-body{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em;}
+body{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em;-webkit-font-smoothing: antialiased;}
 h1,
 h2,
 h3,
