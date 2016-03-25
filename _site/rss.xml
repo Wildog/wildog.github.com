@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-03-25T15:12:07+08:00</lastBuildDate>
-        <pubDate>2016-03-25T15:12:07+08:00</pubDate>
+        <lastBuildDate>2016-03-25T15:35:40+08:00</lastBuildDate>
+        <pubDate>2016-03-25T15:35:40+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -45,7 +45,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#area &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;beijing,china&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;设置单位 (‘metric’ 显示 ºC, ‘imperial’ 显示 ºF.):&lt;/li&gt;
+  &lt;li&gt;设置单位 (metric 为摄氏度, imperial 为华氏度):&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#unit &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;metric&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;

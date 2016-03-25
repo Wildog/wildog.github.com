@@ -415,7 +415,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .the-header .nav-global .my .mymore:hover{color:#fafafa;color:rgba(250, 250, 250, 0.8);background-color:#1a1a1a;background-color:rgba(21, 25, 25, 0.8);-webkit-transition: background-color .1s ease-in-out, color .1s ease-in-out;-moz-transition: background-color .1s ease-in-out, color .1s ease-in-out;-ms-transition: background-color .1s ease-in-out, color .1s ease-in-out;-o-transition: background-color .1s ease-in-out, color .1s ease-in-out;transition: background-color .1s ease-in-out, color .1s ease-in-out}
 .the-header .nav-global li a:hover{color:#fafafa;color:rgba(250, 250, 250, 0.8)}
 .the-header .nav-global li:last-child{margin-right:0}
-.the-header .nav-global .mymore{display:none;margin-top:5px;margin-bottom:-1px;padding:0px 0px 0px 0px;width:0;opacity:0}
+.the-header .nav-global .mymore{display:none;margin-top:5px;margin-bottom:-5px;padding:0px 0px 0px 0px;width:0;opacity:0}
 .unit-article .unit-head-inner,
 .unit-article .entry-content,
 .unit-article .misc-content,
