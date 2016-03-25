@@ -146,7 +146,8 @@ hr{-moz-box-sizing:content-box}
 .right{float:right}
 span.list-timestamp{font-family:"Courier New";font-weight:Bold}
 nav.nav-global{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb}
-body{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em}
+body, .date-publish, .gotop, #comments{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em}
+.body{font-family:junctionregularRegular, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em}
 h1,
 h2,
 h3,
@@ -262,7 +263,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .unit-article dt .hasGrid,
 .unit-article dd .hasGrid{margin-left:0;margin-right:0}
 .unit-article p code, .unit-article li code{margin:0 2px;padding:2px 5px;border:1px solid #CCC;background-color:#F8F8F8;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box}
-.unit-article .entry-content a:not(#cc):not(.fancybox){position: relative;padding:1px 0px 1px 0px;display:inline-block;line-height:18px;border-bottom:1px dashed #99cc99}
+.unit-article .entry-content a:not(#cc):not(.fancybox){position: relative;padding:1px 0px 1px 0px;display:inline-block;line-height:20px;border-bottom:1px dashed #99cc99}
 #cc{display:inline-block;height:13px;width:70px;bottom:-2px}
 #cc a,
 #cc a:before,
