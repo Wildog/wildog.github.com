@@ -34,7 +34,7 @@ Plugin 'Wildog/airline-weather.vim'
 let g:weather#area = 'beijing,china'
 {% endhighlight %}
 
-* 设置单位 ('metric' 显示 ºC, 'imperial' 显示 ºF.):
+* 设置单位 (metric 为摄氏度, imperial 为华氏度):
 
 {% highlight vim %}
 let g:weather#unit = 'metric'
