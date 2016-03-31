@@ -54,7 +54,7 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">A Copy of a Copy of a Copy of a...</h1>
+                        <h1 class="h2 entry-title"># <span class="typer"></span><span class="cursor">_</span></h1>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
             </header>
@@ -206,22 +206,8 @@
     </footer>
 </div><!-- page -->
 <script>
-$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display", "none");alert("Please update your IE to make a better world!")}setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);setTimeout(function(){$(".entry-title").typeTo("A Start of a Start of a Start of a...")},3000);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});var expanded=0;function expandMymore(){expanded=1;$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapseMymore(){expanded=0;$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}$(".nav-global .my").mouseenter(expandMymore);$(".nav-global").mouseleave(collapseMymore);$(".nav-global .my .expand").click(function(){if(expanded==1){collapseMymore()}else{expandMymore()}})});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(event){addBlankTargetForLinks()});
-/*! A fix for the iOS orientationchange zoom bug.Script by @scottjehl, rebound by @wilto. MIT License.*/
-(function(j){var i=j.document;if(!i.querySelectorAll){return}var l=i.querySelectorAll("meta[name=viewport]")[0],a=l&&l.getAttribute("content"),h=a+", maximum-scale=1.0",d=a+", maximum-scale=10.0",g=true,c=j.orientation,k=0;if(!l){return}function f(){l.setAttribute("content",d);g=true}function b(){l.setAttribute("content",h);g=false}function e(m){c=Math.abs(j.orientation);k=Math.abs(m.gamma);if(k>8&&c===0){if(g){b()}}else{if(!g){f()}}}j.addEventListener("orientationchange",f,false);j.addEventListener("deviceorientation",e,false)})(this);
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Please update your IE to make a better world!")}$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});var expanded=0;function expandMymore(){expanded=1;$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapseMymore(){expanded=0;$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}$(".nav-global .my").mouseenter(expandMymore);$(".nav-global").mouseleave(collapseMymore);$(".nav-global .my .expand").click(function(){if(expanded==1){collapseMymore()}else{expandMymore()}});setTimeout(function(){$(".typer").typeTo("Hello");setTimeout(function(){$(".typer").typeTo("I am Wildog")},2000);setTimeout(function(){$(".typer").typeTo("I write code");setTimeout(function(){$(".typer").html(function(_,html){return html.split("code").join("<a href='https://github.com/Wildog'>code</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight")},100)},2000)},5000);setTimeout(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("I make electronic music");setTimeout(function(){$(".typer").html(function(_,html){return html.split("music").join("<a href='https://site.douban.com/randyzew/'>music</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight")},100)},3000)},1000)},9000);setTimeout(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("I take photos occasionally");setTimeout(function(){$(".typer").html(function(_,html){return html.split("photos").join("<a href='http://wildog.lofter.com'>photos</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight")},100)},3500)},1000)},15000);setTimeout(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("This is where everything starts")},1000)},21500)},500);function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(event){addBlankTargetForLinks()})});var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="//hm.baidu.com/hm.js?11c959e4e7e61e03218d8ffeeacdb15d";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();
 </script>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?11c959e4e7e61e03218d8ffeeacdb15d";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-  
-
-
 </body>
 </html>
 
