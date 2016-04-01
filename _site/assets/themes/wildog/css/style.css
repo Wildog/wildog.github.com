@@ -183,7 +183,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .the-header .logo{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb;margin:0}
 .social li{padding-right:2px}
 .to-blur{width:185px; height:26px}
-.to-blur a{background-image:url('http://7xqhhm.com1.z0.glb.clouddn.com/icons.png');display:inline-block;height:24px;width:24px;background-size:144px 24px;-webkit-transition:-webkit-filter .3s ease, opacity .3s ease;-moz-transition:-moz-filter .3s ease, opacity .3s ease;-o-transition:-o-filter .3s ease, opacity .3s ease;-ms-transition:-ms-filter .3s ease, opacity .3s ease;transition:filter .3s ease, opacity .3s ease}
+.to-blur a{background-image:url('http://7xqhhm.com1.z0.glb.clouddn.com/icons.png');display:inline-block;height:24px;width:24px;background-size:144px 24px;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;-ms-transition:all .3s ease;transition:all .3s ease}
 .to-blur:hover a:not(:hover){-webkit-filter:blur(2px) grayscale(1);-moz-filter:blur(2px) grayscale(1);-o-filter:blur(2px) grayscale(1);-ms-filter:blur(2px) grayscale(1);filter:blur(2px) grayscale(1);opacity:.7}
 #douban{background-position:0px 0px}
 #twitter{background-position:120px 0px}
@@ -328,7 +328,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .the-header .unit-head{padding-top:1.625em;padding-bottom:1.625em;margin-left:auto;margin-right:auto;background-color:#ffffff}
 .unit-head-inner{margin:auto}
 .the-header .logo a{font-size:40px;line-height:50px}
-#o{-webkit-transition: color .3s ease-in-out;-moz-transition: color .3s ease-in-out;-ms-transition: color .3s ease-in-out;-o-transition: color .3s ease-in-out;transition: color .3s ease-in-out}
+#o{-webkit-transition: color .3s ease-in-out;-moz-transition: color .3s ease-in-out;-o-transition: color .3s ease-in-out;-ms-transition: color .3s ease-in-out;-o-transition: color .3s ease-in-out;transition: color .3s ease-in-out}
 #o.hover{text-decoration: none;color: #77bb77}
 .unit-article .unit-head-inner,
 .unit-article .entry-content,
