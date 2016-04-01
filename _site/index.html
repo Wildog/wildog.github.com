@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
-    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.js"></script>
+    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.min.js"></script>
 </head>
 <body>
 <div id="page" class="hentry">
@@ -46,22 +46,21 @@
         <div class="unit-body">
             <div class="unit-inner unit-body-inner">
                 <div class="entry-content">
-                    
 
-<article class="unit-article layout-page">
-    <div class="unit-inner unit-article-inner">
-        <div class="content">
-            <header>
-                <div class="unit-head">
-                    <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title"># <span class="typer"></span><span class="cursor">_</span><span class="mobile-resumer">⏯</span></h1>
-                    </div><!-- unit-inner -->
-                </div><!-- unit-head -->
-            </header>
+                    <article class="unit-article layout-page">
+                        <div class="unit-inner unit-article-inner">
+                            <div class="content">
+                                <header>
+                                    <div class="unit-head">
+                                        <div class="unit-inner unit-head-inner">
+                                            <h1 class="h2 entry-title"># <span class="typer"></span><span class="cursor">_</span><div class="resume-button"><div class="triangle"></div><div class="bars"></div></div></h1>
+                                        </div><!-- unit-inner -->
+                                    </div><!-- unit-head -->
+                                </header>
 
-            <div class="bd">
-                <div class="entry-content">
-                    
+                                <div class="bd">
+                                    <div class="entry-content">
+                                        
 
 
 
@@ -164,29 +163,27 @@
 
 
 
-                </div><!-- entry-content -->
-            </div><!-- bd -->
+                                    </div><!-- entry-content -->
+                                </div><!-- bd -->
 
-            <footer class="unit-foot" id="home-foot">
-                <div class="unit-inner unit-foot-inner">
-                    <nav class="pagination">
-                        <ul class="social to-blur">
-                            <li><a id="douban" href="http://douban.com/people/randyzew"></a></li>
-                            <li><a id="twitter" href="http://twitter.com/wildoggo"></a></li>
-                            <li><a id="soundcloud" href="http://soundcloud.com/wildogmusic"></a></li>
-                            <li><a id="flickr" href="https://www.flickr.com/photos/wildoggo"></a></li>
-                            <li><a id="github" href="http://github.com/wildog"></a></li>
-                            <li><a id="rss" href="/rss.xml"></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </footer>
+                                <footer class="unit-foot" id="home-foot">
+                                    <div class="unit-inner unit-foot-inner">
+                                        <nav class="pagination">
+                                            <ul class="social to-blur">
+                                                <li><a id="douban" href="http://douban.com/people/randyzew"></a></li>
+                                                <li><a id="twitter" href="http://twitter.com/wildoggo"></a></li>
+                                                <li><a id="soundcloud" href="http://soundcloud.com/wildogmusic"></a></li>
+                                                <li><a id="flickr" href="https://www.flickr.com/photos/wildoggo"></a></li>
+                                                <li><a id="github" href="http://github.com/wildog"></a></li>
+                                                <li><a id="rss" href="/rss.xml"></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </footer>
 
-        </div><!-- content -->
-    </div><!-- unit-inner -->
-</article>
-
-
+                            </div><!-- content -->
+                        </div><!-- unit-inner -->
+                    </article>
 
                 </div>
             </div><!-- unit-inner -->
@@ -206,7 +203,7 @@
     </footer>
 </div><!-- page -->
 <script>
-$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Please update your IE to make a better world!")}$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});var d=0;function expandMymore(){d=1;$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapseMymore(){d=0;$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}$(".nav-global .my").mouseenter(expandMymore);$(".nav-global").mouseleave(collapseMymore);$(".nav-global .my .expand").click(function(){if(d==1){collapseMymore()}else{expandMymore()}});function Timer(a,b){var c,start,remaining=b;this.pause=function(){window.clearTimeout(c);remaining-=new Date()-start};this.resume=function(){start=new Date();window.clearTimeout(c);c=window.setTimeout(a,remaining)};this.resume()}setTimeout(function(){$(".typer").typeTo("Hello");setTimeout(function(){$(".typer").typeTo("I am Wildog")},2000);setTimeout(function(){$(".typer").typeTo("I write code")},5000);setTimeout(function(){$(".typer").html(function(_,a){return a.split("code").join("<a href='https://github.com/Wildog'>code</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight");var b=new Timer(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("I make electronic music");setTimeout(function(){$(".typer").html(function(_,a){return a.split("music").join("<a href='https://site.douban.com/randyzew/'>music</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight");b=new Timer(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("I take photos occasionally");setTimeout(function(){$(".typer").html(function(_,a){return a.split("photos").join("<a href='http://wildog.lofter.com'>photos</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight");b=new Timer(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("This is where everything starts")},1000)},1900);$(".typer a").hover(function(){b.pause()},function(){b.resume()});$(".typer a").click(function(){$(".mobile-resumer").css("visibility","visible").click(function(){$(".mobile-resumer").css("visibility","hidden");b.resume()})})},100)},3500)},1000)},1900);$(".typer a").hover(function(){b.pause()},function(){b.resume()});$(".typer a").click(function(){$(".mobile-resumer").css("visibility","visible").click(function(){$(".mobile-resumer").css("visibility","hidden");b.resume()})})},100)},3000)},1000)},1900);$(".typer a").hover(function(){b.pause()},function(){b.resume()});$(".typer a").click(function(){$(".mobile-resumer").css("visibility","visible").click(function(){$(".mobile-resumer").css("visibility","hidden");b.resume()})})},100)},7000)},500);function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});var _hmt=_hmt||[];(function(){var a=document.createElement("script");a.src="//hm.baidu.com/hm.js?11c959e4e7e61e03218d8ffeeacdb15d";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(a,s)})();
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Please update your IE to make a better world!")}$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});var d=0;function expandMymore(){d=1;$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapseMymore(){d=0;$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}$(".nav-global .my").mouseenter(expandMymore);$(".nav-global").mouseleave(collapseMymore);$(".nav-global .my .expand").click(function(){if(d==1){collapseMymore()}else{expandMymore()}});function Timer(a,b){var c,start,remaining=b;this.pause=function(){window.clearTimeout(c);remaining-=new Date()-start};this.resume=function(){start=new Date();window.clearTimeout(c);c=window.setTimeout(a,remaining)};this.resume()}setTimeout(function(){var c="ontouchstart" in window||navigator.maxTouchPoints;$(".typer").typeTo("Hello");setTimeout(function(){$(".typer").typeTo("I am Wildog")},2000);setTimeout(function(){$(".typer").typeTo("I write code")},5000);setTimeout(function(){$(".typer").html(function(_,a){return a.split("code").join("<a href='https://github.com/Wildog'>code</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight");var b=new Timer(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("I make electronic music");setTimeout(function(){$(".typer").html(function(_,a){return a.split("music").join("<a href='https://site.douban.com/randyzew/'>music</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight");b=new Timer(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("I take photos occasionally");setTimeout(function(){$(".typer").html(function(_,a){return a.split("photos").join("<a href='http://wildog.lofter.com'>photos</a>")});setTimeout(function(){$(".typer a").addClass("typer-highlight");b=new Timer(function(){$(".typer a").removeClass("typer-highlight");setTimeout(function(){$(".typer a").contents().unwrap();$(".typer").typeTo("This is where everything starts")},1000)},1900);$(".typer a").hover(function(){b.pause()},function(){b.resume()});$(".typer a").click(function(){if(c){$(".resume-button").css("display","inline-block").click(function(){$(".resume-button").css("display","none");b.resume()})}})},100)},3500)},1000)},1900);$(".typer a").hover(function(){b.pause()},function(){b.resume()});$(".typer a").click(function(){if(c){$(".resume-button").css("display","inline-block").click(function(){$(".resume-button").css("display","none");b.resume()})}})},100)},3000)},1000)},1900);$(".typer a").hover(function(){b.pause()},function(){b.resume()});$(".typer a").click(function(){if(c){$(".resume-button").css("display","inline-block").click(function(){$(".resume-button").css("display","none");b.resume()})}})},100)},7000)},500);function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});var _hmt=_hmt||[];(function(){var a=document.createElement("script");a.src="//hm.baidu.com/hm.js?11c959e4e7e61e03218d8ffeeacdb15d";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(a,s)})();
 </script>
 </body>
 </html>
