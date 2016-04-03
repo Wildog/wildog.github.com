@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
-    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.min.js"></script>
+    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.pack.js"></script>
 </head>
 <body>
 <div id="page" class="hentry">
@@ -44,10 +44,12 @@
 <article class="unit-article layout-post">
     <div class="unit-inner unit-article-inner">
         <div class="content">
+            <div class="header-placeholder"></div>
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">在 Vim-airline 上显示天气</h1>
+                        <h1 class="h2 entry-title">在 Vim-airline 上显示天气<a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <div id="toc"></div>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
             </header>
@@ -66,7 +68,7 @@
 
 <ul>
   <li>
-    <h4 id="vundle-">使用 Vundle 安装</h4>
+    <h3 id="vundle-">使用 Vundle 安装</h3>
   </li>
 </ul>
 
@@ -78,42 +80,64 @@ Plugin <span class="s1">'Wildog/airline-weather.vim'</span></code></pre></figure
 
 <p>然后执行 <code class="highlighter-rouge">:PluginInstall</code></p>
 
-<h2 id="section-1">使用</h2>
+<h2 id="section-1">自定义</h2>
 
 <ul>
-  <li>设置位置</li>
+  <li>
+    <h3 id="section-2">设置位置</h3>
+  </li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#area <span class="p">=</span> <span class="s1">'beijing,china'</span></code></pre></figure>
 
 <ul>
-  <li>设置单位 (metric 为摄氏度, imperial 为华氏度):</li>
+  <li>
+    <h3 id="section-3">设置单位</h3>
+  </li>
 </ul>
+
+<p>metric 为摄氏度, imperial 为华氏度</p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#unit <span class="p">=</span> <span class="s1">'metric'</span></code></pre></figure>
 
 <ul>
-  <li>设置 API Key, 默认为我的 API Key, 你最好申请并设置一个自己的 API Key: <a href="http://openweathermap.org/appid">http://openweathermap.org/appid</a></li>
+  <li>
+    <h3 id="api-key">设置 API Key</h3>
+  </li>
 </ul>
+
+<p>默认为我的 API Key, 你最好申请并设置一个自己的 API Key: <a href="http://openweathermap.org/appid">http://openweathermap.org/appid</a></p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#appid <span class="p">=</span> <span class="s1">'2de143494c0b295cca9337e1e96b00e0'</span></code></pre></figure>
 
 <ul>
-  <li>设置缓存文件路径和缓存更新周期, 缓存文件默认为<code class="highlighter-rouge">~/.cache/.weather</code>, 更新周期默认为 1 小时. (如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿)</li>
+  <li>
+    <h3 id="section-4">设置缓存</h3>
+  </li>
 </ul>
+
+<p>缓存文件路径默认为<code class="highlighter-rouge">~/.cache/.weather</code>, 更新周期默认为 1 小时. 如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿.</p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#cache_file <span class="p">=</span> <span class="s1">'~/.cache/.weather'</span>
 <span class="k">let</span> <span class="nv">g:weather</span>#cache_ttl <span class="p">=</span> <span class="s1">'3600'</span></code></pre></figure>
 
 <ul>
-  <li>设置天气格式, <code class="highlighter-rouge">%s</code>为天气图标, <code class="highlighter-rouge">%f</code>为温度数字</li>
+  <li>
+    <h3 id="section-5">设置格式</h3>
+  </li>
 </ul>
+
+<p><code class="highlighter-rouge">%s</code>为天气图标, <code class="highlighter-rouge">%f</code>为温度数字</p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#format <span class="p">=</span> <span class="s1">'%s %.0f'</span></code></pre></figure>
 
 <ul>
-  <li>设置天气图标, 数字含义可参考 OpenWeatherMap 的 API: <a href="http://openweathermap.org/weather-conditions">http://openweathermap.org/weather-conditions</a></li>
+  <li>
+    <h3 id="section-6">设置图标</h3>
+  </li>
 </ul>
+
+<p>各图标数字代码含义可参考 OpenWeatherMap 的 API: <a href="http://openweathermap.org/weather-conditions">http://openweathermap.org/weather-conditions</a></p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">let</span> <span class="nv">g:weather</span>#status_map <span class="p">=</span> <span class="p">{</span>
 <span class="se">\</span> <span class="s2">"01d"</span><span class="p">:</span> <span class="s2">"☀"</span><span class="p">,</span>
@@ -137,7 +161,9 @@ Plugin <span class="s1">'Wildog/airline-weather.vim'</span></code></pre></figure
 <span class="se">\</span><span class="p">}</span></code></pre></figure>
 
 <ul>
-  <li>强制刷新天气</li>
+  <li>
+    <h3 id="section-7">强制刷新天气</h3>
+  </li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">call</span> RefreshWeather<span class="p">()</span></code></pre></figure>
@@ -202,8 +228,7 @@ Plugin <span class="s1">'Wildog/airline-weather.vim'</span></code></pre></figure
     <footer class="the-footer">
         <div class="unit-foot">
             <div class="unit-inner unit-foot-inner">
-                <p class="licence">
-                    <br>
+                <p class="license">
                     ©2013-2016 <a href="/about/">Wildog</a> |
                     Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
                     Hosted on <a href="http://github.com/">Github</a>.
@@ -213,7 +238,7 @@ Plugin <span class="s1">'Wildog/airline-weather.vim'</span></code></pre></figure
     </footer>
 </div><!-- page -->
 <script>
-$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Please update your IE to make a better world!")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){$("p img:not(#ccimg)").each(function(){var a="<a class='fancybox' href='"+this.src+"'></a>";$(this).wrapAll(a)})});$(document).ready(function(){var a=$("a.fancybox");if(a.length){$('<link rel="stylesheet" type="text/css" href="/assets/themes/wildog/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo("head");$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/fancybox/jquery.fancybox.pack.js?v=2.1.5",cache:true,success:function(){a.fancybox({openEffect:"elastic",closeEffect:"elastic",});a.attr("rel","gallery").fancybox({padding:0})}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Please update your IE to make a better world!")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc();function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){$("p img:not(#ccimg)").each(function(){var a="<a class='fancybox' href='"+this.src+"'></a>";$(this).wrapAll(a)})});$(document).ready(function(){var a=$("a.fancybox");if(a.length){$('<link rel="stylesheet" type="text/css" href="/assets/themes/wildog/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo("head");$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/fancybox/jquery.fancybox.pack.js?v=2.1.5",cache:true,success:function(){a.fancybox({openEffect:"elastic",closeEffect:"elastic",});a.attr("rel","gallery").fancybox({padding:0})}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
 </script>
 <script>
 var _hmt = _hmt || [];

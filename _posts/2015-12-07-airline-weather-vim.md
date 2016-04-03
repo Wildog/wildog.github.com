@@ -2,6 +2,7 @@
 layout: post
 title: 在 Vim-airline 上显示天气
 tags: ["vim", "天气", "airline", "vim-airline", "weather"]
+menu: true
 ---
 
 ![screenshot](http://7xqhhm.com1.z0.glb.clouddn.com/images/airline-weather-vim-screenshot.png)
@@ -14,7 +15,7 @@ Github Repo 地址: [https://github.com/Wildog/airline-weather.vim](https://gith
 
 ## 安装
 
-* #### 使用 Vundle 安装
+* ### 使用 Vundle 安装
 
 扩展依赖 vim-airline 和 webapi-vim, 确保你的 .vimrc 中有以下几行:
 
@@ -26,40 +27,50 @@ Plugin 'Wildog/airline-weather.vim'
 
 然后执行 `:PluginInstall`
 
-## 使用
+## 自定义
 
-* 设置位置
+* ### 设置位置
 
 {% highlight vim %}
 let g:weather#area = 'beijing,china'
 {% endhighlight %}
 
-* 设置单位 (metric 为摄氏度, imperial 为华氏度):
+* ### 设置单位
+
+metric 为摄氏度, imperial 为华氏度
 
 {% highlight vim %}
 let g:weather#unit = 'metric'
 {% endhighlight %}
 
-* 设置 API Key, 默认为我的 API Key, 你最好申请并设置一个自己的 API Key: [http://openweathermap.org/appid](http://openweathermap.org/appid)
+* ### 设置 API Key
+
+默认为我的 API Key, 你最好申请并设置一个自己的 API Key: [http://openweathermap.org/appid](http://openweathermap.org/appid)
 
 {% highlight vim %}
 let g:weather#appid = '2de143494c0b295cca9337e1e96b00e0'
 {% endhighlight %}
 
-* 设置缓存文件路径和缓存更新周期, 缓存文件默认为`~/.cache/.weather`, 更新周期默认为 1 小时. (如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿)
+* ### 设置缓存
+
+缓存文件路径默认为`~/.cache/.weather`, 更新周期默认为 1 小时. 如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿.
 
 {% highlight vim %}
 let g:weather#cache_file = '~/.cache/.weather'
 let g:weather#cache_ttl = '3600'
 {% endhighlight %}
 
-* 设置天气格式, `%s`为天气图标, `%f`为温度数字
+* ### 设置格式
+
+`%s`为天气图标, `%f`为温度数字
 
 {% highlight vim %}
 let g:weather#format = '%s %.0f'
 {% endhighlight %}
 
-* 设置天气图标, 数字含义可参考 OpenWeatherMap 的 API: [http://openweathermap.org/weather-conditions](http://openweathermap.org/weather-conditions)
+* ### 设置图标
+
+各图标数字代码含义可参考 OpenWeatherMap 的 API: [http://openweathermap.org/weather-conditions](http://openweathermap.org/weather-conditions)
 
 {% highlight vim %}
 let g:weather#status_map = {
@@ -84,7 +95,7 @@ let g:weather#status_map = {
 \}
 {% endhighlight %}
 
-* 强制刷新天气
+* ### 强制刷新天气
 
 {% highlight vim %}
 :call RefreshWeather()

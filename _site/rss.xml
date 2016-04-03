@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-04-03T15:38:33+08:00</lastBuildDate>
-        <pubDate>2016-04-03T15:38:33+08:00</pubDate>
+        <lastBuildDate>2016-04-04T04:51:06+08:00</lastBuildDate>
+        <pubDate>2016-04-04T04:51:06+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -24,7 +24,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h4 id=&quot;vundle-&quot;&gt;使用 Vundle 安装&lt;/h4&gt;
+    &lt;h3 id=&quot;vundle-&quot;&gt;使用 Vundle 安装&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -36,42 +36,64 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;然后执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;:PluginInstall&lt;/code&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;使用&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;自定义&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;设置位置&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;section-2&quot;&gt;设置位置&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#area &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;beijing,china&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;设置单位 (metric 为摄氏度, imperial 为华氏度):&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;section-3&quot;&gt;设置单位&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;metric 为摄氏度, imperial 为华氏度&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#unit &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;metric&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;设置 API Key, 默认为我的 API Key, 你最好申请并设置一个自己的 API Key: &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;http://openweathermap.org/appid&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;api-key&quot;&gt;设置 API Key&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;默认为我的 API Key, 你最好申请并设置一个自己的 API Key: &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;http://openweathermap.org/appid&lt;/a&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#appid &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;2de143494c0b295cca9337e1e96b00e0&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;设置缓存文件路径和缓存更新周期, 缓存文件默认为&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.cache/.weather&lt;/code&gt;, 更新周期默认为 1 小时. (如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;section-4&quot;&gt;设置缓存&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;缓存文件路径默认为&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.cache/.weather&lt;/code&gt;, 更新周期默认为 1 小时. 如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_file &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;~/.cache/.weather&#39;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_ttl &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;3600&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;设置天气格式, &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;为天气图标, &lt;code class=&quot;highlighter-rouge&quot;&gt;%f&lt;/code&gt;为温度数字&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;section-5&quot;&gt;设置格式&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;为天气图标, &lt;code class=&quot;highlighter-rouge&quot;&gt;%f&lt;/code&gt;为温度数字&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#format &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;%s %.0f&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;设置天气图标, 数字含义可参考 OpenWeatherMap 的 API: &lt;a href=&quot;http://openweathermap.org/weather-conditions&quot;&gt;http://openweathermap.org/weather-conditions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;section-6&quot;&gt;设置图标&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;各图标数字代码含义可参考 OpenWeatherMap 的 API: &lt;a href=&quot;http://openweathermap.org/weather-conditions&quot;&gt;http://openweathermap.org/weather-conditions&lt;/a&gt;&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#status_map &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;01d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;☀&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -95,7 +117,9 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;强制刷新天气&lt;/li&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;section-7&quot;&gt;强制刷新天气&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; RefreshWeather&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -112,16 +136,18 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;参考 Repo: &lt;a href=&quot;https://github.com/cathay4t/kindle-weather&quot;&gt;https://github.com/cathay4t/kindle-weather&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场.&lt;/p&gt;
+&lt;p&gt;看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场. 分享下自己的流程:&lt;/p&gt;
 
-&lt;p&gt;分享下自己的流程:&lt;/p&gt;
+&lt;h2 id=&quot;section&quot;&gt;硬件需求&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;首先, 你需要一台长期联网的 Kindle (K3, K4 测试通过)&lt;/li&gt;
-  &lt;li&gt;其次, 你需要一台长期联网的主机或者 VPS&lt;/li&gt;
+  &lt;li&gt;一台长期联网的 Kindle (K3, K4 测试通过)&lt;/li&gt;
+  &lt;li&gt;一台长期联网的主机或者 VPS&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;然后先配置主机&lt;/strong&gt;:&lt;/p&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;配置&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;配置主机&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;安装好 httpd, pngcrush, librsvg2&lt;/li&gt;
@@ -138,7 +164,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
   &lt;li&gt;运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;weather_script.py &amp;lt;API_KEY&amp;gt; &amp;lt;LAT&amp;gt; &amp;lt;LON&amp;gt;&lt;/code&gt;, 测试 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://&amp;lt;主机域名&amp;gt;/weather/weather.png&lt;/code&gt; 能否得到正确显示的图片.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;接下来配置 Kindle&lt;/strong&gt;:&lt;/p&gt;
+&lt;h3 id=&quot;kindle&quot;&gt;配置 Kindle&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;首先给 Kindle 越狱
