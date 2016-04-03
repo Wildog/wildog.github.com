@@ -54,10 +54,12 @@
 
             <div class="bd">
                 <div class="entry-content">
-                    <p>一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。</p>
+                    <p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg" alt="" /></p>
+
+<p>一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。</p>
 
 <p><strong>源码</strong>:<br />
-<a href="http://wildog.net/download/BeatWrite.zip">点我下载</a><br />
+<a href="http://wil.dog/download/BeatWrite.zip">点我下载</a><br />
 # 把 <code class="highlighter-rouge">BeatWrite.pde</code> 中的针脚配置改为你自己连接的针脚, 连接图示<a href="/resources/circuit.jpg">点我查看</a><br />
 # 把 mp3 文件放入 <code class="highlighter-rouge">data</code> 文件夹中, 将 <code class="highlighter-rouge">BeatWrite.pde</code> 中 <code class="highlighter-rouge">"minim.loadFile("aaa.mp3", 2048)"</code> 一行的 <code class="highlighter-rouge">"aaa.mp3"</code> 改为你自己的 mp3 文件名</p>
 
@@ -76,8 +78,6 @@
 
 <p>实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：<a href="http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html">视频戳我</a><br />
 右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat</p>
-
-<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg" alt="" /></p>
 
                     <div class="meta">
                         <p class="date-publish">

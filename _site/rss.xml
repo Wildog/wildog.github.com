@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-04-03T00:14:59+08:00</lastBuildDate>
-        <pubDate>2016-04-03T00:14:59+08:00</pubDate>
+        <lastBuildDate>2016-04-03T14:24:55+08:00</lastBuildDate>
+        <pubDate>2016-04-03T14:24:55+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -212,10 +212,12 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
         <item>
                 <title>用 Arduino + Processing 识别节拍</title>
-                <description>&lt;p&gt;一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。&lt;/p&gt;
+                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;源码&lt;/strong&gt;:&lt;br /&gt;
-&lt;a href=&quot;http://wildog.net/download/BeatWrite.zip&quot;&gt;点我下载&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://wil.dog/download/BeatWrite.zip&quot;&gt;点我下载&lt;/a&gt;&lt;br /&gt;
 # 把 &lt;code class=&quot;highlighter-rouge&quot;&gt;BeatWrite.pde&lt;/code&gt; 中的针脚配置改为你自己连接的针脚, 连接图示&lt;a href=&quot;/resources/circuit.jpg&quot;&gt;点我查看&lt;/a&gt;&lt;br /&gt;
 # 把 mp3 文件放入 &lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt; 文件夹中, 将 &lt;code class=&quot;highlighter-rouge&quot;&gt;BeatWrite.pde&lt;/code&gt; 中 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;minim.loadFile(&quot;aaa.mp3&quot;, 2048)&quot;&lt;/code&gt; 一行的 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;aaa.mp3&quot;&lt;/code&gt; 改为你自己的 mp3 文件名&lt;/p&gt;
 
@@ -234,8 +236,6 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：&lt;a href=&quot;http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html&quot;&gt;视频戳我&lt;/a&gt;&lt;br /&gt;
 右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&amp;lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
                 <link>http://wil.dog/2013/07/11/arduino-processing-beat-detect/</link>
                 <guid>http://wil.dog/2013/07/11/arduino-processing-beat-detect</guid>
