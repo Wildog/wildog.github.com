@@ -2,20 +2,23 @@
 layout: post
 title: 把你的旧 Kindle 变成桌面气象站
 tags: ["kindle", "天气", "diy"]
+menu: true
 ---
 
 ![](http://7xqhhm.com1.z0.glb.clouddn.com/images/kindle.jpg)  
 
 参考 Repo: [https://github.com/cathay4t/kindle-weather](https://github.com/cathay4t/kindle-weather)
 
-看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场.
+看到有人在 K3 上做了个锁屏天气, 自己也心痒痒跟着 DIY 了一下, 效果还不错, 也算是把长期闲置的 K4 派上了用场. 分享下自己的流程:
 
-分享下自己的流程:
+## 硬件需求
 
-* 首先, 你需要一台长期联网的 Kindle (K3, K4 测试通过)
-* 其次, 你需要一台长期联网的主机或者 VPS
+* 一台长期联网的 Kindle (K3, K4 测试通过)
+* 一台长期联网的主机或者 VPS
 
-__然后先配置主机__:
+## 配置
+
+### 配置主机
 
 * 安装好 httpd, pngcrush, librsvg2
 * 启动 httpd 服务
@@ -28,7 +31,7 @@ __然后先配置主机__:
 {% endhighlight %}
 * 运行 `weather_script.py <API_KEY> <LAT> <LON>`, 测试 `http://<主机域名>/weather/weather.png` 能否得到正确显示的图片.
 
-__接下来配置 Kindle__:
+### 配置 Kindle
 
 * 首先给 Kindle 越狱
 1. K4 下载此[压缩包](http://www.mobileread.com/forums/attachment.php?attachmentid=141180&d=1439936080), 
