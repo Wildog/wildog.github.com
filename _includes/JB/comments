@@ -4,7 +4,7 @@
 {% when "disqus" %}
   {% include JB/comments-providers/disqus %}
 {% when "duoshuo" %}
-  {% include custom/duoshuo %}
+  {% include JB/comments-providers/duoshuo %}
 {% when "livefyre" %}
   {% include JB/comments-providers/livefyre %}
 {% when "intensedebate" %}
