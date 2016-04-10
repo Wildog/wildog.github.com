@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ariafred: 利用 Alfred 管理 Aria2 | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="vim, 天气, airline, vim-airline, weather">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
+    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.pack.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about/">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <div class="header-placeholder"></div>
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title">Ariafred: 利用 Alfred 管理 Aria2<a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <div id="toc"></div>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p><a href="https://aria2.github.io">Aria2</a> 对于我这种长期使用百度云和迅雷离线的 Mac 用户简直就是救星, 再不用忍受百度云蛋疼的同步盘客户端和万年不更新还死耗资源的迅雷客户端, 找了下 Aria2 基本只有 web 前端, 感觉不如配合 <a href="https://www.alfredapp.com">Alfred 2</a> 来得方便, 趁着周末用 Python 写了个 Alfred Workflow, 支持 Aria2 的大多数操作和下载完成通知. 截图如下:
+<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/ariafred.gif" alt="screenshot" /></p>
+
+<h2 id="section">下载</h2>
+
+<ul>
+  <li>百度云直接下载可用: <a href="http://pan.baidu.com/s/1qYQSnog">http://pan.baidu.com/s/1qYQSnog</a></li>
+  <li>Github Repo 地址: <a href="https://github.com/Wildog/Ariafred">https://github.com/Wildog/Ariafred</a></li>
+</ul>
+
+<h2 id="section-1">使用说明</h2>
+
+<ul>
+  <li>
+    <h3 id="ariafred">激活 Ariafred</h3>
+  </li>
+</ul>
+
+<p>使用默认全局快捷键 <code class="highlighter-rouge">Command</code> + <code class="highlighter-rouge">Shift</code> + <code class="highlighter-rouge">A</code> 或者在 Alfred 里输入关键词 <code class="highlighter-rouge">aria</code></p>
+
+<ul>
+  <li>
+    <h3 id="section-2">过滤下载</h3>
+  </li>
+</ul>
+
+<ol>
+  <li>直接输入关键词可按名称搜索下载</li>
+  <li>输入关键词 <code class="highlighter-rouge">active</code> / <code class="highlighter-rouge">done</code> / <code class="highlighter-rouge">paused</code> / <code class="highlighter-rouge">queued</code> / <code class="highlighter-rouge">error</code> 可分别查看进行中/已完成/已暂停/等待中/出错的下载</li>
+  <li>状态关键词和搜索关键词可搭配使用:
+<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/filter.png" alt="filter" /></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="section-3">查看全局状态</h3>
+  </li>
+</ul>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/stat.png" alt="stat" /></p>
+
+<ol>
+  <li>输入关键词 <code class="highlighter-rouge">stat</code> 可查看全局状态</li>
+  <li>在 Active / Waiting / Stopped 统计条目上按下 <code class="highlighter-rouge">Enter</code> 可查看对应状态的下载</li>
+  <li>在 Download / Upload 全局速度条目上按下 <code class="highlighter-rouge">Enter</code> 可进一步设置下载/上传限速</li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="section-4">新建下载</h3>
+  </li>
+</ul>
+
+<p>激活 Ariafred 后输入关键词 <code class="highlighter-rouge">add</code> 和下载链接, 支持 HTTP/FTP/SFTP/Magnet 链接</p>
+
+<ul>
+  <li>
+    <h3 id="section-5">打开文件下载目录</h3>
+  </li>
+</ul>
+
+<p>对所选下载按下 <code class="highlighter-rouge">Enter</code></p>
+
+<ul>
+  <li>
+    <h3 id="section-6">暂停/继续下载</h3>
+  </li>
+</ul>
+
+<ol>
+  <li>对所选下载按下 <code class="highlighter-rouge">Command</code> + <code class="highlighter-rouge">Enter</code></li>
+  <li>或者使用关键词 <code class="highlighter-rouge">pause</code> / <code class="highlighter-rouge">resume</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
+  <li>使用关键词 <code class="highlighter-rouge">pauseall</code> / <code class="highlighter-rouge">resumeall</code> 暂停/继续所有下载</li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="section-7">移除下载</h3>
+  </li>
+</ul>
+
+<ol>
+  <li>对所选下载按下 <code class="highlighter-rouge">Option</code> + <code class="highlighter-rouge">Enter</code></li>
+  <li>或者使用关键词 <code class="highlighter-rouge">remove</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="section-8">复制下载链接到剪贴板</h3>
+  </li>
+</ul>
+
+<ol>
+  <li>对所选下载按下 <code class="highlighter-rouge">Control</code> + <code class="highlighter-rouge">Enter</code></li>
+  <li>或者使用关键词 <code class="highlighter-rouge">url</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="section-9">清除已停止下载</h3>
+  </li>
+</ul>
+
+<p>使用关键词 <code class="highlighter-rouge">clear</code>, 会清除所有已完成和出错的下载</p>
+
+<ul>
+  <li>
+    <h3 id="section-10">设置限速和最大同时下载数</h3>
+  </li>
+</ul>
+
+<ol>
+  <li>输入关键词 <code class="highlighter-rouge">limit</code> 和速度(KiB/s)设置下载限速</li>
+  <li>输入关键词 <code class="highlighter-rouge">limitup</code> 和速度(KiB/s)设置上传限速</li>
+  <li>输入关键词 <code class="highlighter-rouge">limitnum</code> 和数字设置最大同时下载数</li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="aria2-rpc-">设置 Aria2 RPC 地址</h3>
+  </li>
+</ul>
+
+<p>默认连接的 RPC 地址为 <code class="highlighter-rouge">http://localhost:6800/rpc</code>, 如果需要更改, 输入 <code class="highlighter-rouge">rpc</code> 关键词和你自己的 RPC 地址</p>
+
+<ul>
+  <li>
+    <h3 id="aria2">启动和关闭 Aria2</h3>
+  </li>
+</ul>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/run.png" alt="filter" /></p>
+
+<ol>
+  <li>Ariafred 会自动连接默认或设置的 RPC 地址, 如果连接不上会提示启动 Aria2 或者更改 RPC 地址, 选择启动以尝试启动 Aria2</li>
+  <li>输入关键词 <code class="highlighter-rouge">quit</code> 关闭 Aria2</li>
+</ol>
+
+<ul>
+  <li>
+    <h3 id="section-11">获取帮助</h3>
+  </li>
+</ul>
+
+<p>输入关键词 <code class="highlighter-rouge">help</code> 进入 Github Repo 地址获取帮助</p>
+
+<ul>
+  <li>
+    <h3 id="section-12">自动更新</h3>
+  </li>
+</ul>
+
+<p>Ariafred 会从 Github 自动检查最新的 release 状态并提示更新</p>
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2016-04-10T00:00:00+08:00" datetime="2016-04-10T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>April</abbr></span>
+                            <span class="day">10,</span>
+                            <span class="year">2016</span>
+                            </date>
+                            <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="http://7xqhhm.com1.z0.glb.clouddn.com/cc.png" /></a><span>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/ariafred" data-title="Ariafred: 利用 Alfred 管理 Aria2" data-url="http://limbo.space/ariafred/"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            <li class="prev"><a class="internal" rel="prev"  href="/2015/12/07/airline-weather-vim/">&laquo; 在 Vim-airline 上显示天气</a></li>
+                            
+                            
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:void(0)">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="license">
+                    ©2013-2016 <a href="/about/">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Please update your IE to make a better world!")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc({"showEffect": "slideDown", "hideEffect": "slideUp"});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){$("p img:not(#ccimg)").each(function(){var a="<a class='fancybox' href='"+this.src+"'></a>";$(this).wrapAll(a)})});$(document).ready(function(){var a=$("a.fancybox");if(a.length){$('<link rel="stylesheet" type="text/css" href="/assets/themes/wildog/fancybox/jquery.fancybox.css?v=2.1.5">').appendTo("head");$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/fancybox/jquery.fancybox.pack.js?v=2.1.5",cache:true,success:function(){a.fancybox({openEffect:"elastic",closeEffect:"elastic",});a.attr("rel","gallery").fancybox({padding:0})}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
+</script>
+
+
+
+
+</body>
+</html>
+

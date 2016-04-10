@@ -275,7 +275,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .unit-article dt .hasGrid,
 .unit-article dd .hasGrid{margin-left:0;margin-right:0}
 .unit-article p code, .unit-article li code{margin:0 2px;padding:2px 5px;border:1px solid #CCC;background-color:#F8F8F8;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box}
-.unit-article .entry-content a:not(#cc):not(.fancybox){position: relative;padding:1px 0px 1px 0px;display:inline-block;line-height:20px;border-bottom:1px dashed #99cc99}
+.unit-article .entry-content a:not(#cc):not(.fancybox){position: relative;padding:1px 0px 1px 0px;display:inline-block;line-height:20px;border-bottom:1px dashed #c4c6c2}
 #cc{display:inline-block;height:13px;width:70px;bottom:-2px}
 #cc a,
 #cc a:before,
@@ -285,7 +285,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .fancybox:hover,
 .fancybox:hover:before{border-bottom:0px !important;}
 #toc{display:none; margin-top: 0.5em;}
-#toc, #toc .anchor-link{color: rgba(250, 250, 250, 0.8)}
+#toc, #toc .anchor-link{color: rgba(250, 250, 250, 0.8);-webkit-font-smoothing: antialiased;}
 #toc ol, #toc ul{list-style:disc;margin-bottom:0;}
 .stick{position:fixed;top:0;z-index:10;width:100%}
 .header-placeholder{height:0}
