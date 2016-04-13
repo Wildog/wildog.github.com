@@ -5,20 +5,20 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-04-10T22:47:05+08:00</lastBuildDate>
-        <pubDate>2016-04-10T22:47:05+08:00</pubDate>
+        <lastBuildDate>2016-04-13T16:01:46+08:00</lastBuildDate>
+        <pubDate>2016-04-13T16:01:46+08:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
                 <title>Ariafred: 利用 Alfred 管理 Aria2</title>
-                <description>&lt;p&gt;&lt;a href=&quot;https://aria2.github.io&quot;&gt;Aria2&lt;/a&gt; 对于我这种长期使用百度云和迅雷离线的 Mac 用户简直就是救星, 再不用忍受百度云蛋疼的同步盘客户端和万年不更新还死耗资源的迅雷客户端, 找了下 Aria2 基本只有 web 前端, 感觉不如配合 &lt;a href=&quot;https://www.alfredapp.com&quot;&gt;Alfred 2&lt;/a&gt; 来得方便, 趁着周末用 Python 写了个 Alfred Workflow, 支持 Aria2 的大多数操作和下载完成通知. 截图如下:
+                <description>&lt;p&gt;&lt;a href=&quot;https://aria2.github.io&quot;&gt;Aria2&lt;/a&gt; 对于我这种长期使用百度云和迅雷离线的 Mac 用户简直就是救星, 再不用忍受百度云蛋疼的同步盘客户端和万年不更新还死耗资源的迅雷客户端, 找了下 Aria2 基本只有 web 前端, 感觉不如配合 &lt;a href=&quot;https://www.alfredapp.com&quot;&gt;Alfred 2&lt;/a&gt; 来得方便, 趁着周末用 Python 写了个 Alfred Workflow, 支持 Aria2 的大多数操作和后台通知. 截图如下:
 &lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/ariafred.gif&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;下载&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;百度云直接下载可用: &lt;a href=&quot;http://pan.baidu.com/s/1qYQSnog&quot;&gt;http://pan.baidu.com/s/1qYQSnog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;百度云直接下载可用: &lt;a href=&quot;http://pan.baidu.com/s/1skLQsG1&quot;&gt;http://pan.baidu.com/s/1skLQsG1&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Github Repo 地址: &lt;a href=&quot;https://github.com/Wildog/Ariafred&quot;&gt;https://github.com/Wildog/Ariafred&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -39,11 +39,12 @@
 &lt;/ul&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;直接输入关键词可按名称搜索下载&lt;/li&gt;
-  &lt;li&gt;输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;active&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;done&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;paused&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;queued&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; 可分别查看进行中/已完成/已暂停/等待中/出错的下载&lt;/li&gt;
-  &lt;li&gt;状态关键词和搜索关键词可搭配使用:
-&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/filter.png&quot; alt=&quot;filter&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;直接输入搜索关键词可按名称搜索下载, 可同时输入多个搜索关键词&lt;/li&gt;
+  &lt;li&gt;输入状态关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;active&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;done&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;paused&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;pending&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; 可分别查看进行中/已完成/已暂停/等待中/出错的下载&lt;/li&gt;
+  &lt;li&gt;状态关键词和搜索关键词可搭配使用:&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/filter.png&quot; alt=&quot;filter&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -55,8 +56,8 @@
 
 &lt;ol&gt;
   &lt;li&gt;输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;stat&lt;/code&gt; 可查看全局状态&lt;/li&gt;
-  &lt;li&gt;在 Active / Waiting / Stopped 统计条目上按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt; 可查看对应状态的下载&lt;/li&gt;
-  &lt;li&gt;在 Download / Upload 全局速度条目上按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt; 可进一步设置下载/上传限速&lt;/li&gt;
+  &lt;li&gt;在 Active / Waiting / Stopped 上按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt; 可查看对应状态的下载&lt;/li&gt;
+  &lt;li&gt;在 Download / Upload 上按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt; 可进一步设置下载/上传限速&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;ul&gt;
@@ -65,11 +66,23 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;激活 Ariafred 后输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;add&lt;/code&gt; 和下载链接, 支持 HTTP/FTP/SFTP/Magnet 链接&lt;/p&gt;
+&lt;p&gt;输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;add&lt;/code&gt; 和下载链接, 支持 HTTP/FTP/SFTP/Magnet 链接&lt;/p&gt;
+
+&lt;p&gt;建议在 &lt;code class=&quot;highlighter-rouge&quot;&gt;aria2.conf&lt;/code&gt; 配置文件中增加默认下载路径如 &lt;code class=&quot;highlighter-rouge&quot;&gt;dir=/foo/bar&lt;/code&gt;, 在 Ariafred 中创建的下载都会下载到这个路径下&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-5&quot;&gt;打开文件下载目录&lt;/h3&gt;
+    &lt;h3 id=&quot;bt-&quot;&gt;新建 BT 下载&lt;/h3&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/bt.png&quot; alt=&quot;BT&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在 .torrent 文件上执行 &lt;a href=&quot;https://www.alfredapp.com/help/features/file-search/#file-actions&quot;&gt;File Action&lt;/a&gt; 后选择 ‘Add BT download to Aria2’&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;finder-&quot;&gt;在 Finder 中显示下载&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -77,41 +90,41 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-6&quot;&gt;暂停/继续下载&lt;/h3&gt;
+    &lt;h3 id=&quot;section-5&quot;&gt;暂停/继续下载&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
   &lt;li&gt;对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Command&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;或者使用关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;pause&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;resume&lt;/code&gt; 后对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;或者输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;pause&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;resume&lt;/code&gt; 后对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;使用关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;pauseall&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;resumeall&lt;/code&gt; 暂停/继续所有下载&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-7&quot;&gt;移除下载&lt;/h3&gt;
+    &lt;h3 id=&quot;section-6&quot;&gt;移除下载&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
   &lt;li&gt;对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Option&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;或者使用关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;remove&lt;/code&gt; 后对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;或者输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;remove&lt;/code&gt; 后对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-8&quot;&gt;复制下载链接到剪贴板&lt;/h3&gt;
+    &lt;h3 id=&quot;section-7&quot;&gt;复制下载链接到剪贴板&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
   &lt;li&gt;对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Control&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;或者使用关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;url&lt;/code&gt; 后对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;或者输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;url&lt;/code&gt; 后对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-9&quot;&gt;清除已停止下载&lt;/h3&gt;
+    &lt;h3 id=&quot;section-8&quot;&gt;清除已停止下载&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -119,7 +132,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-10&quot;&gt;设置限速和最大同时下载数&lt;/h3&gt;
+    &lt;h3 id=&quot;section-9&quot;&gt;设置限速和最大同时下载数&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -131,11 +144,14 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;aria2-rpc-&quot;&gt;设置 Aria2 RPC 地址&lt;/h3&gt;
+    &lt;h3 id=&quot;aria2-rpc&quot;&gt;设置 Aria2 RPC&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;默认连接的 RPC 地址为 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:6800/rpc&lt;/code&gt;, 如果需要更改, 输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;rpc&lt;/code&gt; 关键词和你自己的 RPC 地址&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;默认连接的 RPC 地址为 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:6800/rpc&lt;/code&gt;, 如果需要更改, 输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;rpc&lt;/code&gt; 和你自己的 RPC 地址. 请注意, Ariafred 使用的 RPC 格式为 xml-rpc 而不是 YAAW 一类 WebUI 所用的 json-rpc, 更改 RPC 地址时请确保你的 RPC 地址以 &lt;code class=&quot;highlighter-rouge&quot;&gt;/rpc&lt;/code&gt; 结束.&lt;/li&gt;
+  &lt;li&gt;默认使用的 rpc-secret 为空, 如果你在 &lt;code class=&quot;highlighter-rouge&quot;&gt;aria2.conf&lt;/code&gt; 配置文件中设置了自己的 rpc-secret, 输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;secret&lt;/code&gt; 和你自己的 rpc-secret 以设置.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -146,21 +162,21 @@
 &lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/run.png&quot; alt=&quot;filter&quot; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Ariafred 会自动连接默认或设置的 RPC 地址, 如果连接不上会提示启动 Aria2 或者更改 RPC 地址, 选择启动以尝试启动 Aria2&lt;/li&gt;
-  &lt;li&gt;输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;quit&lt;/code&gt; 关闭 Aria2&lt;/li&gt;
+  &lt;li&gt;如果连接不上 Aria2, Ariafred 会提示启动 Aria2 或者设置 RPC, 选择启动以尝试启动 Aria2&lt;/li&gt;
+  &lt;li&gt;使用关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;quit&lt;/code&gt; 关闭 Aria2&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-11&quot;&gt;获取帮助&lt;/h3&gt;
+    &lt;h3 id=&quot;section-10&quot;&gt;获取帮助&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;help&lt;/code&gt; 进入 Github Repo 地址获取帮助&lt;/p&gt;
+&lt;p&gt;使用关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;help&lt;/code&gt; 进入 Github Repo 地址获取帮助&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-12&quot;&gt;自动更新&lt;/h3&gt;
+    &lt;h3 id=&quot;section-11&quot;&gt;更新&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 

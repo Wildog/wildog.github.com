@@ -144,7 +144,14 @@ hr{-moz-box-sizing:content-box}
 .tag_box:after{clear:both}
 .left{float:left}
 .right{float:right}
+/* timeline */
+.circle{margin:0 20px;display:inline-block;border:2px solid #c4c6c2;border-radius:50%;background-color:#ffffff;width:7px;height:7px;z-index:100;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out; }
+.circle.filled{border: 2px solid #99cc99;-webkit-transform: scale(1.3);-moz-transform: scale(1.3);-o-transform: scale(1.3);-ms-transform: scale(1.3);transform: scale(1.3);}
+.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 82px 10px repeat-x;}
+li.home-entry{list-style:none}
 span.list-timestamp{font-family:"Courier New";font-weight:Bold}
+.article-link{position:absolute;display:inline;}
+/* timeline end */
 nav.nav-global{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb}
 body, .date-publish, .gotop, #comments{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em}
 .body{font-family:junctionregularRegular, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em}
@@ -204,7 +211,8 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .resume-button{display:none; padding: 5px; margin-left: 3px; line-height: 18px; border-radius:5px;background-color:#1a1a1a}
 .bars{display:inline-block;margin-left: 2px;height: 18px; width: 2px;border-right: 2px solid white; border-left: 2px solid white;}
 .triangle{display:inline-block;border-top: 9px solid transparent; border-left: 10px solid white; border-bottom: 9px solid transparent;}
-.menu-button{opacity:0; display:inline-block; padding: 5px; margin-left: 10px; line-height: 18px; border-radius:5px;background-color:#1a1a1a}
+.menu-button{opacity:0; display:inline-block; padding: 5px; line-height: 18px; border-radius:5px;background-color:#1a1a1a}
+.title-text{margin-right: 10px;}
 .stripes{display:inline-block;height:19px; width:18px;background:repeating-linear-gradient(rgba(250, 250, 250, 0.8), rgba(250, 250, 250, 0.8) 2px, #1a1a1a 2px, #1a1a1a 4px);}
 .unit-article header{-webkit-transform: translateZ(0); -moz-transform: translateZ(0); -ms-transform: translateZ(0); -o-transform: translateZ(0); transform: translateZ(0);background-color:rgba(21, 25, 25, 0.8);padding-top:0.875em;padding-bottom:0.875em}
 .unit-article header h1{color:rgba(250, 250, 250, 0.8);margin-top:0;margin-bottom:0}
@@ -343,17 +351,22 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .unit-article .unit-head-inner,
 .unit-article .entry-content,
 .unit-article .misc-content,
-.unit-article .unit-foot-inner{width:15em;margin-left:auto;margin-right:auto}
+.unit-article .unit-foot-inner{width:16em;margin-left:auto;margin-right:auto}
 .unit-article .unit-head-inner .meta{margin-bottom:1.625em}
-.layout-page .unit-body .unit-body-inner{width:15em;margin-left:auto;margin-right:auto}
+.layout-page .unit-body .unit-body-inner{width:16em;margin-left:auto;margin-right:auto}
 .layout-page .unit-body .article-list .meta{margin-bottom:1.625em}
 .entry-title{-webkit-font-smoothing:antialiased}
 .unit-foot-inner{-webkit-font-smoothing:antialiased}
-.the-footer .unit-foot{width:15em;margin-left:auto;margin-right:auto;-webkit-font-smoothing:antialiased}
+.the-footer .unit-foot{width:16em;margin-left:auto;margin-right:auto;-webkit-font-smoothing:antialiased}
 @media only screen and (max-width:369px){
-.the-header .unit-inner{width:15em}
+.the-header .unit-inner{width:16em}
+.unit-article header h1{font-size: 24px; line-height: 32px !important}
+#toc li{font-size:14px; line-height:22px}
+.unit-article .entry-content .date-list{margin-bottom:2em}
 }
 @media only screen and (max-width:480px){
+.circle{margin:0 12px}
+.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 74px 10px repeat-x;}
 .unit-article .entry-content a:not(#cc):not(.fancybox){display:inline}
 .unit-article .entry-content a:before{width:0}
 #cc{bottom:-1px}

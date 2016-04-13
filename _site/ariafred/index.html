@@ -48,7 +48,7 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title">Ariafred: 利用 Alfred 管理 Aria2<a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <h1 class="h2 entry-title"><span class="title-text">Ariafred: 利用 Alfred 管理 Aria2</span><a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
                         <div id="toc"></div>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
@@ -56,13 +56,13 @@
 
             <div class="bd">
                 <div class="entry-content">
-                    <p><a href="https://aria2.github.io">Aria2</a> 对于我这种长期使用百度云和迅雷离线的 Mac 用户简直就是救星, 再不用忍受百度云蛋疼的同步盘客户端和万年不更新还死耗资源的迅雷客户端, 找了下 Aria2 基本只有 web 前端, 感觉不如配合 <a href="https://www.alfredapp.com">Alfred 2</a> 来得方便, 趁着周末用 Python 写了个 Alfred Workflow, 支持 Aria2 的大多数操作和下载完成通知. 截图如下:
+                    <p><a href="https://aria2.github.io">Aria2</a> 对于我这种长期使用百度云和迅雷离线的 Mac 用户简直就是救星, 再不用忍受百度云蛋疼的同步盘客户端和万年不更新还死耗资源的迅雷客户端, 找了下 Aria2 基本只有 web 前端, 感觉不如配合 <a href="https://www.alfredapp.com">Alfred 2</a> 来得方便, 趁着周末用 Python 写了个 Alfred Workflow, 支持 Aria2 的大多数操作和后台通知. 截图如下:
 <img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/ariafred.gif" alt="screenshot" /></p>
 
 <h2 id="section">下载</h2>
 
 <ul>
-  <li>百度云直接下载可用: <a href="http://pan.baidu.com/s/1qYQSnog">http://pan.baidu.com/s/1qYQSnog</a></li>
+  <li>百度云直接下载可用: <a href="http://pan.baidu.com/s/1skLQsG1">http://pan.baidu.com/s/1skLQsG1</a></li>
   <li>Github Repo 地址: <a href="https://github.com/Wildog/Ariafred">https://github.com/Wildog/Ariafred</a></li>
 </ul>
 
@@ -83,11 +83,12 @@
 </ul>
 
 <ol>
-  <li>直接输入关键词可按名称搜索下载</li>
-  <li>输入关键词 <code class="highlighter-rouge">active</code> / <code class="highlighter-rouge">done</code> / <code class="highlighter-rouge">paused</code> / <code class="highlighter-rouge">queued</code> / <code class="highlighter-rouge">error</code> 可分别查看进行中/已完成/已暂停/等待中/出错的下载</li>
-  <li>状态关键词和搜索关键词可搭配使用:
-<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/filter.png" alt="filter" /></li>
+  <li>直接输入搜索关键词可按名称搜索下载, 可同时输入多个搜索关键词</li>
+  <li>输入状态关键词 <code class="highlighter-rouge">active</code> / <code class="highlighter-rouge">done</code> / <code class="highlighter-rouge">paused</code> / <code class="highlighter-rouge">pending</code> / <code class="highlighter-rouge">error</code> 可分别查看进行中/已完成/已暂停/等待中/出错的下载</li>
+  <li>状态关键词和搜索关键词可搭配使用:</li>
 </ol>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/filter.png" alt="filter" /></p>
 
 <ul>
   <li>
@@ -99,8 +100,8 @@
 
 <ol>
   <li>输入关键词 <code class="highlighter-rouge">stat</code> 可查看全局状态</li>
-  <li>在 Active / Waiting / Stopped 统计条目上按下 <code class="highlighter-rouge">Enter</code> 可查看对应状态的下载</li>
-  <li>在 Download / Upload 全局速度条目上按下 <code class="highlighter-rouge">Enter</code> 可进一步设置下载/上传限速</li>
+  <li>在 Active / Waiting / Stopped 上按下 <code class="highlighter-rouge">Enter</code> 可查看对应状态的下载</li>
+  <li>在 Download / Upload 上按下 <code class="highlighter-rouge">Enter</code> 可进一步设置下载/上传限速</li>
 </ol>
 
 <ul>
@@ -109,11 +110,23 @@
   </li>
 </ul>
 
-<p>激活 Ariafred 后输入关键词 <code class="highlighter-rouge">add</code> 和下载链接, 支持 HTTP/FTP/SFTP/Magnet 链接</p>
+<p>输入关键词 <code class="highlighter-rouge">add</code> 和下载链接, 支持 HTTP/FTP/SFTP/Magnet 链接</p>
+
+<p>建议在 <code class="highlighter-rouge">aria2.conf</code> 配置文件中增加默认下载路径如 <code class="highlighter-rouge">dir=/foo/bar</code>, 在 Ariafred 中创建的下载都会下载到这个路径下</p>
 
 <ul>
   <li>
-    <h3 id="section-5">打开文件下载目录</h3>
+    <h3 id="bt-">新建 BT 下载</h3>
+  </li>
+</ul>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/bt.png" alt="BT" /></p>
+
+<p>在 .torrent 文件上执行 <a href="https://www.alfredapp.com/help/features/file-search/#file-actions">File Action</a> 后选择 ‘Add BT download to Aria2’</p>
+
+<ul>
+  <li>
+    <h3 id="finder-">在 Finder 中显示下载</h3>
   </li>
 </ul>
 
@@ -121,41 +134,41 @@
 
 <ul>
   <li>
-    <h3 id="section-6">暂停/继续下载</h3>
+    <h3 id="section-5">暂停/继续下载</h3>
   </li>
 </ul>
 
 <ol>
   <li>对所选下载按下 <code class="highlighter-rouge">Command</code> + <code class="highlighter-rouge">Enter</code></li>
-  <li>或者使用关键词 <code class="highlighter-rouge">pause</code> / <code class="highlighter-rouge">resume</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
+  <li>或者输入关键词 <code class="highlighter-rouge">pause</code> / <code class="highlighter-rouge">resume</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
   <li>使用关键词 <code class="highlighter-rouge">pauseall</code> / <code class="highlighter-rouge">resumeall</code> 暂停/继续所有下载</li>
 </ol>
 
 <ul>
   <li>
-    <h3 id="section-7">移除下载</h3>
+    <h3 id="section-6">移除下载</h3>
   </li>
 </ul>
 
 <ol>
   <li>对所选下载按下 <code class="highlighter-rouge">Option</code> + <code class="highlighter-rouge">Enter</code></li>
-  <li>或者使用关键词 <code class="highlighter-rouge">remove</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
+  <li>或者输入关键词 <code class="highlighter-rouge">remove</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
 </ol>
 
 <ul>
   <li>
-    <h3 id="section-8">复制下载链接到剪贴板</h3>
+    <h3 id="section-7">复制下载链接到剪贴板</h3>
   </li>
 </ul>
 
 <ol>
   <li>对所选下载按下 <code class="highlighter-rouge">Control</code> + <code class="highlighter-rouge">Enter</code></li>
-  <li>或者使用关键词 <code class="highlighter-rouge">url</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
+  <li>或者输入关键词 <code class="highlighter-rouge">url</code> 后对所选下载按下 <code class="highlighter-rouge">Enter</code></li>
 </ol>
 
 <ul>
   <li>
-    <h3 id="section-9">清除已停止下载</h3>
+    <h3 id="section-8">清除已停止下载</h3>
   </li>
 </ul>
 
@@ -163,7 +176,7 @@
 
 <ul>
   <li>
-    <h3 id="section-10">设置限速和最大同时下载数</h3>
+    <h3 id="section-9">设置限速和最大同时下载数</h3>
   </li>
 </ul>
 
@@ -175,11 +188,14 @@
 
 <ul>
   <li>
-    <h3 id="aria2-rpc-">设置 Aria2 RPC 地址</h3>
+    <h3 id="aria2-rpc">设置 Aria2 RPC</h3>
   </li>
 </ul>
 
-<p>默认连接的 RPC 地址为 <code class="highlighter-rouge">http://localhost:6800/rpc</code>, 如果需要更改, 输入 <code class="highlighter-rouge">rpc</code> 关键词和你自己的 RPC 地址</p>
+<ol>
+  <li>默认连接的 RPC 地址为 <code class="highlighter-rouge">http://localhost:6800/rpc</code>, 如果需要更改, 输入关键词 <code class="highlighter-rouge">rpc</code> 和你自己的 RPC 地址. 请注意, Ariafred 使用的 RPC 格式为 xml-rpc 而不是 YAAW 一类 WebUI 所用的 json-rpc, 更改 RPC 地址时请确保你的 RPC 地址以 <code class="highlighter-rouge">/rpc</code> 结束.</li>
+  <li>默认使用的 rpc-secret 为空, 如果你在 <code class="highlighter-rouge">aria2.conf</code> 配置文件中设置了自己的 rpc-secret, 输入关键词 <code class="highlighter-rouge">secret</code> 和你自己的 rpc-secret 以设置.</li>
+</ol>
 
 <ul>
   <li>
@@ -190,21 +206,21 @@
 <p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/run.png" alt="filter" /></p>
 
 <ol>
-  <li>Ariafred 会自动连接默认或设置的 RPC 地址, 如果连接不上会提示启动 Aria2 或者更改 RPC 地址, 选择启动以尝试启动 Aria2</li>
-  <li>输入关键词 <code class="highlighter-rouge">quit</code> 关闭 Aria2</li>
+  <li>如果连接不上 Aria2, Ariafred 会提示启动 Aria2 或者设置 RPC, 选择启动以尝试启动 Aria2</li>
+  <li>使用关键词 <code class="highlighter-rouge">quit</code> 关闭 Aria2</li>
 </ol>
 
 <ul>
   <li>
-    <h3 id="section-11">获取帮助</h3>
+    <h3 id="section-10">获取帮助</h3>
   </li>
 </ul>
 
-<p>输入关键词 <code class="highlighter-rouge">help</code> 进入 Github Repo 地址获取帮助</p>
+<p>使用关键词 <code class="highlighter-rouge">help</code> 进入 Github Repo 地址获取帮助</p>
 
 <ul>
   <li>
-    <h3 id="section-12">自动更新</h3>
+    <h3 id="section-11">更新</h3>
   </li>
 </ul>
 
