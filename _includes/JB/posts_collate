@@ -33,7 +33,7 @@ Usage:
       <ul class="date-list">
     {% endif %}
   
-    <li class="home-entry"><span class="list-timestamp">{{ post.date | date: "%b %d" }}</span><div class="circle"></div><div class="article-link"><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></div></li>
+    <li class="home-entry"><div class="list-timestamp"><span class="list-timestamp">{{ post.date | date: "%b %d" }}</span></div><div class="circle"></div><div class="article-link"><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></div></li>
   
     {% if forloop.last %}
       </ul>

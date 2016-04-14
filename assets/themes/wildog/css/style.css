@@ -144,14 +144,13 @@ hr{-moz-box-sizing:content-box}
 .tag_box:after{clear:both}
 .left{float:left}
 .right{float:right}
-/* timeline */
-.circle{margin:0 20px;display:inline-block;border:2px solid #c4c6c2;border-radius:50%;background-color:#ffffff;width:7px;height:7px;z-index:100;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out; }
+.circle{margin:0 18px;display:inline-block;border:2px solid #c4c6c2;border-radius:50%;background-color:#ffffff;width:8px;height:8px;z-index:100;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out; }
 .circle.filled{border: 2px solid #99cc99;-webkit-transform: scale(1.3);-moz-transform: scale(1.3);-o-transform: scale(1.3);-ms-transform: scale(1.3);transform: scale(1.3);}
-.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 82px 10px repeat-x;}
+.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 83px 10px repeat-x;}
 li.home-entry{list-style:none}
+div.list-timestamp{display:inline-block;width:60px}
 span.list-timestamp{font-family:"Courier New";font-weight:Bold}
 .article-link{position:absolute;display:inline;}
-/* timeline end */
 nav.nav-global{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb}
 body, .date-publish, .gotop, #comments{font-family:"Gill Sans", "Gill Sans Nova", "Gill Sans MT", gillsansWeb, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em}
 .body{font-family:junctionregularRegular, "PingFang SC", "Source Han Sans CN", "Source Han Sans SC", "Heiti SC", "Microsoft YaHei";font-size:1em;line-height:1.625em}
@@ -365,8 +364,8 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 .unit-article .entry-content .date-list{margin-bottom:2em}
 }
 @media only screen and (max-width:480px){
-.circle{margin:0 12px}
-.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 74px 10px repeat-x;}
+.circle{margin:0 10px}
+.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 75px 10px repeat-x;}
 .unit-article .entry-content a:not(#cc):not(.fancybox){display:inline}
 .unit-article .entry-content a:before{width:0}
 #cc{bottom:-1px}
