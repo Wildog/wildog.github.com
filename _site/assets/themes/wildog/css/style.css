@@ -146,7 +146,7 @@ hr{-moz-box-sizing:content-box}
 .right{float:right}
 .circle{margin:0 18px;display:inline-block;border:2px solid #c4c6c2;border-radius:50%;background-color:#ffffff;width:8px;height:8px;z-index:100;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out; }
 .circle.filled{border: 2px solid #99cc99;-webkit-transform: scale(1.3);-moz-transform: scale(1.3);-o-transform: scale(1.3);-ms-transform: scale(1.3);transform: scale(1.3);}
-.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 83px 10px repeat-x;}
+.blog-list{background:linear-gradient(#ffffff,#ffffff 10px,#c4c6c2 10px,#c4c6c2 100%) repeat-y;background-size:2px 100%;background-position:83px 0px;}
 li.home-entry{list-style:none}
 div.list-timestamp{display:inline-block;width:60px}
 span.list-timestamp{font-family:"Courier New";font-weight:Bold}
@@ -365,7 +365,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 }
 @media only screen and (max-width:480px){
 .circle{margin:0 10px}
-.blog-list{background:linear-gradient(90deg, #c4c6c2 2px, #ffffff 2px) 75px 10px repeat-x;}
+.blog-list{background-position:75px 0;}
 .unit-article .entry-content a:not(#cc):not(.fancybox){display:inline}
 .unit-article .entry-content a:before{width:0}
 #cc{bottom:-1px}

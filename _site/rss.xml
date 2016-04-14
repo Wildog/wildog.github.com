@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-04-14T18:00:20+08:00</lastBuildDate>
-        <pubDate>2016-04-14T18:00:20+08:00</pubDate>
+        <lastBuildDate>2016-04-15T01:55:38+08:00</lastBuildDate>
+        <pubDate>2016-04-15T01:55:38+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -30,7 +30,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;使用默认全局快捷键 &lt;code class=&quot;highlighter-rouge&quot;&gt;Command&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 或者在 Alfred 里输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;aria&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;安装 Workflow 后你可以在 Hotkey 里设置全局快捷键(个人推荐&lt;code class=&quot;highlighter-rouge&quot;&gt;Command&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;)或者在 Alfred 里输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;aria&lt;/code&gt; 来激活 Ariafred&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
