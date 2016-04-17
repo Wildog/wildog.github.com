@@ -15,7 +15,9 @@
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
+    <link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">{% if page.music %}
+    <link rel="stylesheet" href="{{ site.cdn_url }}/aplayer/APlayer.min.css">
+    <script src="{{ site.cdn_url }}/aplayer/APlayer.min.js"></script>{% endif %}
     <script src="{{ site.cdn_url }}/jquery.pack.js"></script>
 </head>
 <body>
