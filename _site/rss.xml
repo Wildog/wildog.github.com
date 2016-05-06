@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-04-17T20:21:06+08:00</lastBuildDate>
-        <pubDate>2016-04-17T20:21:06+08:00</pubDate>
+        <lastBuildDate>2016-05-06T20:13:19+08:00</lastBuildDate>
+        <pubDate>2016-05-06T20:13:19+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -82,15 +82,19 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;finder-&quot;&gt;在 Finder 中显示下载&lt;/h3&gt;
+    &lt;h3 id=&quot;section-5&quot;&gt;显示下载文件&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt; 在 Finder 中显示下载文件&lt;/li&gt;
+  &lt;li&gt;对所选下载按下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter&lt;/code&gt; 在 Alfred 中显示下载文件&lt;/li&gt;
+  &lt;li&gt;点击下载通知可在 Finder 中显示相关下载文件&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-5&quot;&gt;暂停/继续下载&lt;/h3&gt;
+    &lt;h3 id=&quot;section-6&quot;&gt;暂停/继续下载&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -102,7 +106,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-6&quot;&gt;移除下载&lt;/h3&gt;
+    &lt;h3 id=&quot;section-7&quot;&gt;移除下载&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -113,7 +117,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-7&quot;&gt;复制下载链接到剪贴板&lt;/h3&gt;
+    &lt;h3 id=&quot;section-8&quot;&gt;复制下载链接到剪贴板&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -124,7 +128,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-8&quot;&gt;清除已停止下载&lt;/h3&gt;
+    &lt;h3 id=&quot;section-9&quot;&gt;清除已停止下载&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -132,7 +136,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-9&quot;&gt;设置限速和最大同时下载数&lt;/h3&gt;
+    &lt;h3 id=&quot;section-10&quot;&gt;设置限速和最大同时下载数&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -168,7 +172,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-10&quot;&gt;获取帮助&lt;/h3&gt;
+    &lt;h3 id=&quot;section-11&quot;&gt;获取帮助&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -176,7 +180,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;h3 id=&quot;section-11&quot;&gt;更新&lt;/h3&gt;
+    &lt;h3 id=&quot;section-12&quot;&gt;更新&lt;/h3&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
