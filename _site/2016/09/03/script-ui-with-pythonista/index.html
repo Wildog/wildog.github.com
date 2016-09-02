@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>用 Pythonista 写 UI | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="pythonista, ui, python, exif">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
+    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.pack.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about/">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <div class="header-placeholder"></div>
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title"><span class="title-text">用 Pythonista 写 UI</span><a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <div id="toc"></div>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p><a href="http://omz-software.com/pythonista/">Pythonista</a> 从 1.5 版本起到现在的 3.0 版本， 陆续增加了 UI 编辑器 、 Share Extension 、断点调试等功能，原本就是 iOS 上日常脚本神器的它现在已经成了功能完善的 Python 开发环境，拿着手机打发时间的同时写个像样的 App 也不在话下。下面是这两天用 Pythonista 写的两个小玩具，顺便记录一下途中遇到的坑。</p>
+
+<p>先附上 Repo 地址：<a href="https://github.com/Wildog/pythonista-toys">https://github.com/Wildog/pythonista-toys</a></p>
+
+<h2 id="exifpy">EXIF.py</h2>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/exif.jpg" alt="EXIF" /></p>
+
+<p>这是一个用于查看照片信息的 Extension，能显示 EXIF 信息、RGB 直方图和解析后的地理位置，可以触发 Share Sheet 地方都能使用。</p>
+
+<p>Pythonista 自带了 PIL 模块，能很方便的获取 EXIF 信息和执行图片处理。但坑也是主要都在图片方面，获取图片 EXIF 信息只能从 PIL.Image 的实例中获取，而在 ImageView 上显示的图片又必须是 ui.Image 的实例，坑爹的是 ui 模块的文档里面一直把这两个类混淆，而且也没有自带两个类之间的转换方法，遂自己动手：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">pil2ui</span><span class="p">(</span><span class="n">imgIn</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">imgIn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s">'JPEG'</span><span class="p">)</span>
+    <span class="n">imgOut</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">imgOut</span></code></pre></figure>
+
+<p>解决了图片转换的问题又发现由于在 Share Extension 中运行脚本时内存上限较小，尺寸较大的图片得先压缩才能显示，然而 Image.resize() 依然不能摆脱内存问题，最终用 Image.thumbnail() 解决，注意这个方法的效果是 in-place 的。</p>
+
+<p>现在图片能正常在 ImageView 中显示了，但又出现了新的问题：iOS 设备拍摄的照片无法正确显示方向，窥探了下这些照片的 EXIF 信息发现照片本身都是横向的，系统显示的时候才利用 EXIF 信息里的 ‘Orientation’ 决定方向，所以现在得自己实现这个过程，直接用 Image.rotate() 解决：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">orientations</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="mi">270</span><span class="p">,</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="mi">90</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="n">exif</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Orientation'</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">orientations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">exif</span><span class="p">[</span><span class="s">'Orientation'</span><span class="p">],</span> <span class="mi">0</span><span class="p">))</span></code></pre></figure>
+
+<p>最后利用 <a href="https://github.com/geopy/geopy">GeoPy</a> 实现坐标到地址的解码再显示出来就行了，安装包时还顺便发现了 <a href="https://github.com/ywangd/stash">StaSh</a> 这个神器，运行在 Pythonista 上的模拟 shell，可以直接使用 pip 进行包管理。</p>
+
+<h2 id="garfieldpy">Garfield.py</h2>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/garfield.jpg" alt="garfield" /></p>
+
+<p>一个用来看每日加菲猫漫画的小脚本，除了显示和保存漫画以外还能查看从 GoComics 上抓取的评论。画 UI 的时候发现虽然有 Auto-Resizing / Flex 功能，但远不及 iOS 的 AutoLayout 来的完善，甚至都没法在同层级的 view 之间建立约束，不过整体代码只有百来行，远比写个真正的 App 轻松多了。</p>
+
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2016-09-03T00:00:00+08:00" datetime="2016-09-03T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>September</abbr></span>
+                            <span class="day">3,</span>
+                            <span class="year">2016</span>
+                            </date>
+                            <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="http://7xqhhm.com1.z0.glb.clouddn.com/cc.png" /></a><span>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/2016/09/03/script-ui-with-pythonista" data-title="用 Pythonista 写 UI" data-url="http://limbo.space/2016/09/03/script-ui-with-pythonista/"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            <li class="prev"><a class="internal" rel="prev"  href="/ariafred/">&laquo; Ariafred: 利用 Alfred 管理 Aria2</a></li>
+                            
+                            
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:void(0)">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="license">
+                    ©2013-2016 <a href="/about/">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Oops! This page does not support old IEs...")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc({"showEffect":"slideDown","hideEffect":"slideUp"});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){var a=$(".bd .entry-content img:not(#ccimg)");if(a.length){$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/lightense.min.js",cache:true,success:function(){Lightense(a)}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
+</script>
+
+
+
+
+</body>
+</html>
+
