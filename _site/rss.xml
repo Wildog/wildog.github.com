@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-09-03T02:29:01+08:00</lastBuildDate>
-        <pubDate>2016-09-03T02:29:01+08:00</pubDate>
+        <lastBuildDate>2016-09-03T10:00:48+08:00</lastBuildDate>
+        <pubDate>2016-09-03T10:00:48+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -26,7 +26,7 @@
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;pil2ui&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imgIn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BytesIO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;imgIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;JPEG&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;imgIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'JPEG'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;imgOut&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ui&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imgOut&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -45,8 +45,8 @@
     &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exif&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Orientation&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orientations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Orientation&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exif&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Orientation'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orientations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Orientation'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;最后利用 &lt;a href=&quot;https://github.com/geopy/geopy&quot;&gt;GeoPy&lt;/a&gt; 实现坐标到地址的解码再显示出来就行了，安装包时还顺便发现了 &lt;a href=&quot;https://github.com/ywangd/stash&quot;&gt;StaSh&lt;/a&gt; 这个神器，运行在 Pythonista 上的模拟 shell，可以直接使用 pip 进行包管理。&lt;/p&gt;
 
@@ -263,9 +263,9 @@
 
 &lt;p&gt;扩展依赖 vim-airline 和 webapi-vim, 确保你的 .vimrc 中有以下几行:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;Plugin &lt;span class=&quot;s1&quot;&gt;&#39;bling/vim-airline&#39;&lt;/span&gt;
-Plugin &lt;span class=&quot;s1&quot;&gt;&#39;mattn/webapi-vim&#39;&lt;/span&gt;
-Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;Plugin &lt;span class=&quot;s1&quot;&gt;'bling/vim-airline'&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;'mattn/webapi-vim'&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;然后执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;:PluginInstall&lt;/code&gt;&lt;/p&gt;
 
@@ -277,7 +277,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#area &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;beijing,china&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#area &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'beijing,china'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -287,7 +287,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;metric 为摄氏度, imperial 为华氏度&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#unit &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;metric&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#unit &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'metric'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -297,7 +297,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;默认为我的 API Key, 你最好申请并设置一个自己的 API Key: &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;http://openweathermap.org/appid&lt;/a&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#appid &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;2de143494c0b295cca9337e1e96b00e0&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#appid &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2de143494c0b295cca9337e1e96b00e0'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -307,8 +307,8 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;缓存文件路径默认为&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.cache/.weather&lt;/code&gt;, 更新周期默认为 1 小时. 如果要修改更新周期, 注意更新太过频繁会使 Vim 卡顿.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_file &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;~/.cache/.weather&#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_ttl &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;3600&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_file &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~/.cache/.weather'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#cache_ttl &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'3600'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -318,7 +318,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;为天气图标, &lt;code class=&quot;highlighter-rouge&quot;&gt;%f&lt;/code&gt;为温度数字&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#format &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;%s %.0f&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:weather&lt;/span&gt;#format &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'%s %.0f'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -447,7 +447,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;复制方法:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;%s&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;粘贴方法:&lt;/p&gt;
@@ -456,7 +456,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 
 &lt;p&gt;嫌麻烦可以设个快捷键, 如:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F4&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;cr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;:&lt;/span&gt;%s&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F4&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; @&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;cr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;:&lt;/span&gt;%s&lt;span class=&quot;sr&quot;&gt;/regex/&lt;/span&gt;\&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;CopyMatches&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;submatch&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;按 F4 后自己改掉 regex 就可以了.&lt;/p&gt;
 
@@ -496,50 +496,9 @@ Plugin &lt;span class=&quot;s1&quot;&gt;&#39;Wildog/airline-weather.vim&#39;&lt;
 &lt;p&gt;实测 Linkin Park 的 New Divide, 这首鼓点比较清晰：&lt;a href=&quot;http://v.youku.com/v_show/id_XNTcyNDA5NjAw.html&quot;&gt;视频戳我&lt;/a&gt;&lt;br /&gt;
 右边的是 Kick, 中间的是 Snare, 左边的是 Hi-Hat, 不同鼓的频率不同, 但各种鼓的 Kick 大部分都在&amp;lt;150Hz 频段, 可见 Kick 是最准的, 而 Snare 处于半残废状态, Hi-Hat 也一直把差不多的高频误判为 Hi-Hat&lt;/p&gt;
 </description>
-                <link>http://wil.dog/2013/07/11/arduino-processing-beat-detect/</link>
-                <guid>http://wil.dog/2013/07/11/arduino-processing-beat-detect</guid>
-                <pubDate>2013-07-11T00:00:00+08:00</pubDate>
-        </item>
-
-        <item>
-                <title>在 Android 终端上运行 Python</title>
-                <description>&lt;p&gt;尝试了 &lt;a href=&quot;https://code.google.com/p/android-scripting/&quot;&gt;SL4A&lt;/a&gt; + &lt;a href=&quot;https://code.google.com/p/python-for-android/&quot;&gt;PythonForAndroid&lt;/a&gt; 和 &lt;a href=&quot;http://qpython.com/&quot;&gt;QPython&lt;/a&gt; 后发现 Python 并不能从 &lt;a href=&quot;https://play.google.com/store/apps/details?id=jackpal.androidterm&quot;&gt;Android Terminal Emulator&lt;/a&gt; 上直接运行，于是参考了下&lt;a href=&quot;https://code.google.com/p/python-for-android/wiki/RunPythonFromShell&quot;&gt;官方的方法&lt;/a&gt;，觉得这样调用有点麻烦，经我改进后在 Android 终端上运行 Python 的办法如下：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;下载安装 &lt;a href=&quot;https://code.google.com/p/python-for-android/downloads/detail?name=PythonForAndroid_r4.apk&quot;&gt;PythonForAndroid_r4.apk&lt;/a&gt;&lt;br /&gt;
-# 这个版本是 Python 2.6, 你也可以选择 &lt;a href=&quot;https://code.google.com/p/python-for-android/downloads/detail?name=Python3ForAndroid_r6.apk&quot;&gt;Python 3&lt;/a&gt;, 后面的环境变量自行更改&lt;/li&gt;
-  &lt;li&gt;运行 Python for Android → Install (需要网络，最好在wifi环境下)&lt;/li&gt;
-  &lt;li&gt;Google Play 商店里安装 &lt;a href=&quot;https://play.google.com/store/apps/details?id=jackpal.androidterm&quot;&gt;Android Terminal Emulator&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;下载 Bash, 见 &lt;a href=&quot;http://forum.xda-developers.com/showthread.php?t=977051&quot;&gt;XDA 帖子附件&lt;/a&gt;&lt;br /&gt;
-# 帖子里的 BusyBox 有需要也可以装上替换 Android 阉割版&lt;/li&gt;
-  &lt;li&gt;解压, 把包里的 &lt;a href=&quot;http://pan.baidu.com/share/link?shareid=2088068197&amp;amp;uk=3103986771&quot;&gt;bash 文件&lt;/a&gt;复制到 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/&lt;/code&gt; 下&lt;/li&gt;
-  &lt;li&gt;下载这里的 &lt;a href=&quot;http://pan.baidu.com/share/link?shareid=2088068197&amp;amp;uk=3103986771&quot;&gt;python 文件&lt;/a&gt; 文件复制到 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/&lt;/code&gt; 下&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;运行终端 → 首选项 → 命令行, 更改 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/sh&lt;/code&gt; 为 &lt;code class=&quot;highlighter-rouge&quot;&gt;/system/bin/bash&lt;/code&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-setting-shell.jpg&quot; alt=&quot;setting shell&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;初始命令, 加入:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;EXTERNAL_STORAGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard
-&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard/com.googlecode.pythonforandroid/extras/python
-&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:/data/data/com.googlecode.pythonforandroid/files/python/lib/python2.6/lib-dynload
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;PYTHONPATH
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TEMP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/sdcard/com.googlecode.pythonforandroid/extras/python/tmpexport &lt;span class=&quot;nv&quot;&gt;PYTHON_EGG_CACHE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TEMP&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONHOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/data/data/com.googlecode.pythonforandroid/files/python/lib
-&lt;span class=&quot;c&quot;&gt;#路径根据实际情况有可能需要更改&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-export-env.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;9.启终端即可运行&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-run.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-</description>
-                <link>http://wil.dog/2013/06/19/run-python-from-your-android-shell/</link>
-                <guid>http://wil.dog/2013/06/19/run-python-from-your-android-shell</guid>
-                <pubDate>2013-06-19T00:00:00+08:00</pubDate>
+                <link>http://wil.dog/2014/07/11/arduino-processing-beat-detect/</link>
+                <guid>http://wil.dog/2014/07/11/arduino-processing-beat-detect</guid>
+                <pubDate>2014-07-11T00:00:00+08:00</pubDate>
         </item>
 
 
