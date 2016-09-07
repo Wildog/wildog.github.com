@@ -58,7 +58,7 @@
                 <div class="entry-content">
                     <p>最近用 Flask 写了个文件系统服务器，想在前端 streaming 服务器上的媒体文件，先是直接写了个生成器方法，传递给 stream_with_context 后生成 Response 返回，在本地测试时发现了两个怪异现象。</p>
 
-<p>一个是部分 mp4 文件能正常播放而其他 mp4 文件在播放一两秒后直接停止，另一个是 mp3 文件在不同浏览器下播放行为不统一，在 Chrome 下能正常显示总时长，而在 Safari 下不显示总时长而只显示 Live Broadcasting。</p>
+<p>一个是部分 mp4 文件能正常播放而其他 mp4 文件在播放时显示出错，另一个是 mp3 文件在不同浏览器下播放行为不统一，在 Chrome 下能正常显示总时长，而在 Safari 下不显示总时长而只显示 Live Broadcasting。</p>
 
 <h2 id="section">分析</h2>
 
