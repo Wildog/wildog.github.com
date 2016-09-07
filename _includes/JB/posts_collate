@@ -41,14 +41,10 @@ Usage:
       {% if this_year != next_year %}
         </ul>
         <h2>{{next_year}}</h2>
-        {% comment %} <h3>{{next_month}}</h3> {% endcomment %}
         <ul class="date-list">
       {% else %}    
-        {% if this_month != next_month %}
           </ul>
-          {% comment %} <h3>{{next_month}}</h3> {% endcomment %}
           <ul class="date-list">
-        {% endif %}
       {% endif %}
     {% endif %}
   {% endfor %}

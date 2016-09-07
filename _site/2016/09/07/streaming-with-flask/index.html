@@ -1,0 +1,230 @@
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>记一则流媒体传输上的坑 | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="streaming, 流媒体, flask, python">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
+    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.pack.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about/">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <div class="header-placeholder"></div>
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title"><span class="title-text">记一则流媒体传输上的坑</span><a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <div id="toc"></div>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p>最近用 Flask 写了个文件系统服务器，想在前端 streaming 服务器上的媒体文件，先是直接写了个生成器方法，传递给 stream_with_context 后生成 Response 返回，在本地测试时发现了两个怪异现象。</p>
+
+<p>一个是部分 mp4 文件能正常播放而其他 mp4 文件在播放一两秒后直接停止，另一个是 mp3 文件在不同浏览器下播放行为不统一，在 Chrome 下能正常显示总时长，而在 Safari 下不显示总时长而只显示 Live Broadcasting。</p>
+
+<h2 id="section">分析</h2>
+
+<p>针对第一个问题，分析文件后发现能正常播放的 mp4 文件都是我之前通过 HandBrake 转码过后的 web optimized mp4 文件，如下图所见，此类文件的 metadata(moov) 位于媒体数据(mdat)之前，浏览器请求视频文件后从文件开头开始接收，如果 metadata 在文件开头，浏览器就能正常读取信息并完整地播放视频。而大多数视频的 metadata 都在媒体数据之后，导致浏览器不能正常 streaming。</p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/moov.jpg" alt="moov before mdat" /></p>
+
+<p>第二个问题通过对两个浏览器的请求进行抓包比较得到问题所在：</p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/chrome-header.png" alt="chrome" /></p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/safari-header.png" alt="safari" /></p>
+
+<p>从图上可以看出 Safari 在请求 mp3 文件之前先发送了一个头部带有 <code class="highlighter-rouge">Range: bytes=0-1</code> 的请求给服务器，如果服务器的响应头部没有对应的 Content-Range 或者响应码不是 206 Partial Content，而是直接回应整个文件，Safari 就会认为这是一个 Live Broadcasting 流，并把 audio.duration 这个 tag 的值设为无限大。</p>
+
+<h2 id="section-1">总结</h2>
+
+<p>总结一下这两个问题的解决办法可以得出流媒体传输的必要条件：</p>
+
+<ol>
+  <li>视频文件需要是 fast-start 或者 web optimized 的，可以通过 <code class="highlighter-rouge">ffmpeg -i input.mp4 -movflags faststart -acodec copy -vcodec copy output.mp4</code> 处理得到</li>
+  <li>服务器端需要正确地响应带有 Range 头部的请求，以及返回正确的 Content-Type 头部</li>
+  <li>服务器端不压缩地直接返回媒体文件，Content-Encoding 头部的值为 identity</li>
+</ol>
+
+<h2 id="section-2">最终代码</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">partial_response</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">file_size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">file_size</span> <span class="o">-</span> <span class="n">start</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">file_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="nb">bytes</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">(</span>
+        <span class="nb">bytes</span><span class="p">,</span>
+        <span class="mi">206</span><span class="p">,</span>                                    <span class="c"># Partial Content</span>
+        <span class="n">mimetype</span><span class="o">=</span><span class="n">mimetypes</span><span class="o">.</span><span class="n">guess_type</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="c"># Content-Type must be correct</span>
+        <span class="n">direct_passthrough</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>                <span class="c"># Identity encoding</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s">'Content-Range'</span><span class="p">,</span> <span class="s">'bytes {0}-{1}/{2}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">file_size</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s">'Accept-Ranges'</span><span class="p">,</span> <span class="s">'bytes'</span>                <span class="c"># Accept request with Range header</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+<span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="nb">range</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Range'</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'bytes=(?P&lt;start&gt;</span><span class="err">\</span><span class="s">d+)-(?P&lt;end&gt;</span><span class="err">\</span><span class="s">d+)?'</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'start'</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'end'</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">None</span>
+        
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">'/&lt;path:p&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">v_get_video_file</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="s">''</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s">'Range'</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">get_range</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">partial_response</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">send_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">'Content-Disposition'</span><span class="p">,</span> <span class="s">'attachment'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="s">'Not found'</span><span class="p">,</span> <span class="mi">404</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span></code></pre></figure>
+
+<p>最后的 <code class="highlighter-rouge">res.headers.add('Content-Disposition', 'attachment')</code> 是为了让 Safari 以下载而不是新窗口播放的方式来打开媒体文件的超链接。</p>
+
+<p>如此一来就能正常的传输流媒体了：</p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/streaming.png" alt="streaming" /></p>
+
+<p>完整项目见此：<a href="https://github.com/Wildog/flask-file-server">https://github.com/Wildog/flask-file-server</a></p>
+
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2016-09-07T00:00:00+08:00" datetime="2016-09-07T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>September</abbr></span>
+                            <span class="day">7,</span>
+                            <span class="year">2016</span>
+                            </date>
+                            <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="http://7xqhhm.com1.z0.glb.clouddn.com/cc.png" /></a><span>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/2016/09/07/streaming-with-flask" data-title="记一则流媒体传输上的坑" data-url="http://limbo.space/2016/09/07/streaming-with-flask/"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            <li class="prev"><a class="internal" rel="prev"  href="/2016/09/03/script-ui-with-pythonista/">&laquo; 用 Pythonista 写 UI</a></li>
+                            
+                            
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:void(0)">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="license">
+                    ©2014-2016 Designed by <a href="/about/">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Oops! This page does not support old IEs...")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc({"showEffect":"slideDown","hideEffect":"slideUp"});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){var a=$(".bd .entry-content img:not(#ccimg)");if(a.length){$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/lightense.min.js",cache:true,success:function(){Lightense(a)}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
+</script>
+
+
+
+
+</body>
+</html>
+
