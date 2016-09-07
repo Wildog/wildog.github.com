@@ -294,7 +294,7 @@ pre{color:#f2f2f2;background-color:#393939;border:1px solid #393939;-webkit-font
 #toc{display:none; margin-top: 0.5em;}
 #toc, #toc .anchor-link{color: rgba(250, 250, 250, 0.8);-webkit-font-smoothing: antialiased;}
 #toc ol, #toc ul{list-style:disc;margin-bottom:0;}
-.stick{position:fixed;top:0;z-index:10;width:100%}
+.stick{-webkit-backdrop-filter:blur(10px);position:fixed;top:0;z-index:10;width:100%}
 .header-placeholder{height:0}
 /* .unit-article .entry-content {-moz-hyphens:auto; -ms-hyphens:auto; -webkit-hyphens:auto; hyphens:auto; word-wrap:break-word;} */
 .unit-article .entry-content a:before{content:'';position:absolute;width:100%;height:0px;border-bottom:1px solid #77bb77;bottom:-1px;-webkit-transform: scaleX(0); -ms-transform: scaleX(0); -moz-transform: scaleX(0); transform: scaleX(0); -webkit-transition: -webkit-transform 0.2s ease-in; -ms-transition: -ms-transform 0.2s ease-in; -moz-transition: -moz-transform 0.2s ease-in; -o-transition: -o-transform 0.2s ease-in; transition: transform 0.2s ease-in}
