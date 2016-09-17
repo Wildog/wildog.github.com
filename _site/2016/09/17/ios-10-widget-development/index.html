@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>iOS 10 Widget 开发实战 | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="iOS, Widget, 开发, HealthKit, Chart">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
+    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.pack.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about/">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <div class="header-placeholder"></div>
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title"><span class="title-text">iOS 10 Widget 开发实战</span><a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <div id="toc"></div>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p>首先声明这并不是一篇实战教程，只是记录下开发中遇到的零零碎碎的问题和自己的解决办法。</p>
+
+<p>iOS 10 最不能让我接受的改版就是 Health.app，应用层级变多，现在要点好几下才能看到自己每周的步数和运动距离统计。与此同时 iOS 10 的 Widgets 面板给了 Widget 更多的空间，然而搜了下 App Store 上目前并没有能让我一目了然地看到自己一周运动步数的 Widget，只好自己动手开写。</p>
+
+<p>先扔 Repo 地址和效果图：<a href="https://github.com/Wildog/iOS-10-Steps-Widget">https://github.com/Wildog/iOS-10-Steps-Widget</a></p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-widget.gif" alt="Steps Widget" /></p>
+
+<h2 id="ios-10-widget-">iOS 10 Widget 新特性：折叠/展开</h2>
+
+<p>如上面的效果图所示，iOS 10 通过展开的方式给了 Widget 更多空间，展开状态<code class="highlighter-rouge">NCWidgetDisplayModeExpanded</code>下的最大高度是系统决定的，折叠状态 <code class="highlighter-rouge">NCWidgetDisplayModeCompact</code>下的高度则是固定的（110 左右），在 <code class="highlighter-rouge">TodayViewController</code> 中可以通过 <code class="highlighter-rouge">NCWidgetProviding</code> 协议中的 <code class="highlighter-rouge">widgetActiveDisplayModeDidChange:</code> 获取状态变化并设置需要的高度：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">widgetActiveDisplayModeDidChange</span><span class="p">:(</span><span class="n">NCWidgetDisplayMode</span><span class="p">)</span><span class="nv">activeDisplayMode</span> <span class="nf">withMaximumSize</span><span class="p">:(</span><span class="n">CGSize</span><span class="p">)</span><span class="nv">maxSize</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">activeDisplayMode</span> <span class="o">==</span> <span class="n">NCWidgetDisplayModeExpanded</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">preferredContentSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">290</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">activeDisplayMode</span> <span class="o">==</span> <span class="n">NCWidgetDisplayModeCompact</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">preferredContentSize</span> <span class="o">=</span> <span class="n">maxSize</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="healthkit-">获取 HealthKit 信息</h2>
+
+<ul>
+  <li>
+    <h3 id="section">新的访问控制</h3>
+  </li>
+</ul>
+
+<p>iOS 10 中增加了新的隐私访问控制，需要在 info.plist 中设置 <code class="highlighter-rouge">NSHealthShareUsageDescription</code> 和 <code class="highlighter-rouge">NSHealthUpdateUsageDescription</code> 的值作为数据使用的描述，两个值都必须设置，否则会收到类似下面的通知：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>This app has crashed because it attempted to access privacy-sensitive data without a usage description. The app's Info.plist must contain an NSHealthShareUsageDescription key with a string value explaining to the user how the app uses this data.
+</code></pre>
+</div>
+
+<p>如下图设置好这两个值过后就能正常地请求应用授权了：</p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/healthkit-usage-description.png" alt="Steps Widget" /></p>
+
+<ul>
+  <li>
+    <h3 id="section-1">异步请求带来的问题</h3>
+  </li>
+</ul>
+
+<p>获取 HealthKit 数据的方式是向 <code class="highlighter-rouge">HKHealthStore</code> 的实例发送 <code class="highlighter-rouge">executeQuery:HKQuery</code> 信息，而这个方法是异步调用的。我一开始的做法是在 <code class="highlighter-rouge">viewDidLoad</code> 中直接调用一个 <code class="highlighter-rouge">queryHealthData</code> 方法，在这个方法里面执行一系列（一周的数据，按天请求）的 <code class="highlighter-rouge">executeQuery: </code>，返回后再交给图表绘制。然而数据交给图表时几乎不可能是完整的，因为 <code class="highlighter-rouge">executeQuery: </code> 的异步请求此时并没有执行完，最终导致应用崩溃。所以需要一个办法在所有的异步请求全部处理完之后再进行其它处理，<code class="highlighter-rouge">dispatch_group</code> 可以很好的解决，同时 <code class="highlighter-rouge">dispatch_group</code> 内部的任务也是并发进行的：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="c1">// 创建 dispatch_group
+</span><span class="n">dispatch_group_t</span> <span class="n">hkGroup</span> <span class="o">=</span> <span class="n">dispatch_group_create</span><span class="p">();</span>
+<span class="c1">// 依次执行请求
+</span><span class="k">for</span> <span class="p">(......)</span> <span class="p">{</span>
+    <span class="c1">// 创建 query
+</span>    <span class="n">HKStatisticsQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[[</span><span class="n">HKStatisticsQuery</span> <span class="nf">alloc</span><span class="p">]</span> <span class="n">initWith</span><span class="p">......</span> <span class="nf">completionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">HKStatisticsQuery</span> <span class="o">*</span><span class="n">query</span><span class="p">,</span> <span class="n">HKStatistics</span> <span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">.</span><span class="n">sumQuantity</span> <span class="nf">doubleValueForUnit</span><span class="p">:[</span><span class="n">HKUnit</span> <span class="nf">countUnit</span><span class="p">]];</span>
+        <span class="p">[</span><span class="n">arrayForData</span> <span class="nf">addObject</span><span class="p">:[</span><span class="n">NSNumber</span> <span class="nf">numberWithDouble</span><span class="p">:</span><span class="n">data</span><span class="p">]];</span>
+        <span class="c1">// 数据存储完后离开 dispatch_group，可以理解为信号量 +1
+</span>        <span class="n">dispatch_group_leave</span><span class="p">(</span><span class="n">hkGroup</span><span class="p">);</span>
+    <span class="p">}];</span>
+    <span class="c1">// 执行异步请求前进入 dispatch_group，可以理解为信号量 -1
+</span>    <span class="n">dispatch_group_enter</span><span class="p">(</span><span class="n">hkGroup</span><span class="p">);</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">healthStore</span> <span class="nf">executeQuery</span><span class="p">:</span><span class="n">query</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="c1">// 最后等待所有异步请求完成
+</span><span class="n">dispatch_group_notify</span><span class="p">(</span><span class="n">hkGroup</span><span class="p">,</span> <span class="n">dispatch_get_main_queue</span><span class="p">(),</span><span class="o">^</span><span class="p">{</span>
+    <span class="c1">// 通知主线程绘制图表
+</span><span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>
+    <h3 id="healthkit--1">锁屏状态下无法访问 HealthKit 数据</h3>
+  </li>
+</ul>
+
+<p>如果你尝试在锁屏状态下通过 Widget 访问 HealthKit 数据，你会在 Console 中收到类似下面的信息：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Widget[3459:674785] Error Domain=com.apple.healthkit Code=6 "Protected health data is inaccessible" UserInfo={NSLocalizedDescription=Protected health data is inaccessible}
+</code></pre>
+</div>
+
+<p>很遗憾在锁屏状态下由于隐私保护是没法访问 HealthKit 信息的，所以我们需要对此类错误进行处理并缓存之前的数据用于锁屏状态下显示。由于数据很简单而且数量不多，数据的缓存用 <code class="highlighter-rouge">NSUserDefaults</code> 实现相当简单：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="n">NSUserDefaults</span> <span class="n">userDefaults</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSUserDefaults</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="c1">// 保存数据
+</span><span class="p">[</span><span class="n">userDefaults</span> <span class="nf">setObject</span><span class="p">:</span><span class="n">arrayForData</span> <span class="nf">forKey</span><span class="p">:</span><span class="s">@"snapshot"</span><span class="p">];</span>
+<span class="c1">// 恢复数据
+</span><span class="n">NSArray</span> <span class="o">*</span><span class="n">arrayForData</span> <span class="o">=</span> <span class="p">[</span><span class="n">userDefaults</span> <span class="nf">arrayForKey</span><span class="p">:</span><span class="s">@"snapshot"</span><span class="p">];</span></code></pre></figure>
+
+<p>然后我们在之前 query 的 <code class="highlighter-rouge">completionHandler</code> 块中加入对错误的检测并在图表上显示对应提示，并设置一个全局的 flag 用于检测到错误时显示之前缓存的数据。</p>
+
+<h2 id="section-2">绘制线形图</h2>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/chart-view.png" alt="Steps Widget" /></p>
+
+<ul>
+  <li>
+    <h3 id="section-3">绘制渐变</h3>
+  </li>
+</ul>
+
+<p>通过得到的数据绘制好一条 <code class="highlighter-rouge">BezierPath</code> 路径后，再利用这个路径创建一个 <code class="highlighter-rouge">CAShapeLayer</code> 形状层，设置好属性和动画后，再创建一个和这个 View 一样大的 <code class="highlighter-rouge">CAGradientLayer</code> 渐变层，最后将渐变层作为 sublayer 添加到 <code class="highlighter-rouge">self.layer</code> 上，并把渐变层的 <code class="highlighter-rouge">mask</code> 属性设置为之前创建的 <code class="highlighter-rouge">CAShapeLayer</code> 形状层就实现了：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="c1">// 创建形状层
+</span><span class="n">CAShapeLayer</span> <span class="o">*</span><span class="n">chartLineShape</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAShapeLayer</span> <span class="nf">layer</span><span class="p">];</span>
+<span class="n">chartLineShape</span><span class="p">.</span><span class="n">path</span>          <span class="o">=</span> <span class="n">chartLine</span><span class="p">.</span><span class="n">CGPath</span><span class="p">;</span>
+<span class="n">chartLineShape</span><span class="p">.</span><span class="n">lineWidth</span>     <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">chartLineWidth</span><span class="p">;</span>
+<span class="n">chartLineShape</span><span class="p">.</span><span class="n">strokeColor</span>   <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">colorWithHue</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">52</span> <span class="nf">saturation</span><span class="p">:</span><span class="mi">1</span> <span class="n">brightness</span><span class="o">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">83</span> <span class="n">alpha</span><span class="o">:</span><span class="mi">1</span><span class="p">].</span><span class="n">CGColor</span><span class="p">;</span>
+<span class="n">chartLineShape</span><span class="p">.</span><span class="n">fillColor</span>     <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">clearColor</span><span class="p">].</span><span class="n">CGColor</span><span class="p">;</span>
+<span class="n">chartLineShape</span><span class="p">.</span><span class="n">lineCap</span>       <span class="o">=</span> <span class="n">kCALineCapRound</span><span class="p">;</span>
+<span class="n">chartLineShape</span><span class="p">.</span><span class="n">lineJoin</span>      <span class="o">=</span> <span class="n">kCALineJoinRound</span><span class="p">;</span>
+
+<span class="c1">// 创建动画
+</span><span class="n">CABasicAnimation</span> <span class="o">*</span><span class="n">drawAnimation</span>   <span class="o">=</span> <span class="p">[</span><span class="n">CABasicAnimation</span> <span class="nf">animationWithKeyPath</span><span class="p">:</span><span class="s">@"strokeEnd"</span><span class="p">];</span>
+<span class="n">drawAnimation</span><span class="p">.</span><span class="n">duration</span>            <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">animationDuration</span><span class="p">;</span>
+<span class="n">drawAnimation</span><span class="p">.</span><span class="n">repeatCount</span>         <span class="o">=</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">drawAnimation</span><span class="p">.</span><span class="n">removedOnCompletion</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="n">drawAnimation</span><span class="p">.</span><span class="n">fromValue</span>           <span class="o">=</span> <span class="p">[</span><span class="n">NSNumber</span> <span class="nf">numberWithFloat</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">];</span>
+<span class="n">drawAnimation</span><span class="p">.</span><span class="n">toValue</span>             <span class="o">=</span> <span class="p">[</span><span class="n">NSNumber</span> <span class="nf">numberWithFloat</span><span class="p">:</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">];</span>
+<span class="n">drawAnimation</span><span class="p">.</span><span class="n">timingFunction</span>      <span class="o">=</span> <span class="p">[</span><span class="n">CAMediaTimingFunction</span> <span class="nf">functionWithControlPoints</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">348</span> <span class="o">:</span> <span class="mi">0</span><span class="p">.</span><span class="mo">000</span> <span class="o">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">285</span> <span class="o">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">743</span><span class="p">];</span>
+<span class="p">[</span><span class="n">chartLineShape</span> <span class="nf">addAnimation</span><span class="p">:</span><span class="n">drawAnimation</span> <span class="nf">forKey</span><span class="p">:</span><span class="s">@"drawChartLineAnimation"</span><span class="p">];</span>
+
+<span class="c1">// 创建渐变层
+</span><span class="n">CAGradientLayer</span> <span class="o">*</span><span class="n">gradientLayer</span> <span class="o">=</span> <span class="p">[</span><span class="n">CAGradientLayer</span> <span class="nf">layer</span><span class="p">];</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">frame</span>            <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">colors</span>           <span class="o">=</span> <span class="p">@[(</span><span class="n">__bridge</span> <span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithHue</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">57</span> <span class="nf">saturation</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">74</span> <span class="n">brightness</span><span class="o">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">86</span> <span class="n">alpha</span><span class="o">:</span><span class="mi">1</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,(</span><span class="n">__bridge</span> <span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithHue</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">52</span> <span class="nf">saturation</span><span class="p">:</span><span class="mi">1</span> <span class="n">brightness</span><span class="o">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">76</span> <span class="n">alpha</span><span class="o">:</span><span class="mi">1</span><span class="p">].</span><span class="n">CGColor</span><span class="p">,</span> <span class="p">(</span><span class="n">__bridge</span> <span class="n">id</span><span class="p">)[</span><span class="n">UIColor</span> <span class="nf">colorWithHue</span><span class="p">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">52</span> <span class="nf">saturation</span><span class="p">:</span><span class="mi">1</span> <span class="n">brightness</span><span class="o">:</span><span class="mi">0</span><span class="p">.</span><span class="mi">83</span> <span class="n">alpha</span><span class="o">:</span><span class="mi">1</span><span class="p">].</span><span class="n">CGColor</span><span class="p">];</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">startPoint</span>       <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">endPoint</span>         <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="c1">// 设置遮罩
+</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">layer</span> <span class="nf">addSublayer</span><span class="p">:</span><span class="n">gradientLayer</span><span class="p">];</span>
+<span class="n">gradientLayer</span><span class="p">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">chartLineShape</span><span class="p">;</span></code></pre></figure>
+
+<ul>
+  <li>
+    <h3 id="section-4">检测触摸点击</h3>
+  </li>
+</ul>
+
+<p>我单独写了一个 <code class="highlighter-rouge">ChartNodeView</code> 来表示和绘制节点，并在 <code class="highlighter-rouge">ChartView</code> 的 <code class="highlighter-rouge">drawRect:</code> 中创建节点并将它们作为 subview 添加进来，触摸点击节点会触发动画效果和显示节点的相关信息，所以需要检测触摸事件并通过 <code class="highlighter-rouge">hitTest:CGPoint</code> 识别触摸对象来判断节点序号：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchesBegan</span><span class="p">:(</span><span class="n">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="nv">touches</span> <span class="nf">withEvent</span><span class="p">:(</span><span class="n">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">self</span> <span class="nf">touchPoint</span><span class="p">:</span><span class="n">touches</span> <span class="nf">withEvent</span><span class="p">:</span><span class="n">event</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">touchesBegan</span><span class="p">:</span><span class="n">touches</span> <span class="nf">withEvent</span><span class="p">:</span><span class="n">event</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchPoint</span><span class="p">:(</span><span class="n">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="nv">touches</span> <span class="nf">withEvent</span><span class="p">:(</span><span class="n">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span> <span class="p">{</span>
+    <span class="n">UITouch</span> <span class="o">*</span><span class="n">touch</span> <span class="o">=</span> <span class="p">[</span><span class="n">touches</span> <span class="nf">anyObject</span><span class="p">];</span>
+    <span class="n">CGPoint</span> <span class="n">touchPoint</span> <span class="o">=</span> <span class="p">[</span><span class="n">touch</span> <span class="nf">locationInView</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
+    <span class="n">UIView</span> <span class="o">*</span><span class="n">touchView</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nf">hitTest</span><span class="p">:</span><span class="n">touchPoint</span> <span class="nf">withEvent</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    
+    <span class="c1">// 判断触摸对象是否为节点
+</span>    <span class="k">if</span> <span class="p">([</span><span class="n">touchView</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">ChartNodeView</span> <span class="nf">class</span><span class="p">]])</span> <span class="p">{</span>
+        <span class="c1">// 重新高亮节点
+</span>        <span class="k">for</span> <span class="p">(</span><span class="n">UIView</span> <span class="o">*</span><span class="n">subview</span> <span class="k">in</span> <span class="n">self</span><span class="p">.</span><span class="n">subviews</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">([</span><span class="n">subview</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">ChartNodeView</span> <span class="nf">class</span><span class="p">]])</span> <span class="p">{</span>
+                <span class="n">ChartNodeView</span> <span class="o">*</span><span class="n">nodeView</span> <span class="o">=</span> <span class="p">(</span><span class="n">ChartNodeView</span><span class="o">*</span><span class="p">)</span><span class="n">subview</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">nodeView</span><span class="p">.</span><span class="n">isActive</span><span class="p">)</span> <span class="p">[</span><span class="n">nodeView</span> <span class="nf">toggleState</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">ChartNodeView</span> <span class="o">*</span><span class="n">touchNode</span> <span class="o">=</span> <span class="p">(</span><span class="n">ChartNodeView</span><span class="o">*</span><span class="p">)</span><span class="n">touchView</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">touchNode</span> <span class="nf">toggleState</span><span class="p">];</span>
+        <span class="c1">// 显示节点信息的逻辑交由 delegate 处理
+</span>        <span class="n">_lastSelected</span> <span class="o">=</span> <span class="n">touchNode</span><span class="p">.</span><span class="n">index</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">([</span><span class="n">self</span><span class="p">.</span><span class="n">delegate</span> <span class="nf">respondsToSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nf">clickedNodeAtIndex</span><span class="p">:)])</span> <span class="p">{</span>
+            <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">delegate</span> <span class="nf">clickedNodeAtIndex</span><span class="p">:</span><span class="n">_lastSelected</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>这个线型图的实现很简单，写的时候也注意了一定的可复用性，如果有需要的话可以直接拿走用。</p>
+
+<h2 id="xcode-8">顺便吐槽 Xcode 8</h2>
+
+<p>升级之后整个人都懵逼了，所有的插件都没了，包括没法离开的 XVim，看了下 <a href="https://github.com/alcatraz/Alcatraz/issues/475">Alcatraz Issues</a> 里面的讨论，官方采用了 runtime library validation 对 Xcode 插件进行验证，并提供了新的 Xcode 插件协议 Xcode Source Editor Extensions（然而目前只能提供基本的替换功能），主要是为了防止 XcodeGhost 这样的恶意插件。废话说得再多，我依然不能接受。翻遍 Github 找到了个很好用的工具 <a href="https://github.com/inket/update_xcode_plugins">inket/update_xcode_plugins</a>，不光可以 unsign Xcode 使其重新支持插件，还可以给插件自动添加 UUID，经过十分钟的拷贝和 unsign，Xcode 8 总算是能正常使用了。</p>
+
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2016-09-17T00:00:00+08:00" datetime="2016-09-17T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>September</abbr></span>
+                            <span class="day">17,</span>
+                            <span class="year">2016</span>
+                            </date>
+                            <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="http://7xqhhm.com1.z0.glb.clouddn.com/cc.png" /></a><span>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/2016/09/17/ios-10-widget-development" data-title="iOS 10 Widget 开发实战" data-url="http://limbo.space/2016/09/17/ios-10-widget-development/"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            <li class="prev"><a class="internal" rel="prev"  href="/2016/09/07/streaming-with-flask/">&laquo; 记一则流媒体传输上的坑</a></li>
+                            
+                            
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:void(0)">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="license">
+                    ©2014-2016 Designed by <a href="/about/">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Oops! This page does not support old IEs...")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc({"showEffect":"slideDown","hideEffect":"slideUp"});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){var a=$(".bd .entry-content img:not(#ccimg)");if(a.length){$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/lightense.min.js",cache:true,success:function(){Lightense(a)}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
+</script>
+
+
+
+
+</body>
+</html>
+
