@@ -188,11 +188,11 @@ msg.URL = [NSURL URLWithString:@"emptyURL"];
 
 {% highlight objc %}
 UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.lineChartView.frame.size.width, self.lineChartView.frame.size.height), NO, 0);
-    [self.lineChartView drawViewHierarchyInRect:CGRectMake(0, 0, self.lineChartView.frame.size.width, self.lineChartView.frame.size.height) afterScreenUpdates:YES];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [self.view.layer renderInContext:context];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+[self.lineChartView drawViewHierarchyInRect:CGRectMake(0, 0, self.lineChartView.frame.size.width, self.lineChartView.frame.size.height) afterScreenUpdates:YES];
+CGContextRef context = UIGraphicsGetCurrentContext();
+[self.view.layer renderInContext:context];
+UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
 {% endhighlight %}
 
 ## 顺便吐槽 Xcode 8
