@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "iOS 10 Widget 开发实战"
-tags: ["iOS", "Widget", "开发", "HealthKit", "Chart"]
+title: "iOS 10 Extensions 开发实战"
+tags: ["iOS", "Widget", "Extension", "iMessage", "开发", "HealthKit", "Chart"]
 menu: true
 ---
 
 首先声明这并不是一篇实战教程，只是记录下开发中遇到的零零碎碎的问题和自己的解决办法。
 
-iOS 10 最不能让我接受的改版就是 Health.app，应用层级变多，现在要点好几下才能看到自己每周的步数和运动距离统计。与此同时 iOS 10 的 Widgets 面板给了 Widget 更多的空间，然而搜了下 App Store 上目前并没有能让我一目了然地看到自己一周运动步数的 Widget，只好自己动手开写。
+iOS 10 最不能让我接受的改版就是 Health.app，应用层级变多，现在要点好几下才能看到自己每周的步数和运动距离统计。与此同时 iOS 10 的 Widgets 面板给了 Widget 更多的空间，想着能有一款让人一目了然地查看一周运动步数的 Widget 就好了，然而找了下 App Store 上目前并没有很好的成品，于是自己动手开写，途中顺便也尝试了下 iMessage Extension。
 
 先扔 Repo 地址和效果图：[https://github.com/Wildog/iOS-10-Steps-Widget](https://github.com/Wildog/iOS-10-Steps-Widget)
 
@@ -20,7 +20,7 @@ iOS 10 最不能让我接受的改版就是 Health.app，应用层级变多，�
 {% highlight objc %}
 - (void)widgetActiveDisplayModeDidChange:(NCWidgetDisplayMode)activeDisplayMode withMaximumSize:(CGSize)maxSize {
     if (activeDisplayMode == NCWidgetDisplayModeExpanded) {
-        self.preferredContentSize = CGSizeMake(0.0, 290.0);
+        self.preferredContentSize = CGSizeMake(0.0, 280.0);
     } else if (activeDisplayMode == NCWidgetDisplayModeCompact) {
         self.preferredContentSize = maxSize;
     }
@@ -41,7 +41,7 @@ iOS 10 中增加了新的隐私访问控制，需要在 info.plist 中设置 `NS
 
 * ### 异步请求带来的问题
 
-获取 HealthKit 数据的方式是向 `HKHealthStore` 的实例发送 `executeQuery:HKQuery` 信息，而这个方法是异步调用的。我一开始的做法是在 `viewDidLoad` 中直接调用一个 `queryHealthData` 方法，在这个方法里面执行一系列（一周的数据，按天请求）的 `executeQuery: `，返回后再交给图表绘制。然而数据交给图表时几乎不可能是完整的，因为 `executeQuery: ` 的异步请求此时并没有执行完，最终导致应用崩溃。所以需要一个办法在所有的异步请求全部处理完之后再进行其它处理，`dispatch_group` 可以很好的解决，同时 `dispatch_group` 内部的任务也是并发进行的：
+获取 HealthKit 数据的方式是向 `HKHealthStore` 的实例发送 `executeQuery:` 信息，而这个方法是异步调用的。我一开始的做法是在 `viewDidLoad` 中直接调用一个 `queryHealthData` 方法，在这个方法里面执行一系列（一周的数据，按天请求）的 `executeQuery: `，返回后再交给图表绘制。然而数据交给图表时几乎不可能是完整的，因为 `executeQuery: ` 的异步请求此时并没有执行完，最终导致应用崩溃。所以需要一个办法在所有的异步请求全部处理完之后再进行其它处理，`dispatch_group` 可以很好的解决，同时 `dispatch_group` 内部的任务也是并发进行的：
 
 {% highlight objc %}
 // 创建 dispatch_group
@@ -49,7 +49,11 @@ dispatch_group_t hkGroup = dispatch_group_create();
 // 依次执行请求
 for (......) {
     // 创建 query
-    HKStatisticsQuery *query = [[HKStatisticsQuery alloc] initWith...... completionHandler:^(HKStatisticsQuery *query, HKStatistics *result, NSError *error) {
+    HKStatisticsQuery *query = [[HKStatisticsQuery alloc]
+                                initWithQuantityType:stepType
+                                quantitySamplePredicate:predicate
+                                options:HKStatisticsOptionCumulativeSum
+                                completionHandler:^(HKStatisticsQuery *query, HKStatistics *result, NSError *error) {
         double data = [result.sumQuantity doubleValueForUnit:[HKUnit countUnit]];
         [arrayForData addObject:[NSNumber numberWithDouble:data]];
         // 数据存储完后离开 dispatch_group，可以理解为信号量 +1
@@ -125,7 +129,7 @@ gradientLayer.mask = chartLineShape;
 
 * ### 检测触摸点击
 
-我单独写了一个 `ChartNodeView` 来表示和绘制节点，并在 `ChartView` 的 `drawRect:` 中创建节点并将它们作为 subview 添加进来，触摸点击节点会触发动画效果和显示节点的相关信息，所以需要检测触摸事件并通过 `hitTest:CGPoint` 识别触摸对象来判断节点序号：
+我单独写了一个 `ChartNodeView` 来表示和绘制节点，并在 `ChartView` 的 `drawRect:` 中创建节点并将它们作为 subview 添加进来，触摸点击节点会触发动画效果和显示节点的相关信息，所以需要检测触摸事件并通过 `hitTest:` 识别触摸对象来判断节点序号：
 
 {% highlight objc %}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -159,6 +163,37 @@ gradientLayer.mask = chartLineShape;
 {% endhighlight %}
 
 这个线型图的实现很简单，写的时候也注意了一定的可复用性，如果有需要的话可以直接拿走用。
+
+## iOS 10 iMessage Extension
+
+![Steps Widget](http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-imsg-ext.png)
+
+iOS 10 提供的 iMessage 扩展可以生成漂亮的 rich message。把之前 Widget 里写好的 ViewController 直接拿过来改改就可以直接用，这里记录下信息的生成，使用 `MSMessageTemplateLayout` 可以创建带[媒体文件、标题和说明](https://developer.apple.com/reference/messages/msmessagetemplatelayout)的布局，创建 `NSMessage` 后，设置其布局属性，然后通过 `MSMessagesAppViewController` 的 `activeConversation` 属性获取当前对话并执行 `insertMessage:` 来插入信息，整个过程完毕后交给用户添加评论或发送：
+
+{% highlight objc %}
+MSMessageTemplateLayout *layout = [[MSMessageTemplateLayout alloc] init];
+layout.image = image;
+layout.caption = @"This is a caption";
+
+MSMessage *msg = [[MSMessage alloc] init];
+msg.layout = layout;
+msg.URL = [NSURL URLWithString:@"emptyURL"];
+
+[self.activeConversation insertMessage:msg completionHandler:^(NSError *error){
+    // error handling
+}];
+{% endhighlight %}
+
+这里得到 image 的方式是直接获取 graphics context 并创建位图，注意使用的方法是 `UIGraphicsBeginImageContextWithOptions(CGSize size, BOOL opaque, CGFloat scale)` 且 `scale` 的值需要设为 0，表示 scale factor 由设备决定，如果使用 `UIGraphicsBeginImageContext(CGSize size)` 的话默认的 scale 值为 1，在 2x, 3x 设备上会显示模糊的图像：
+
+{% highlight objc %}
+UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.lineChartView.frame.size.width, self.lineChartView.frame.size.height), NO, 0);
+    [self.lineChartView drawViewHierarchyInRect:CGRectMake(0, 0, self.lineChartView.frame.size.width, self.lineChartView.frame.size.height) afterScreenUpdates:YES];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [self.view.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+{% endhighlight %}
 
 ## 顺便吐槽 Xcode 8
 

@@ -9,9 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>iOS 10 Widget 开发实战 | Wildog</title>
+    <title>iOS 10 Extensions 开发实战 | Wildog</title>
     <meta name="author" content="Wildog">
-    <meta name="keywords" content="iOS, Widget, 开发, HealthKit, Chart">
+    <meta name="keywords" content="iOS, Widget, Extension, iMessage, 开发, HealthKit, Chart">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -48,7 +48,7 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="h2 entry-title"><span class="title-text">iOS 10 Widget 开发实战</span><a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <h1 class="h2 entry-title"><span class="title-text">iOS 10 Extensions 开发实战</span><a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
                         <div id="toc"></div>
                     </div><!-- unit-inner -->
                 </div><!-- unit-head -->
@@ -58,7 +58,7 @@
                 <div class="entry-content">
                     <p>首先声明这并不是一篇实战教程，只是记录下开发中遇到的零零碎碎的问题和自己的解决办法。</p>
 
-<p>iOS 10 最不能让我接受的改版就是 Health.app，应用层级变多，现在要点好几下才能看到自己每周的步数和运动距离统计。与此同时 iOS 10 的 Widgets 面板给了 Widget 更多的空间，然而搜了下 App Store 上目前并没有能让我一目了然地看到自己一周运动步数的 Widget，只好自己动手开写。</p>
+<p>iOS 10 最不能让我接受的改版就是 Health.app，应用层级变多，现在要点好几下才能看到自己每周的步数和运动距离统计。与此同时 iOS 10 的 Widgets 面板给了 Widget 更多的空间，想着能有一款让人一目了然地查看一周运动步数的 Widget 就好了，然而找了下 App Store 上目前并没有很好的成品，于是自己动手开写，途中顺便也尝试了下 iMessage Extension。</p>
 
 <p>先扔 Repo 地址和效果图：<a href="https://github.com/Wildog/iOS-10-Steps-Widget">https://github.com/Wildog/iOS-10-Steps-Widget</a></p>
 
@@ -70,7 +70,7 @@
 
 <figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">widgetActiveDisplayModeDidChange</span><span class="p">:(</span><span class="n">NCWidgetDisplayMode</span><span class="p">)</span><span class="nv">activeDisplayMode</span> <span class="nf">withMaximumSize</span><span class="p">:(</span><span class="n">CGSize</span><span class="p">)</span><span class="nv">maxSize</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">activeDisplayMode</span> <span class="o">==</span> <span class="n">NCWidgetDisplayModeExpanded</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">preferredContentSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">290</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">preferredContentSize</span> <span class="o">=</span> <span class="n">CGSizeMake</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">280</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">activeDisplayMode</span> <span class="o">==</span> <span class="n">NCWidgetDisplayModeCompact</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">self</span><span class="p">.</span><span class="n">preferredContentSize</span> <span class="o">=</span> <span class="n">maxSize</span><span class="p">;</span>
     <span class="p">}</span>
@@ -100,14 +100,18 @@
   </li>
 </ul>
 
-<p>获取 HealthKit 数据的方式是向 <code class="highlighter-rouge">HKHealthStore</code> 的实例发送 <code class="highlighter-rouge">executeQuery:HKQuery</code> 信息，而这个方法是异步调用的。我一开始的做法是在 <code class="highlighter-rouge">viewDidLoad</code> 中直接调用一个 <code class="highlighter-rouge">queryHealthData</code> 方法，在这个方法里面执行一系列（一周的数据，按天请求）的 <code class="highlighter-rouge">executeQuery: </code>，返回后再交给图表绘制。然而数据交给图表时几乎不可能是完整的，因为 <code class="highlighter-rouge">executeQuery: </code> 的异步请求此时并没有执行完，最终导致应用崩溃。所以需要一个办法在所有的异步请求全部处理完之后再进行其它处理，<code class="highlighter-rouge">dispatch_group</code> 可以很好的解决，同时 <code class="highlighter-rouge">dispatch_group</code> 内部的任务也是并发进行的：</p>
+<p>获取 HealthKit 数据的方式是向 <code class="highlighter-rouge">HKHealthStore</code> 的实例发送 <code class="highlighter-rouge">executeQuery:</code> 信息，而这个方法是异步调用的。我一开始的做法是在 <code class="highlighter-rouge">viewDidLoad</code> 中直接调用一个 <code class="highlighter-rouge">queryHealthData</code> 方法，在这个方法里面执行一系列（一周的数据，按天请求）的 <code class="highlighter-rouge">executeQuery: </code>，返回后再交给图表绘制。然而数据交给图表时几乎不可能是完整的，因为 <code class="highlighter-rouge">executeQuery: </code> 的异步请求此时并没有执行完，最终导致应用崩溃。所以需要一个办法在所有的异步请求全部处理完之后再进行其它处理，<code class="highlighter-rouge">dispatch_group</code> 可以很好的解决，同时 <code class="highlighter-rouge">dispatch_group</code> 内部的任务也是并发进行的：</p>
 
 <figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="c1">// 创建 dispatch_group
 </span><span class="n">dispatch_group_t</span> <span class="n">hkGroup</span> <span class="o">=</span> <span class="n">dispatch_group_create</span><span class="p">();</span>
 <span class="c1">// 依次执行请求
 </span><span class="k">for</span> <span class="p">(......)</span> <span class="p">{</span>
     <span class="c1">// 创建 query
-</span>    <span class="n">HKStatisticsQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[[</span><span class="n">HKStatisticsQuery</span> <span class="nf">alloc</span><span class="p">]</span> <span class="n">initWith</span><span class="p">......</span> <span class="nf">completionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">HKStatisticsQuery</span> <span class="o">*</span><span class="n">query</span><span class="p">,</span> <span class="n">HKStatistics</span> <span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+</span>    <span class="n">HKStatisticsQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[[</span><span class="n">HKStatisticsQuery</span> <span class="nf">alloc</span><span class="p">]</span>
+                                <span class="nf">initWithQuantityType</span><span class="p">:</span><span class="n">stepType</span>
+                                <span class="nf">quantitySamplePredicate</span><span class="p">:</span><span class="n">predicate</span>
+                                <span class="n">options</span><span class="o">:</span><span class="n">HKStatisticsOptionCumulativeSum</span>
+                                <span class="n">completionHandler</span><span class="o">:^</span><span class="p">(</span><span class="n">HKStatisticsQuery</span> <span class="o">*</span><span class="n">query</span><span class="p">,</span> <span class="n">HKStatistics</span> <span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="n">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">double</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">.</span><span class="n">sumQuantity</span> <span class="nf">doubleValueForUnit</span><span class="p">:[</span><span class="n">HKUnit</span> <span class="nf">countUnit</span><span class="p">]];</span>
         <span class="p">[</span><span class="n">arrayForData</span> <span class="nf">addObject</span><span class="p">:[</span><span class="n">NSNumber</span> <span class="nf">numberWithDouble</span><span class="p">:</span><span class="n">data</span><span class="p">]];</span>
         <span class="c1">// 数据存储完后离开 dispatch_group，可以理解为信号量 +1
@@ -192,7 +196,7 @@
   </li>
 </ul>
 
-<p>我单独写了一个 <code class="highlighter-rouge">ChartNodeView</code> 来表示和绘制节点，并在 <code class="highlighter-rouge">ChartView</code> 的 <code class="highlighter-rouge">drawRect:</code> 中创建节点并将它们作为 subview 添加进来，触摸点击节点会触发动画效果和显示节点的相关信息，所以需要检测触摸事件并通过 <code class="highlighter-rouge">hitTest:CGPoint</code> 识别触摸对象来判断节点序号：</p>
+<p>我单独写了一个 <code class="highlighter-rouge">ChartNodeView</code> 来表示和绘制节点，并在 <code class="highlighter-rouge">ChartView</code> 的 <code class="highlighter-rouge">drawRect:</code> 中创建节点并将它们作为 subview 添加进来，触摸点击节点会触发动画效果和显示节点的相关信息，所以需要检测触摸事件并通过 <code class="highlighter-rouge">hitTest:</code> 识别触摸对象来判断节点序号：</p>
 
 <figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">touchesBegan</span><span class="p">:(</span><span class="n">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="nv">touches</span> <span class="nf">withEvent</span><span class="p">:(</span><span class="n">UIEvent</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span> <span class="p">{</span>
     <span class="p">[</span><span class="n">self</span> <span class="nf">touchPoint</span><span class="p">:</span><span class="n">touches</span> <span class="nf">withEvent</span><span class="p">:</span><span class="n">event</span><span class="p">];</span>
@@ -225,6 +229,33 @@
 
 <p>这个线型图的实现很简单，写的时候也注意了一定的可复用性，如果有需要的话可以直接拿走用。</p>
 
+<h2 id="ios-10-imessage-extension">iOS 10 iMessage Extension</h2>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-imsg-ext.png" alt="Steps Widget" /></p>
+
+<p>iOS 10 提供的 iMessage 扩展可以生成漂亮的 rich message。把之前 Widget 里写好的 ViewController 直接拿过来改改就可以直接用，这里记录下信息的生成，使用 <code class="highlighter-rouge">MSMessageTemplateLayout</code> 可以创建带<a href="https://developer.apple.com/reference/messages/msmessagetemplatelayout">媒体文件、标题和说明</a>的布局，创建 <code class="highlighter-rouge">NSMessage</code> 后，设置其布局属性，然后通过 <code class="highlighter-rouge">MSMessagesAppViewController</code> 的 <code class="highlighter-rouge">activeConversation</code> 属性获取当前对话并执行 <code class="highlighter-rouge">insertMessage:</code> 来插入信息，整个过程完毕后交给用户添加评论或发送：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="n">MSMessageTemplateLayout</span> <span class="o">*</span><span class="n">layout</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MSMessageTemplateLayout</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="n">layout</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">layout</span><span class="p">.</span><span class="n">caption</span> <span class="o">=</span> <span class="s">@"This is a caption"</span><span class="p">;</span>
+
+<span class="n">MSMessage</span> <span class="o">*</span><span class="n">msg</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MSMessage</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="n">msg</span><span class="p">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">layout</span><span class="p">;</span>
+<span class="n">msg</span><span class="p">.</span><span class="n">URL</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"emptyURL"</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">activeConversation</span> <span class="nf">insertMessage</span><span class="p">:</span><span class="n">msg</span> <span class="nf">completionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">){</span>
+    <span class="c1">// error handling
+</span><span class="p">}];</span></code></pre></figure>
+
+<p>这里得到 image 的方式是直接获取 graphics context 并创建位图，注意使用的方法是 <code class="highlighter-rouge">UIGraphicsBeginImageContextWithOptions(CGSize size, BOOL opaque, CGFloat scale)</code> 且 <code class="highlighter-rouge">scale</code> 的值需要设为 0，表示 scale factor 由设备决定，如果使用 <code class="highlighter-rouge">UIGraphicsBeginImageContext(CGSize size)</code> 的话默认的 scale 值为 1，在 2x, 3x 设备上会显示模糊的图像：</p>
+
+<figure class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="n">UIGraphicsBeginImageContextWithOptions</span><span class="p">(</span><span class="n">CGSizeMake</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">lineChartView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">lineChartView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">),</span> <span class="nb">NO</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">lineChartView</span> <span class="nf">drawViewHierarchyInRect</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">lineChartView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">lineChartView</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="nf">afterScreenUpdates</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+    <span class="n">CGContextRef</span> <span class="n">context</span> <span class="o">=</span> <span class="n">UIGraphicsGetCurrentContext</span><span class="p">();</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">layer</span> <span class="nf">renderInContext</span><span class="p">:</span><span class="n">context</span><span class="p">];</span>
+    <span class="n">UIImage</span> <span class="o">*</span><span class="n">image</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">();</span>
+    <span class="n">UIGraphicsEndImageContext</span><span class="p">();</span></code></pre></figure>
+
 <h2 id="xcode-8">顺便吐槽 Xcode 8</h2>
 
 <p>升级之后整个人都懵逼了，所有的插件都没了，包括没法离开的 XVim，看了下 <a href="https://github.com/alcatraz/Alcatraz/issues/475">Alcatraz Issues</a> 里面的讨论，官方采用了 runtime library validation 对 Xcode 插件进行验证，并提供了新的 Xcode 插件协议 Xcode Source Editor Extensions（然而目前只能提供基本的替换功能），主要是为了防止 XcodeGhost 这样的恶意插件。废话说得再多，我依然不能接受。翻遍 Github 找到了个很好用的工具 <a href="https://github.com/inket/update_xcode_plugins">inket/update_xcode_plugins</a>，不光可以 unsign Xcode 使其重新支持插件，还可以给插件自动添加 UUID，经过十分钟的拷贝和 unsign，Xcode 8 总算是能正常使用了。</p>
@@ -248,7 +279,7 @@
 
   <!-- 多说评论框 start -->
     <div id="comments">
-        <div class="ds-thread" data-thread-key="/2016/09/17/ios-10-widget-development" data-title="iOS 10 Widget 开发实战" data-url="http://limbo.space/2016/09/17/ios-10-widget-development/"></div>
+        <div class="ds-thread" data-thread-key="/2016/09/17/ios-10-widget-development" data-title="iOS 10 Extensions 开发实战" data-url="http://limbo.space/2016/09/17/ios-10-widget-development/"></div>
     </div>
     <br/>
 <!-- 多说评论框 end -->
