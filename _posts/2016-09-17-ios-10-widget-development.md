@@ -168,7 +168,7 @@ gradientLayer.mask = chartLineShape;
 
 ![Steps Widget](http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-imsg-ext.png)
 
-iOS 10 提供的 iMessage 扩展可以生成漂亮的 rich message。把之前 Widget 里写好的 ViewController 直接拿过来改改就可以直接用，这里记录下信息的生成，使用 `MSMessageTemplateLayout` 可以创建带[媒体文件、标题和说明](https://developer.apple.com/reference/messages/msmessagetemplatelayout)的布局，创建 `NSMessage` 后，设置其布局属性，然后通过 `MSMessagesAppViewController` 的 `activeConversation` 属性获取当前对话并执行 `insertMessage:` 来插入信息，整个过程完毕后交给用户添加评论或发送：
+iOS 10 提供的 iMessage 扩展可以生成漂亮的 rich message。把之前 Widget 里写好的 ViewController 拿过来改改就可以直接用，这里记录下信息的生成，使用 `MSMessageTemplateLayout` 可以创建带[媒体文件、标题和说明](https://developer.apple.com/reference/messages/msmessagetemplatelayout)的布局，创建 `NSMessage` 后，设置其布局属性，然后通过 `MSMessagesAppViewController` 的 `activeConversation` 属性获取当前对话并执行 `insertMessage:` 来插入信息，整个过程完毕后交给用户添加评论或发送：
 
 {% highlight objc %}
 MSMessageTemplateLayout *layout = [[MSMessageTemplateLayout alloc] init];
