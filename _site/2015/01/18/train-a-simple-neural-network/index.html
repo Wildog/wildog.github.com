@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>用 Matlab 训练一个简单的神经网络 | Wildog</title>
+    <meta name="author" content="Wildog">
+    <meta name="keywords" content="神经网络, 分类器, NN, Neural Network">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
+    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.pack.js"></script>
+</head>
+<body>
+<div id="page" class="hentry">
+    <header class="the-header">
+        <div class="unit-head">
+            <div class="unit-inner unit-head-inner">
+                <p class="logo"><a href="/">wil.d<span id="o">ø</span>g</a></p>
+                <nav class="nav-global">
+                    <ul>
+                        <li class="index"><a href="/">Home</a></li>
+                        <li class="my"><a class="expand">My</a>{ <a class="mymore" href="http://github.com/Wildog">Github</a><a class="mymore" href="http://site.douban.com/randyzew">Music</a><a class="mymore" href="http://wildog.lofter.com">Lofter</a> }</li>
+                        <li class="about"><a href="/about/">About</a></li>
+                    </ul>
+                </nav>
+            </div><!-- unit-inner -->
+        </div><!-- unit-head -->
+    </header>
+    <div class="body" role="main">
+        <div class="unit-body">
+            <div class="unit-inner unit-body-inner">
+                <div class="entry-content">
+                    
+
+<article class="unit-article layout-post">
+    <div class="unit-inner unit-article-inner">
+        <div class="content">
+            <div class="header-placeholder"></div>
+            <header>
+                <div class="unit-head">
+                    <div class="unit-inner unit-head-inner">
+                        <h1 class="h2 entry-title"><span class="title-text">用 Matlab 训练一个简单的神经网络</span><a href="javascript:void(0)"><div class="menu-button" data-balloon="长文导航" data-balloon-pos="right"><div class="stripes"></div></div></a></h1>
+                        <div id="toc"></div>
+                    </div><!-- unit-inner -->
+                </div><!-- unit-head -->
+            </header>
+
+            <div class="bd">
+                <div class="entry-content">
+                    <p>抱着纯属玩票的心态看完了 <a href="https://www.coursera.org/learn/machine-learning">Andrew Ng 的机器学习入门课</a>，又恰逢期末课设，就想着利用神经网络做一个简单数学表达式的识别和求值工具，主要的模型训练和识别部分都是由 Matlab 完成。</p>
+
+<h2 id="section">神经网络模型</h2>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-model.png" alt="模型简化图" /></p>
+
+<p>考虑到计算速度，我只建立了一个简单的三层 BP 神经网络模型作为分类器来识别单个字符，模型简化图如上。输入层是由 20x20 的图像得到的 1x400 的特征向量，隐藏层共 80 个隐藏单元，激活函数采用 sigmoid function，输出层是一个 1x17 的向量，可以用来描述 17 种识别结果：<code class="highlighter-rouge">数字 0-9 和 +, -, ⨯, ÷, ^, (, )</code>。</p>
+
+<h2 id="section-1">数据集和预处理</h2>
+
+<ul>
+  <li>
+    <p>同样也是出于计算速度的考虑，以及需要识别的除了数字还有符号，我没有使用只含数字且较大的 <a href="http://yann.lecun.com/exdb/mnist/">MNIST 数据集</a>，而是找室友一起手写了大概 1000 个数字和符号作为训练数据。</p>
+  </li>
+  <li>
+    <p>不管是用作训练数据的图像还是最终需要识别的图像都需要做预处理，把图片上表达式的每个字符分离成单独的图像再依次送至分类器识别，预处理也是用 Matlab 完成，具体过程如下：</p>
+
+    <ol>
+      <li>图像转为灰度图像后反色处理，并进行中值滤波以平滑图像，然后进行整体<a href="https://github.com/Wildog/handwritten-expr-evaluator/blob/master/xylimit.m">边界限定</a>，截取表达式区域图像。<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-1.png" alt="" /></li>
+      <li>横向提取并拼接有效行，纵向提取并分割有效字符。提取每个分割区域为独⽴图像，进行边界限定，计算灰度阈值并转为⼆值图像，最后大小归一化图像：填充至正方形并统一为 20x20 的图像。<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-2.png" alt="" /></li>
+    </ol>
+
+    <p>预处理部分还需要注意的主要问题是过滤噪音，除了平滑图像和边界限定以外，还要剔除掉高度过小的行、宽度过小的列以及面积过小的区域。完整代码见这里：<a href="https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m">https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m</a></p>
+  </li>
+</ul>
+
+<h2 id="section-2">训练模型</h2>
+
+<ul>
+  <li>首先是随机初始化权重，避免每层的每个单元学习到同样的参数。本质就是给每个权重矩阵里面的每个权重设置一个介于 [-𝜺, 𝜺] 的值，这个 𝜺 一般取 <code class="highlighter-rouge">sqrt(6) / sqrt(input_layer_size + output_layer_size)</code>，完整函数如下：</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="n">W</span> <span class="o">=</span> <span class="n">randInitializeWeights</span><span class="p">(</span><span class="n">L_in</span><span class="p">,</span> <span class="n">L_out</span><span class="p">)</span>
+<span class="c1">% 由于 bias unit 的存在，权重矩阵的实际大小是 L_out * (1 + L_in)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">L_out</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">L_in</span><span class="p">);</span>
+<span class="n">epsilon_init</span> <span class="o">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="p">/</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">L_in</span> <span class="o">+</span> <span class="n">L_out</span><span class="p">);</span>
+<span class="n">W</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">L_out</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">L_in</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">epsilon_init</span> <span class="o">-</span> <span class="n">epsilon_init</span><span class="p">;</span></code></pre></figure>
+
+<ul>
+  <li>训练模型的本质就是不断地迭代学习利用梯度下降法最小化代价函数。在每轮迭代中，先使用前向传播算法计算各层输出值，再使用后向传播算法计算各层残差以计算各个权重矩阵的梯度，并计算代价函数，我写的一轮迭代如下：</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-matlab" data-lang="matlab"><span class="k">function</span> <span class="p">[</span><span class="n">J</span> <span class="n">grad</span><span class="p">]</span> <span class="o">=</span> <span class="n">nnCostFunction</span><span class="p">(</span><span class="n">nn_params</span><span class="p">,</span> <span class="k">...</span>
+                                   <span class="n">input_layer_size</span><span class="p">,</span> <span class="k">...</span>
+                                   <span class="n">hidden_layer_size</span><span class="p">,</span> <span class="k">...</span>
+                                   <span class="n">num_labels</span><span class="p">,</span> <span class="k">...</span>
+                                   <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">)</span>
+
+<span class="n">Theta1</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">nn_params</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">hidden_layer_size</span> <span class="o">*</span> <span class="p">(</span><span class="n">input_layer_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)),</span> <span class="k">...</span>
+                 <span class="n">hidden_layer_size</span><span class="p">,</span> <span class="p">(</span><span class="n">input_layer_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+
+<span class="n">Theta2</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">nn_params</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">hidden_layer_size</span> <span class="o">*</span> <span class="p">(</span><span class="n">input_layer_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))):</span><span class="k">end</span><span class="p">),</span> <span class="k">...</span>
+                 <span class="n">num_labels</span><span class="p">,</span> <span class="p">(</span><span class="n">hidden_layer_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+         
+<span class="n">J</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">Theta1_grad</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">Theta1</span><span class="p">));</span>
+<span class="n">Theta2_grad</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">Theta2</span><span class="p">));</span>
+
+<span class="k">for</span> <span class="nb">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">m</span>
+    <span class="c1">%Forward Propagation 算法计算各层输出值</span>
+    <span class="n">hidden_layer</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">hidden_layer_size</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">input_layer</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)</span><span class="o">'</span><span class="p">];</span>
+    <span class="n">hidden_layer</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">Theta1</span> <span class="o">*</span> <span class="n">input_layer</span><span class="p">)];</span>
+    <span class="n">output_layer</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">num_labels</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">output_layer</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">Theta2</span> <span class="o">*</span> <span class="n">hidden_layer</span><span class="p">);</span>
+    <span class="n">y_recode</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">num_labels</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">y_recode</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">%Backpropagation 算法计算各层残差以计算 Theta1 和 Theta2 的梯度</span>
+    <span class="n">delta3</span> <span class="o">=</span> <span class="n">output_layer</span> <span class="o">-</span> <span class="n">y_recode</span><span class="p">;</span>
+    <span class="n">delta2</span> <span class="o">=</span> <span class="n">Theta2</span><span class="o">'</span> <span class="o">*</span> <span class="n">delta3</span> <span class="o">.*</span> <span class="p">(</span><span class="n">hidden_layer</span> <span class="o">.*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hidden_layer</span><span class="p">));</span>
+    <span class="n">delta2</span> <span class="o">=</span> <span class="n">delta2</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">);</span> <span class="c1">%!!!丢弃 bias unit</span>
+    <span class="c1">%累加梯度</span>
+    <span class="n">Theta1_grad</span> <span class="o">=</span> <span class="n">Theta1_grad</span> <span class="o">+</span> <span class="n">delta2</span> <span class="o">*</span> <span class="n">input_layer</span><span class="o">'</span><span class="p">;</span>
+    <span class="n">Theta2_grad</span> <span class="o">=</span> <span class="n">Theta2_grad</span> <span class="o">+</span> <span class="n">delta3</span> <span class="o">*</span> <span class="n">hidden_layer</span><span class="o">'</span><span class="p">;</span>
+    <span class="c1">%累加 LR cost</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">J</span> <span class="o">+</span> <span class="n">y_recode</span><span class="s1">' * log(output_layer) + (1 - y_recode'</span><span class="p">)</span> <span class="o">*</span> <span class="nb">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">output_layer</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="c1">%计算 NN cost</span>
+<span class="n">J</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="p">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">J</span> <span class="o">+</span> <span class="n">lambda</span><span class="p">/(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">Theta1</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">Theta2</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)));</span>
+
+<span class="n">Theta1_temp</span> <span class="o">=</span> <span class="n">Theta1_grad</span><span class="p">;</span>
+<span class="n">Theta1_grad</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">Theta1_grad</span> <span class="o">+</span> <span class="p">(</span><span class="n">lambda</span><span class="p">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">Theta1</span><span class="p">;</span>
+<span class="n">tmp1</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">Theta1_temp</span><span class="p">);</span>
+<span class="n">Theta1_grad</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">tmp1</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">Theta2_temp</span> <span class="o">=</span> <span class="n">Theta2_grad</span><span class="p">;</span>
+<span class="n">Theta2_grad</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">Theta2_grad</span> <span class="o">+</span> <span class="p">(</span><span class="n">lambda</span><span class="p">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">Theta2</span><span class="p">;</span>
+<span class="n">tmp2</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">Theta2_temp</span><span class="p">);</span>
+<span class="n">Theta2_grad</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">tmp2</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">grad</span> <span class="o">=</span> <span class="p">[</span><span class="n">Theta1_grad</span><span class="p">(:)</span> <span class="p">;</span> <span class="n">Theta2_grad</span><span class="p">(:)];</span></code></pre></figure>
+
+<p>这个函数会返回一轮迭代后的代价函数值和各个权重矩阵的梯度，给这个函数创建一个句柄，设置一下学习率和最大迭代次数，和随机初始化后的各权重矩阵一起传给 <a href="https://github.com/Wildog/handwritten-expr-evaluator/blob/master/fmincg.m">fmincg 函数</a>计算，然后静静地等着代价函数收敛就行了，不断的测试准确率再反复更改参数重新训练，最后得到满意的各权重矩阵。</p>
+
+<h2 id="section-3">大功告成</h2>
+
+<p>得到最终的权重矩阵后，针对预处理后的每个字符图像的像素矩阵计算其输出层就可以识别出对应的字符了，依次识别每个字符最终得到整个表达式，剩下的计算表达式的方法太多了不再多提，晒下结果图：</p>
+
+<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-result.png" alt="result" /></p>
+
+<p>完整项目地址：<a href="https://github.com/Wildog/handwritten-expr-evaluator">https://github.com/Wildog/handwritten-expr-evaluator</a></p>
+
+
+                    <div class="meta">
+                        <p class="date-publish">
+                            Published: 
+                            <date class="date-pub" title="2015-01-18T00:00:00+08:00" datetime="2015-01-18T00:00:00+08:00" pubdate>
+                            <span class="month"><abbr>January</abbr></span>
+                            <span class="day">18,</span>
+                            <span class="year">2015</span>
+                            </date>
+                            <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="http://7xqhhm.com1.z0.glb.clouddn.com/cc.png" /></a><span>
+                        </p>
+                    </div><!-- meta -->
+                </div><!-- entry-content -->
+                <div class="misc-content">
+                    
+
+
+  <!-- 多说评论框 start -->
+    <div id="comments">
+        <div class="ds-thread" data-thread-key="/2015/01/18/train-a-simple-neural-network" data-title="用 Matlab 训练一个简单的神经网络" data-url="http://limbo.space/2015/01/18/train-a-simple-neural-network/"></div>
+    </div>
+    <br/>
+<!-- 多说评论框 end -->
+
+
+
+
+
+                </div><!-- misc-content -->
+                
+            </div><!-- bd -->
+            <footer class="unit-foot">
+                <div class="unit-inner unit-foot-inner">
+                    <nav class="pagination">
+                        <ul>
+                            
+                            <li class="prev"><a class="internal" rel="prev"  href="/2014/10/21/copy-and-paste-multiple-search-results-in-vim/">&laquo; 在 Vim 里复制所有匹配结果</a></li>
+                            
+                            
+                            <li class="pipe"> | </li>
+                            
+                            
+                            <li class="next"><a class="internal" rel="next"  href="/2015/11/28/display-weather-on-kindle-lock-screen/">把你的旧 Kindle 变成桌面气象站 &raquo;</a></li>
+                            
+                        </ul>
+                    </nav>
+                    <p class="gotop">
+                        <a href="javascript:void(0)">Back to Top</a>
+                    </p>
+                </div>
+            </footer>
+
+        </div><!-- content -->
+    </div><!-- unit-inner -->
+</article>
+
+
+                </div>
+            </div><!-- unit-inner -->
+        </div><!-- unit-body -->
+    </div><!-- body -->
+    <footer class="the-footer">
+        <div class="unit-foot">
+            <div class="unit-inner unit-foot-inner">
+                <p class="license">
+                    ©2014-2016 Designed by <a href="/about/">Wildog</a> |
+                    Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
+                    Hosted on <a href="http://github.com/">Github</a>.
+                </p>
+            </div><!-- unit-foot-inner -->
+        </div><!-- unit-foot -->
+    </footer>
+</div><!-- page -->
+<script>
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Oops! This page does not support old IEs...")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc({"showEffect":"slideDown","hideEffect":"slideUp"});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){var a=$(".bd .entry-content img:not(#ccimg)");if(a.length){$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/lightense.min.js",cache:true,success:function(){Lightense(a)}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
+</script>
+
+
+
+
+</body>
+</html>
+
