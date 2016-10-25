@@ -5,8 +5,8 @@
         <description>wil.døg - wildog</description>
         <link>http://wil.dog</link>
         <link>http://wil.dog</link>
-        <lastBuildDate>2016-10-26T03:48:11+08:00</lastBuildDate>
-        <pubDate>2016-10-26T03:48:11+08:00</pubDate>
+        <lastBuildDate>2016-10-26T04:13:43+08:00</lastBuildDate>
+        <pubDate>2016-10-26T04:13:43+08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -27,7 +27,7 @@
 
 &lt;p&gt;服务器端程序是用 Flask 写的，用 uWSGI + Nginx 部署在阿里云上，然而我并没有一个通过备案的域名所以不能解析到阿里云的 80 端口上，所以只能另辟蹊径…最后的决定是前端以纯静态页面的形式托管在 Github Page 上，用 JSONP 协议和阿里云上的服务器端程序进行跨域通信。&lt;/p&gt;
 
-&lt;p&gt;服务器端的接口很简单只有三个，&lt;code class=&quot;highlighter-rouge&quot;&gt;/addTask&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/getState&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;getFile&lt;/code&gt;, 分别用来请求添加新的导出任务、请求某个用户的任务状态和请求导出的 Excel 文件，前两个接口都以 JSONP 的格式返回状态内容、状态类型和可选的导出文件的 URL，前端页面在提交 &lt;code class=&quot;highlighter-rouge&quot;&gt;/addTask&lt;/code&gt; 请求后会以 ajax 的方式轮训 &lt;code class=&quot;highlighter-rouge&quot;&gt;/getState&lt;/code&gt; 获取并显示最新的任务状态直到任务成功或失败。&lt;/p&gt;
+&lt;p&gt;服务器端的接口很简单只有三个，&lt;code class=&quot;highlighter-rouge&quot;&gt;/addTask&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/getState&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/getFile&lt;/code&gt;, 分别用来请求添加新的导出任务、请求某个用户的任务状态和请求导出的 Excel 文件，前两个接口都以 JSONP 的格式返回状态内容、状态类型和可选的导出文件的 URL，前端页面在提交 &lt;code class=&quot;highlighter-rouge&quot;&gt;/addTask&lt;/code&gt; 请求后会以 ajax 的方式轮训 &lt;code class=&quot;highlighter-rouge&quot;&gt;/getState&lt;/code&gt; 获取并显示最新的任务状态直到任务成功或失败。&lt;/p&gt;
 
 &lt;p&gt;考虑到效率和避免滥用问题，导出的文件会在服务器暂存 6 小时，6 小时内请求添加同样的导出任务都会直接返回暂存的文件，与此同时我把最大并发任务数限制到了 6 个，超过之后请求添加新的导出任务会提示排队，测试了一下 6 个并发任务基本上就是我这个 1G RAM 单核 CPU 阿里云的极限了…&lt;/p&gt;
 
