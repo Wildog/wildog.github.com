@@ -73,7 +73,7 @@
 
 <p>服务器端的接口很简单只有三个，<code class="highlighter-rouge">/addTask</code>, <code class="highlighter-rouge">/getState</code>, <code class="highlighter-rouge">/getFile</code>, 分别用来请求添加新的导出任务、请求某个用户的任务状态和请求导出的 Excel 文件，前两个接口都以 JSONP 的格式返回状态内容、状态类型和可选的导出文件的 URL，前端页面在提交 <code class="highlighter-rouge">/addTask</code> 请求后会以 ajax 的方式轮训 <code class="highlighter-rouge">/getState</code> 获取并显示最新的任务状态直到任务成功或失败。</p>
 
-<p>考虑到效率和避免滥用问题，导出的文件会在服务器暂存 6 小时，6 小时内请求添加同样的导出任务都会直接返回暂存的文件，与此同时我把最大并发任务数限制到了 6 个，超过之后请求添加新的导出任务会提示排队，测试了一下 6 个并发任务基本上就是我这个 1G RAM 单核 CPU 阿里云的极限了…</p>
+<p>考虑到效率和避免滥用问题，导出的文件会在服务器暂存 24 小时，24 小时内请求添加同样的导出任务都会直接返回暂存的文件，与此同时我把最大并发任务数限制到了 6 个，超过之后请求添加新的导出任务会提示排队，测试了一下 6 个并发任务基本上就是我这个 1G RAM 单核 CPU 阿里云的极限了…</p>
 
 <p>前端页面和服务器端源码都放 Github 上了，和部署时用的程序有少量区别，由兴趣的可以给个 star：<a href="https://github.com/Wildog/douban-exporter">https://github.com/Wildog/douban-exporter</a></p>
 
