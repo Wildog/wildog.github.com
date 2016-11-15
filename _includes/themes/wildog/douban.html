@@ -98,7 +98,7 @@
                         <button type="button" class="close">&times;</button>
                         <strong class="msg" id="book-msg">等候响应中...</strong>
                     </div>
-                    <div class="love blur">Made with <i class="heart glyphicon glyphicon-heart"></i> by <a href="http://wil.dog" target="_blank">Wildog</a>, <span id="caveat-a">for personal use only</span><span id="caveat-b" class="blur">do not abuse</span></div>
+                    <div class="love blur">Made with <i class="heart glyphicon glyphicon-heart"></i> by <a href="http://wil.dog" target="_blank">Wildog</a>, <span id="caveat-a">for personal use only</span><span id="caveat-b" class="blur">A small <a href="#" data-toggle="popover" data-trigger="hover" data-content="">donation</a> will keep this running better.</span></div>
                 </div>
             </div>
         </div>
@@ -110,6 +110,7 @@
             setTimeout(function() {
                 $("#caveat-a").remove();
                 $("#caveat-b").removeClass("blur");
+                $('[data-toggle="popover"]').popover({placement: 'bottom', title: "支付宝捐赠", html: 'true', content: '<img src="http://7xqhhm.com1.z0.glb.clouddn.com/donate.jpg" />'});
             }, 400)
         }, 2000);
     }, 0);
