@@ -184,13 +184,11 @@ msg.URL = [NSURL URLWithString:@"emptyURL"];
 }];
 {% endhighlight %}
 
-为了保证得到的是操作之后的实时结果，这里得到 image 的方式是直接获取 `presentation layer` 的 graphics context 并创建位图，注意使用的方法是 `UIGraphicsBeginImageContextWithOptions(CGSize size, BOOL opaque, CGFloat scale)` 且 `scale` 的值需要设为 0，表示 scale factor 由设备决定，如果使用 `UIGraphicsBeginImageContext(CGSize size)` 的话默认的 scale 值为 1，在 2x, 3x 设备上会显示模糊的图像：
+截取图表为图片时使用的方法是 `drawViewHierarchyInRect:afterScreenUpdates`，创建 image context 时注意使用的方法是 `UIGraphicsBeginImageContextWithOptions(CGSize size, BOOL opaque, CGFloat scale)` 且 `scale` 的值需要设为 0，表示 scale factor 由设备决定，如果使用 `UIGraphicsBeginImageContext(CGSize size)` 的话默认的 scale 值为 1，在 2x, 3x 设备上会显示模糊的图像：
 
 {% highlight objc %}
-UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.lineChartView.frame.size.width, self.lineChartView.frame.size.height), NO, 0);
-[self.lineChartView drawViewHierarchyInRect:CGRectMake(0, 0, self.lineChartView.frame.size.width, self.lineChartView.frame.size.height) afterScreenUpdates:YES];
-CGContextRef context = UIGraphicsGetCurrentContext();
-[self.view.layer.presentationLayer renderInContext:context];
+UIGraphicsBeginImageContextWithOptions(self.lineChartView.bounds.size, NO, 0);
+[self.lineChartView drawViewHierarchyInRect:self.lineChartView.bounds afterScreenUpdates:YES];
 UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 UIGraphicsEndImageContext();
 {% endhighlight %}
