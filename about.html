@@ -5,11 +5,12 @@ header: About
 group: navigation
 description: Everything about Wildog...
 music: true
+chart: true
 ---
 {% include JB/setup %}
 
 <div class="misc music" style="margin-bottom: 30px">
-    <h4>Some of my music</h4>
+    <h4>My Music</h4>
     <div class="aplayer" id="player"></div>
     <script>
     var ap = new APlayer({
@@ -79,10 +80,56 @@ music: true
     </script>
 </div>
 <div class="misc vcard">
+    <h4>My Skills</h4>
+    <div class="skillbar" data-percent="90">
+        <span class="skillbar-title" style="background: #2D3E4F;">Objective-C</span>
+        <p class="skillbar-bar" style="background: #2F81B7;"></p>
+        <span class="skill-bar-percent"></span>
+    </div>
+    <div class="skillbar" data-percent="70">
+        <span class="skillbar-title" style="background: #d35400;">Swift</span>
+        <p class="skillbar-bar" style="background: #e67e22;"></p>
+        <span class="skill-bar-percent"></span>
+    </div>
+    <div class="skillbar" data-percent="80">
+        <span class="skillbar-title" style="background: #159588;">Python</span>
+        <p class="skillbar-bar" style="background: #50AE55;"></p>
+        <span class="skill-bar-percent"></span>
+    </div>
+    <div class="skillbar" data-percent="60">
+        <span class="skillbar-title" style="background: #7D7D7D;">Front-end</span>
+        <p class="skillbar-bar" style="background: #8E8E93;"></p>
+        <span class="skill-bar-percent"></span>
+    </div>
+    <div class="skillbar" data-percent="70">
+        <span class="skillbar-title" style="background: #4E688F;">Linux</span>
+        <p class="skillbar-bar" style="background: #5A68A5;"></p>
+        <span class="skill-bar-percent"></span>
+    </div>
+    <div class="skillbar" data-percent="75">
+        <span class="skillbar-title" style="background: #BD2F27;">SQL/NoSQL</span>
+        <p class="skillbar-bar" style="background: #E14038;"></p>
+        <span class="skill-bar-percent"></span>
+    </div>
+    <div class="skillbar" data-percent="50">
+        <span class="skillbar-title" style="background: #5A9C28;">Matlab</span>
+        <p class="skillbar-bar" style="background: #7DAE49;"></p>
+        <span class="skill-bar-percent"></span>
+    </div>
+    <script>
+    $('.skillbar').skillBars({
+        from: 0,
+        speed: 2000, 
+        interval: 20,
+    }); 
+    </script>
+    <h4 style="margin-top: 15px">My Apps</h4>
+    <ul>
+        <li class="apps"><a href="/eavescrob/">Eavescrob</a></li>
+        <li class="apps"><a href="https://itunes.apple.com/us/app/isteps-widget/id1179621795">iSteps Widget</a></li>
+    </ul>
     <h4>Links</h4>
-    <div class="github-card" data-github="wildog" data-width="100%" data-height="150" data-theme="default"></div>
-    <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-    <ul style="margin-top: 5px">
+    <ul>
         <li class="contact"><span class="author fn n">Email: </span><span class="fn email"><code><a href="mailto:i@wil.dog" target="_top">i@wil.dog</a></code></span></li>
         <li class="github"><a href="http://github.com/{{ site.author.github }}/" rel="me">Github@{{ site.author.github }}</a></li>
         <li class="douban"><a href="http://douban.com/people/randyzew" rel="me">Douban@Wildog</a></li>
