@@ -40,7 +40,7 @@
             border-radius: 20px;
             padding: 10px 20px;
             background-color: #149487;
-            width: 350px;
+            width: 500px;
             text-align: left;
             font-family: Arial;
             font-size: 17px;
@@ -197,12 +197,14 @@
             </div>
         </div>
         <div id="faq" style="display: none">
-            <p>1. Login always fails</p>
-            <p>Make sure to log in by username instead of email address. Also in some edge cases the mobile API of Last.fm doesn't handle login properly. If you do encounter this rare problem, try changing you password on <a style="color:#EFEFF4;" href="https://www.last.fm/settings/account">Last.fm</a> then you should be able to log in. Sorry for the inconvinience.</p>
-            <p>2. Why my repeated plays are timestamped at one single time point?</p>
+            <p>1. Do I need to keep Eavescrob running?</p>
+            <p>No, you don't even have to open the app. Eavescrob will compile your listening history on startup, so it only works with the stock Music app and some other apps that play music from system library.</p>
+            <p>2. Login always fails</p>
+            <p>Make sure to log in by username instead of email address. Also in some edge cases the mobile API of Last.fm doesn't handle login properly. If you do encounter this rare problem, try changing your password on <a style="color:#EFEFF4;" href="https://www.last.fm/settings/account">Last.fm</a> then you should be able to log in. Sorry for the inconvinience.</p>
+            <p>3. Why my repeated plays are timestamped at one single time point?</p>
             <p>Due to the limitation of iOS system, iOS only keeps the last time point of a song you've played, so currently the repeated plays are timestamped based on your last played date. Let's hope a better solution would come to iOS eventually.</p>
-            <p>3. Lots of pending scrobbles that I didn't listened on my phone appeared after syncing with iTunes.</p>
-            <p>Again, this is inevitable because syncing with iTunes includes play history. So if you use an separate scrobbler with iTunes on your computer, I recommend you submit your pendings in Eavescrob first, then after syncing, you can delete all redundant pendings in Eavescrob by pressing 'Edit' -&gt; 'Mark All' -&gt; 'Delete'.</p>
+            <p>4. Lots of pending scrobbles that I didn't listened on my phone appeared after syncing with iTunes.</p>
+            <p>Again, this is inevitable because syncing with iTunes includes listening history. So if you use an separate scrobbler with iTunes on your computer, I recommend you submit your pendings in Eavescrob first, then after syncing, you can delete all redundant pendings in Eavescrob by pressing 'Edit' -&gt; 'Mark All' -&gt; 'Delete'.</p>
         </div>
         <script>
         function showFAQ() {
