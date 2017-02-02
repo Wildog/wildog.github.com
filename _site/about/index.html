@@ -22,6 +22,16 @@
     <script src="http://7xqhhm.com1.z0.glb.clouddn.com/aplayer/APlayer.min.js"></script>
     <script src="http://7xqhhm.com1.z0.glb.clouddn.com/chart/skill.bars.jquery.js"></script>
     <link href='http://7xqhhm.com1.z0.glb.clouddn.com/chart/style.css' rel="stylesheet" media="all">
+    <style type="text/css">
+    @media only screen and (max-width:479px){.projects{width:100%;}}
+    @media only screen and (min-width:480px) and (max-width:767px){.projects{width:180px;}}
+    @media only screen and (min-width:768px) and (max-width:1919px){.projects{width:150px;}}
+    @media only screen and (min-width:1920px){.projects{width:180px;}}
+    .projects{vertical-align:top;display:inline-block;margin-right:15px;}
+    .projects .icons{width:80px;height:80px;}
+    .projects .titles{font-size:18px;padding:10px 0;}
+    .projects p{font-size: 15px;}
+    </style>
 </head>
 <body>
 <div id="page" class="hentry">
@@ -79,16 +89,16 @@
         theme: '#77bb77',
         music: [
             {
-                title: 'Thinking of You on the Last Day of Summer',
-                author: 'Wildog',
-                url: 'http://7xqhhm.com1.z0.glb.clouddn.com/music/thinkingofyouonthelastdayofsummer.mp3',
-                pic: 'http://7xqhhm.com1.z0.glb.clouddn.com/music/thinkingofyouonthelastdayofsummer.jpg'
-            },
-            {
                 title: 'Love Song',
                 author: 'Wildog',
                 url: 'http://7xqhhm.com1.z0.glb.clouddn.com/music/lovesong.mp3',
                 pic: 'http://7xqhhm.com1.z0.glb.clouddn.com/music/lovesong.jpg'
+            },
+            {
+                title: 'Thinking of You on the Last Day of Summer',
+                author: 'Wildog',
+                url: 'http://7xqhhm.com1.z0.glb.clouddn.com/music/thinkingofyouonthelastdayofsummer.mp3',
+                pic: 'http://7xqhhm.com1.z0.glb.clouddn.com/music/thinkingofyouonthelastdayofsummer.jpg'
             },
             {
                 title: 'Undo',
@@ -180,19 +190,52 @@
         interval: 20,
     }); 
     </script>
-    <h4 style="margin-top: 15px">My Apps</h4>
-    <ul>
-        <li class="apps"><a href="/eavescrob/" target="_blank">Eavescrob</a></li>
-        <li class="apps"><a href="https://itunes.apple.com/us/app/isteps-widget/id1179621795">iSteps Widget</a></li>
-    </ul>
+    <h4 style="margin-top: 15px">My Projects</h4>
+    <div id="projects-wrapper">
+        <div class="projects">
+            <div class="icons"><img src="http://7xqhhm.com1.z0.glb.clouddn.com/icons/eavescrob.png" alt=""></div>
+            <div class="titles"><a href="/eavescrob/" target="_blank">Eavescrob</a></div>
+            <p>The ultimate scrobbler for iOS</p>
+        </div>
+        <div class="projects">
+            <div class="icons"><img src="http://7xqhhm.com1.z0.glb.clouddn.com/icons/gankee.png" alt=""></div>
+            <div class="titles"><a href="https://itunes.apple.com/cn/app/gankee-gan-huo-ji-zhong-ying/id1201113401?mt=8">Gankee</a></div>
+            <p>Probably the best iOS App for Gank.io</p>
+        </div>
+        <div class="projects">
+            <div class="icons"><img src="http://7xqhhm.com1.z0.glb.clouddn.com/icons/steps.png" alt=""></div>
+            <div class="titles"><a href="https://itunes.apple.com/us/app/isteps-widget/id1179621795">iSteps Widget</a></div>
+            <p>An exquisite iOS widget to check step count at a glance</p>
+        </div>
+        <div class="projects">
+            <div class="icons"><img src="http://7xqhhm.com1.z0.glb.clouddn.com/icons/douban.png" alt=""></div>
+            <div class="titles"><a href="/douban/" target="_blank">Douban Exporter</a></div>
+            <p>An online service to export your douban records to Excels</p>
+        </div>
+        <div class="projects">
+            <div class="icons"><img src="http://7xqhhm.com1.z0.glb.clouddn.com/icons/ariafred.png" alt=""></div>
+            <div class="titles"><a href="https://github.com/Wildog/Ariafred">Ariafred</a></div>
+            <p>An Alfred workflow to manage Aria2 on the fly</p>
+        </div>
+        <div class="projects">
+            <div class="icons"><img src="http://7xqhhm.com1.z0.glb.clouddn.com/icons/airline.png" alt=""></div>
+            <div class="titles"><a href="https://github.com/Wildog/airline-weather.vim">airline-weather</a></div>
+            <p>Airline extension to display weather on your Vim</p>
+        </div>
+        <div class="projects">
+            <div class="icons"><img src="http://7xqhhm.com1.z0.glb.clouddn.com/icons/github.png" alt=""></div>
+            <div class="titles"><a href="https://github.com/Wildog/" target="_blank">More...</a></div>
+            <p>Check my Github if you're interested</p>
+        </div>
+    </div>
     <h4>Links</h4>
     <ul>
         <li class="contact"><span class="author fn n">Email: </span><span class="fn email"><code><a href="mailto:i@wil.dog" target="_top">i@wil.dog</a></code></span></li>
-        <li class="github"><a href="http://github.com/Wildog/" rel="me">Github@Wildog</a></li>
-        <li class="douban"><a href="http://douban.com/people/randyzew" rel="me">Douban@Wildog</a></li>
-        <li class="soundcloud"><a href="http://soundcloud.com/wildogmusic" rel="me">SoundCloud@WildogMusic</a></li>
+        <li class="github"><a href="https://github.com/Wildog/" rel="me">Github@Wildog</a></li>
+        <li class="douban"><a href="https://douban.com/people/randyzew" rel="me">Douban@Wildog</a></li>
+        <li class="soundcloud"><a href="https://soundcloud.com/wildogmusic" rel="me">SoundCloud@WildogMusic</a></li>
         <li class="weibo"><a href="http://weibo.com/zew1995" rel="me">Weibo@Wildog</a></li>
-        <li class="twitter"><a href="http://twitter.com/WildogGo/" rel="me">Twitter@WildogGo</a></li>
+        <li class="twitter"><a href="https://twitter.com/WildogGo/" rel="me">Twitter@WildogGo</a></li>
     </ul>
 </div>
 
@@ -203,11 +246,11 @@
                                     <div class="unit-inner unit-foot-inner">
                                         <nav class="pagination">
                                             <ul class="social to-blur">
-                                                <li><a id="douban" href="http://douban.com/people/randyzew"></a></li>
-                                                <li><a id="github" href="http://github.com/wildog"></a></li>
-                                                <li><a id="soundcloud" href="http://soundcloud.com/wildogmusic"></a></li>
+                                                <li><a id="douban" href="https://douban.com/people/randyzew"></a></li>
+                                                <li><a id="github" href="https://github.com/wildog"></a></li>
+                                                <li><a id="soundcloud" href="https://soundcloud.com/wildogmusic"></a></li>
                                                 <li><a id="flickr" href="https://www.flickr.com/photos/wildoggo"></a></li>
-                                                <li><a id="twitter" href="http://twitter.com/wildoggo"></a></li>
+                                                <li><a id="twitter" href="https://twitter.com/wildoggo"></a></li>
                                                 <li><a id="rss" href="/rss.xml"></a></li>
                                             </ul>
                                         </nav>

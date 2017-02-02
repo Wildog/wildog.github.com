@@ -20,6 +20,16 @@
     <script src="{{ site.cdn_url }}/aplayer/APlayer.min.js"></script>{% endif %}{% if page.chart %}
     <script src="{{ site.cdn_url }}/chart/skill.bars.jquery.js"></script>
     <link href='{{ site.cdn_url }}/chart/style.css' rel="stylesheet" media="all">{% endif %}
+    <style type="text/css">
+    @media only screen and (max-width:479px){.projects{width:100%;}}
+    @media only screen and (min-width:480px) and (max-width:767px){.projects{width:180px;}}
+    @media only screen and (min-width:768px) and (max-width:1919px){.projects{width:150px;}}
+    @media only screen and (min-width:1920px){.projects{width:180px;}}
+    .projects{vertical-align:top;display:inline-block;margin-right:15px;}
+    .projects .icons{width:80px;height:80px;}
+    .projects .titles{font-size:18px;padding:10px 0;}
+    .projects p{font-size: 15px;}
+    </style>
 </head>
 <body>
 <div id="page" class="hentry">
@@ -69,11 +79,11 @@
                                     <div class="unit-inner unit-foot-inner">
                                         <nav class="pagination">
                                             <ul class="social to-blur">
-                                                <li><a id="douban" href="http://douban.com/people/randyzew"></a></li>
-                                                <li><a id="github" href="http://github.com/wildog"></a></li>
-                                                <li><a id="soundcloud" href="http://soundcloud.com/wildogmusic"></a></li>
+                                                <li><a id="douban" href="https://douban.com/people/randyzew"></a></li>
+                                                <li><a id="github" href="https://github.com/wildog"></a></li>
+                                                <li><a id="soundcloud" href="https://soundcloud.com/wildogmusic"></a></li>
                                                 <li><a id="flickr" href="https://www.flickr.com/photos/wildoggo"></a></li>
-                                                <li><a id="twitter" href="http://twitter.com/wildoggo"></a></li>
+                                                <li><a id="twitter" href="https://twitter.com/wildoggo"></a></li>
                                                 <li><a id="rss" href="/rss.xml"></a></li>
                                             </ul>
                                         </nav>
