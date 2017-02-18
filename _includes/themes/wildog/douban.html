@@ -24,6 +24,10 @@
             margin: 10px 0 0 0;
             display: none;
         }
+        #notice {
+            display: block;
+            max-width: 612px;
+        }
 #userid {
             min-width: 150px;
         }
@@ -86,6 +90,9 @@
                         </div>
                     </div>
                     <button type="submit" id="export" class="btn btn-success">导出 Excel</button>
+                    <div class="alert fade in alert-danger" id="notice">
+                        <strong class="msg" id="notice-msg">重要通知：<br>服务器 IP 已被豆瓣封掉，导出服务暂时不能使用了，不过过段时间我会把这个功能做成本地客户端供大家自行下载使用，如果有什么问题可以在豆瓣上<a href="https://douban.com/people/randyzew" target="_blank">联系我</a></strong>
+                    </div>
                     <div class="alert fade in alert-info alert-dismissible" id="movie-alert">
                         <button type="button" class="close">&times;</button>
                         <strong class="msg" id="movie-msg">等候响应中...</strong>
