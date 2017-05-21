@@ -137,12 +137,26 @@
                     
 
 
-  <!-- 多说评论框 start -->
-    <div id="comments">
-        <div class="ds-thread" data-thread-key="/2015/11/28/display-weather-on-kindle-lock-screen" data-title="把你的旧 Kindle 变成桌面气象站" data-url="http://limbo.space/2015/11/28/display-weather-on-kindle-lock-screen/"></div>
+  <!-- 来必力City版安装代码 -->
+    <div id="comments" style="margin-bottom:-90px">
+        <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc4MC81MzUx">
+            <script type="text/javascript">
+           (function(d, s) {
+               var j, e = d.getElementsByTagName(s)[0];
+
+               if (typeof LivereTower === 'function') { return; }
+
+               j = d.createElement(s);
+               j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+               j.async = true;
+
+               e.parentNode.insertBefore(j, e);
+           })(document, 'script');
+            </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
     </div>
-    <br/>
-<!-- 多说评论框 end -->
+<!-- City版安装代码已完成 -->
 
 
 
@@ -185,7 +199,7 @@
         <div class="unit-foot">
             <div class="unit-inner unit-foot-inner">
                 <p class="license">
-                    ©2014-2016 Designed by <a href="/about/">Wildog</a> |
+                    ©2014-2017 Designed by <a href="/about/">Wildog</a> |
                     Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> |
                     Hosted on <a href="http://github.com/">Github</a>.
                 </p>
@@ -194,7 +208,7 @@
     </footer>
 </div><!-- page -->
 <script>
-$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Oops! This page does not support old IEs...")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc({"showEffect":"slideDown","hideEffect":"slideUp"});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){var a=$(".bd .entry-content img:not(#ccimg)");if(a.length){$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/lightense.min.js",cache:true,success:function(){Lightense(a)}})}});var duoshuoQuery={short_name:"wildog"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=(document.location.protocol=="https:"?"https:":"http:")+"//static.duoshuo.com/embed.js";a.charset="UTF-8";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();
+$(window).load(function(){if($("html").is(".ie6, .ie7, .ie8, .ie9")){$("body").css("display","none");alert("Oops! This page does not support old IEs...")}var c="ontouchstart" in window||navigator.maxTouchPoints;setTimeout(function(){$("#o").addClass("hover")},100);setTimeout(function(){$("#o").removeClass("hover")},900);$(".logo a").hover(function(){$("#o").addClass("hover")},function(){$("#o").removeClass("hover")});$("#toc").toc({"showEffect":"slideDown","hideEffect":"slideUp"});function expand(){$(".mymore").css("display","inline-block");$(".mymore").animate({"width":"64px","opacity":"1"},200)}function collapse(){$(".mymore").animate({"width":"0px","opacity":"0"},200,function(){$(".mymore").css("display","none")})}if(c){$(".nav-global .my .expand").toggle(expand,collapse)}else{$(".nav-global .my").mouseenter(expand);$(".nav-global").mouseleave(collapse)}$(".gotop").click(function(){$("html, body").animate({"scrollTop":0},1000)});function addBlankTargetForLinks(){$('a[href^="http"]').each(function(){$(this).attr("target","_blank")})}$(document).bind("DOMNodeInserted",function(a){addBlankTargetForLinks()})});$(document).ready(function(){var a=$(".bd .entry-content img:not(#ccimg)");if(a.length){$.ajax({type:"GET",dataType:"script",url:"/assets/themes/wildog/lightense.min.js",cache:true,success:function(){Lightense(a)}})}});
 </script>
 
 
