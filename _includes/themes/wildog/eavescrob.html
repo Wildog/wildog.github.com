@@ -37,10 +37,11 @@
         #faq {
             margin-right: auto;
             margin-left: auto;
+            margin-bottom: 50px;
             border-radius: 20px;
-            padding: 10px 20px;
+            padding: 30px 30px 10px 30px;
             background-color: #149487;
-            width: 500px;
+            width: 700px;
             text-align: left;
             font-family: Arial;
             font-size: 17px;
@@ -176,6 +177,33 @@
             -o-animation-delay: 0;
             animation-delay: 0;
         }
+        #faq p {
+            margin: 8px auto;
+            color: #E6E6E6;
+        }
+        .ans {
+            font-weight: 300;
+            font-size: 16px;
+            padding-bottom: 20px;
+            line-height: 20px;
+        }
+        @media only screen and (max-width:640px){
+            #left {
+                display: none;
+            }
+            #faq {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+            #container {
+                width: 100%;
+            }
+            #right {
+                width: 100%;
+                height: 530px;
+                position: relative;
+            }
+        }
         </style>
     </head>
     <body>
@@ -198,21 +226,43 @@
         </div>
         <div id="faq" style="display: none">
             <p>1. Do I need to keep Eavescrob running?</p>
-            <p>No, you don't even have to open the app. Eavescrob will compile your listening history on startup, so it only works with the stock Music app and some other apps that play music from system library. Please notice that a song can only be added to your listening history by being completely played, you can drag the scrubber to the end instead of skipping as a workaround.</p>
+            <p class="ans">No, you don't even have to open the app. Eavescrob will compile your listening history on startup, so it only works with the stock Music app and some other apps that play music from system library. <br>Please notice that a song can only be added to your listening history by being completely played, you can drag the scrubber to the end instead of skipping as a workaround.</p>
             <p>2. Does it work with Apple Music streaming?</p>
-            <p>Partially. Only songs that have been added to 'My Music' will show up in the listening history.</p>
+            <p class="ans">Partially. Only songs that have been added to 'My Music' will show up in the listening history.</p>
             <p>3. Login always fails</p>
-            <p>Make sure to log in by username instead of email address. Also in some edge cases the mobile API of Last.fm doesn't handle login properly. If you do encounter this rare problem, try changing your password on <a style="color:#EFEFF4;" href="https://www.last.fm/settings/account">Last.fm</a> then you should be able to log in. Sorry for the inconvinience.</p>
+            <p class="ans">Make sure to log in by username instead of email address. Also in some edge cases the mobile API of Last.fm doesn't handle login correctly. If you do encounter this rare problem, try changing your password on <a style="color:#EFEFF4;" href="https://www.last.fm/settings/account">Last.fm</a> then you should be able to log in. Sorry for the inconvinience.</p>
             <p>4. Why my repeated plays are timestamped at one single time point?</p>
-            <p>Due to the limitation of iOS system, iOS only keeps the last time point of a song you've played, so currently the repeated plays are timestamped based on your last played date. Let's hope a better solution would come to iOS eventually.</p>
+            <p class="ans">Due to the limitation of iOS system, iOS only keeps the last time point of a song you've played, so currently the repeated plays are timestamped based on your last played date. Let's hope a better solution would come to iOS eventually.</p>
             <p>5. Lots of pending scrobbles that I didn't listened on my phone appeared after syncing with iTunes.</p>
-            <p>Again, this is inevitable because syncing with iTunes includes listening history. So if you use an separate scrobbler with iTunes on your computer, I recommend you submit your pendings in Eavescrob first, then after syncing, you can delete all redundant pendings in Eavescrob by pressing 'Edit' -&gt; 'Mark All' -&gt; 'Delete'.</p>
+            <p class="ans">Again, this is inevitable because syncing with iTunes includes listening history. So if you use an separate scrobbler with iTunes on your computer, I recommend you submit your pendings in Eavescrob first, then after syncing, you can delete all redundant pendings in Eavescrob by pressing 'Edit' -&gt; 'Mark All' -&gt; 'Delete'. <br>Also, 'More' -&gt; 'Rebuild Database' would come in handy while removing duplicate pendings.</p>
         </div>
         <script>
+        function doScrolling(elementY, duration) {
+            var startingY = window.pageYOffset;
+            var targetY = document.body.scrollHeight - elementY < window.innerHeight ? document.body.scrollHeight - window.innerHeight : elementY;
+            var diff = targetY - startingY;
+            var easing = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 }
+            var start;
+
+            if (!diff) return;
+
+            window.requestAnimationFrame(function step(timestamp) {
+                if (!start) start = timestamp;
+                var time = timestamp - start;
+                var percent = Math.min(time / duration, 1);
+                percent = easing(percent);
+                window.scrollTo(0, startingY + diff * percent);
+                if (time < duration) {
+                    window.requestAnimationFrame(step);
+                }
+            });
+        }
         function showFAQ() {
             div = document.getElementById('faq');
             div.style.display = "block";
-            window.scrollTo(0,document.body.scrollHeight);
+            var y = window.pageYOffset + div.getBoundingClientRect().top;
+            doScrolling(y - 20, 500);
+            //window.scrollTo(0,document.body.scrollHeight);
         }
         </script>
     </body>
