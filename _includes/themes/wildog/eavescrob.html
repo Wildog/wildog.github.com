@@ -44,7 +44,6 @@
             margin-bottom: 50px;
             border-radius: 20px;
             padding: 30px 30px 10px 30px;
-            background-color: #149487;
             width: 700px;
             text-align: left;
             font-family: Arial;
@@ -259,17 +258,17 @@
             <p>1. Do I need to keep Eavescrob running?</p>
             <p class="ans">No, you don't even have to open the app. Eavescrob will compile your listening history on startup, so it only works with the stock Music app and some other apps that play music from system library. <br>Please notice that a song can only be added to your listening history by being completely played, you can drag the scrubber to the end instead of skipping as a workaround.</p>
             <p>2. Does it work with Apple Music streaming?</p>
-            <p class="ans">Partially. Only songs that have been added to 'My Music' will show up in the listening history. Please notice that adding a playlist to the library doesn't make songs in the playlist added to the library.</p>
+            <p class="ans">Partially. Only songs that have been added to 'My Music' will show up in the listening history. <br>Please notice that adding a playlist to the library doesn't make songs in the playlist added to the library.</p>
             <p>3. Eavescrob not scrobbling</p>
             <p class="ans">Make sure the listening history functions is turned on for Apple Music. You can find it in your system 'Settings' -&gt; 'Music' -&gt; '<b>Use Listening History</b>'. And sometimes Apple just messes around with listening history, try <b>restarting your phone</b> and see if it works again.</p>
             <p>4. Login always fails</p>
-            <p class="ans">Make sure to log in by username instead of email address. Also in some edge cases the mobile API of Last.fm doesn't handle login correctly. If you do encounter this rare problem, try changing your password on <a style="color:#EFEFF4;" href="https://www.last.fm/settings/account">Last.fm</a> then you should be able to log in. Sorry for the inconvinience.</p>
+            <p class="ans">Make sure to log in by username instead of email address. Also in some edge cases the mobile API of Last.fm doesn't handle login correctly. If you do encounter this rare problem, try changing your password to a simpler one on <a style="color:#EFEFF4;" href="https://www.last.fm/settings/account">Last.fm</a> then you should be able to log in. Sorry for the inconvinience.</p>
             <p>5. How Does 'Auto Scrobbling' and 'Background Scrobbling' work?</p>
-            <p class="ans">By turning on 'Auto Scrobble' in 'More' you can enable both features. Auto Scrobbling happens every time you open Eavescrob on your phone or watch. Background Scrobbling happens when a Background App Refresh was triggered by the system, make sure Background App Refresh is turned on for Eavescrob in your system settings, and don't kill Eavescrob from app switcher by swiping up. <br>Also, please notice that when and how frequently a Background App Refresh will be triggered is completely up to iOS. Depending on your usage pattern, it might decide to run the background task once in minutes, hours, days or even never. When a Background Scrobbling task completed, Eavescrob will send you a notification if you like.</p>
+            <p class="ans">By turning on 'Auto Scrobble' in 'More' you can enable both features.<br>Auto Scrobbling happens every time you open Eavescrob on your phone or watch. <br>Background Scrobbling happens when a Background App Refresh was triggered by the system, make sure Background App Refresh is turned on for Eavescrob in your system settings, and don't kill Eavescrob from app switcher by swiping up. <br>When and how frequently a Background App Refresh will be triggered is completely up to iOS. Depending on your usage pattern, it might decide to run the background task once in minutes, hours, days or even never. When a Background Scrobbling task completed, Eavescrob will send you a notification if you like.</p>
             <p>6. Why my repeated plays are timestamped at one single time point?</p>
             <p class="ans">Due to the limitation of iOS system, iOS only keeps the last time point of a song you've played, so currently the repeated plays are timestamped based on your last played date. Let's hope a better solution would come to iOS eventually.</p>
             <p>7. Lots of pending scrobbles that I didn't listened on my phone appeared after syncing with iTunes.</p>
-            <p class="ans">Again, this is inevitable because syncing with iTunes includes listening history. So if you use an separate scrobbler with iTunes on your computer, I recommend you submit your pendings in Eavescrob first, then after syncing, you can delete all redundant pendings in Eavescrob by pressing 'Edit' -&gt; 'Mark All' -&gt; 'Delete'. <br>Also, 'More' -&gt; 'Rebuild Database' would come in handy while removing duplicate pendings.</p>
+            <p class="ans">Again, this is inevitable because syncing with iTunes includes listening history.<br>If you use an separate scrobbler with iTunes on your computer, I recommend you submit your pendings in Eavescrob first, then after syncing, you can delete all redundant pendings in Eavescrob by pressing 'Edit' -&gt; 'Mark All' -&gt; 'Delete'. <br>Also, 'More' -&gt; 'Rebuild Database' would come in handy while removing duplicate pendings.</p>
         </div>
         <script>
         function doScrolling(elementY, duration) {
@@ -298,6 +297,12 @@
             var y = window.pageYOffset + div.getBoundingClientRect().top;
             doScrolling(y - 20, 500);
             //window.scrollTo(0,document.body.scrollHeight);
+        }
+        window.onload = function(e){ 
+            var anchor = window.location.hash.substr(1);
+            if (anchor === "faq") {
+                window.setTimeout(showFAQ, 200);
+            }
         }
         </script>
     </body>
