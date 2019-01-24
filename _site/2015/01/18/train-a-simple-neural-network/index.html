@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     <link href='/assets/themes/wildog/css/style.css' rel="stylesheet" media="all">
-    <script src="http://7xqhhm.com1.z0.glb.clouddn.com/jquery.pack.js"></script>
+    <script src="//wil.dog/static/jquery.pack.js"></script>
 </head>
 <body>
 <div id="page" class="hentry">
@@ -60,7 +60,7 @@
 
 <h2 id="section">神经网络模型</h2>
 
-<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-model.png" alt="模型简化图" /></p>
+<p><img src="//wil.dog/static/images/nn-model.png" alt="模型简化图" /></p>
 
 <p>考虑到计算速度，我只建立了一个简单的三层 BP 神经网络模型作为分类器来识别单个字符，模型简化图如上。输入层是由 20x20 的图像得到的 1x400 的特征向量，隐藏层共 80 个隐藏单元，激活函数采用 sigmoid function，输出层是一个 1x17 的向量，可以用来描述 17 种识别结果：<code class="highlighter-rouge">数字 0-9 和 +, -, ⨯, ÷, ^, (, )</code>。</p>
 
@@ -74,8 +74,8 @@
     <p>不管是用作训练数据的图像还是最终需要识别的图像都需要做预处理，把图片上表达式的每个字符分离成单独的图像再依次送至分类器识别，预处理也是用 Matlab 完成，具体过程如下：</p>
 
     <ol>
-      <li>图像转为灰度图像后反色处理，并进行中值滤波以平滑图像，然后进行整体<a href="https://github.com/Wildog/handwritten-expr-evaluator/blob/master/xylimit.m">边界限定</a>，截取表达式区域图像。<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-1.png" alt="" /></li>
-      <li>横向提取并拼接有效行，纵向提取并分割有效字符。提取每个分割区域为独⽴图像，进行边界限定，计算灰度阈值并转为⼆值图像，最后大小归一化图像：填充至正方形并统一为 20x20 的图像。<img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-2.png" alt="" /></li>
+      <li>图像转为灰度图像后反色处理，并进行中值滤波以平滑图像，然后进行整体<a href="https://github.com/Wildog/handwritten-expr-evaluator/blob/master/xylimit.m">边界限定</a>，截取表达式区域图像。<img src="//wil.dog/static/images/img-preprocess-1.png" alt="" /></li>
+      <li>横向提取并拼接有效行，纵向提取并分割有效字符。提取每个分割区域为独⽴图像，进行边界限定，计算灰度阈值并转为⼆值图像，最后大小归一化图像：填充至正方形并统一为 20x20 的图像。<img src="//wil.dog/static/images/img-preprocess-2.png" alt="" /></li>
     </ol>
 
     <p>预处理部分还需要注意的主要问题是过滤噪音，除了平滑图像和边界限定以外，还要剔除掉高度过小的行、宽度过小的列以及面积过小的区域。完整代码见这里：<a href="https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m">https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m</a></p>
@@ -157,7 +157,7 @@
 
 <p>得到最终的权重矩阵后，针对预处理后的每个字符图像的像素矩阵计算其输出层就可以识别出对应的字符了，依次识别每个字符最终得到整个表达式，剩下的计算表达式的方法太多了不再多提，晒下结果图：</p>
 
-<p><img src="http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-result.png" alt="result" /></p>
+<p><img src="//wil.dog/static/images/nn-result.png" alt="result" /></p>
 
 <p>完整项目地址：<a href="https://github.com/Wildog/handwritten-expr-evaluator">https://github.com/Wildog/handwritten-expr-evaluator</a></p>
 
@@ -170,7 +170,7 @@
                             <span class="day">18,</span>
                             <span class="year">2015</span>
                             </date>
-                            <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="http://7xqhhm.com1.z0.glb.clouddn.com/cc.png" /></a><span>
+                            <span id="cc" data-balloon-length="medium" data-balloon="版权声明：自由转载-相同方式共享-保持署名 | Creative Commons BY-SA 4.0" data-balloon-pos="up"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img id="ccimg" alt="Creative Commons License" style="border-width:0" src="//wil.dog/static/cc.png" /></a><span>
                         </p>
                     </div><!-- meta -->
                 </div><!-- entry-content -->

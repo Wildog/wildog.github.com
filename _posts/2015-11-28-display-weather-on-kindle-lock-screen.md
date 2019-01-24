@@ -5,7 +5,7 @@ tags: ["kindle", "天气", "diy"]
 menu: true
 ---
 
-![](http://7xqhhm.com1.z0.glb.clouddn.com/images/kindle.jpg)  
+![](//wil.dog/static/images/kindle.jpg)  
 
 参考 Repo: [https://github.com/cathay4t/kindle-weather](https://github.com/cathay4t/kindle-weather)
 
@@ -39,13 +39,13 @@ menu: true
 2. 重启后自动进入诊断模式, 选择`D) Exit, Reboot or Disable Diags` 后选择 `R) Reboot System`, 再选择 `Q) To continue`, 等待 20s 后会显示 Jailbreak 的画面, 越狱完会自动重启. (其他 Kindle 版本参考[此页](http://www.mobileread.com/forums/showthread.php?t=88004))
 * 越狱后安装 USB networking, 从[此贴](http://www.mobileread.com/forums/showthread.php?t=88004)下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.
 * __断开 Kindle 和电脑的连接__, 在主界面按键盘键, 输入 `;debugOn` 后回车, 接着输入 `~usbNetwork` 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 `192.168.15.201`, 其他版本的 Kindle 把这个 IP 设为 `192.168.2.1`,  如图:
-![](http://7xqhhm.com1.z0.glb.clouddn.com/images/interface.png)
+![](//wil.dog/static/images/interface.png)
 * 通过 `ssh root@192.168.15.244` 连接到 K4, 其他版本 Kindle 通过 `ssh root@192.168.2.2` 连接, 密码通常为 mario
 * 执行 `mntroot rw` 挂载 rootfs 为可写
 * 执行 `cd /etc/kdb.src/yoshi/system/daemon/powerd/`, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同
 * 执行 `vi suspend_levels`, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.
 * 执行 `mkdir /mnt/base-us/weather` 创建文件夹
-![](http://7xqhhm.com1.z0.glb.clouddn.com/images/ssh.png)
+![](//wil.dog/static/images/ssh.png)
 * 在主机上把 `display-weather.sh` 里面的 `URL` 改为你自己主机上 weather.png 的 URL
 * 通过 `scp display-weather.sh root@192.168.15.244:/usr/bin/` 把 `display-weather.sh` 传到 Kindle 上的 `/usr/bin` 目录下
 * 回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:

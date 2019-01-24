@@ -14,7 +14,7 @@
                 <title>一个导出豆瓣数据的线上服务</title>
                 <description>&lt;p&gt;豆瓣的搜索功能实在是太弱了，想在曾经标记过的一大堆东西里找到一个条目只能靠一页一页的翻，想统计个数据更是基本不可能的事，搜索了下网上唯一一个可以导出豆瓣数据的脚本已经是 2014 年的了，早就不能用了，顺便发现有这个需求的人挺多的，不管是数据统计还是备份用途，于是我写了一个可以导出豆瓣数据的线上服务，戳链接即可：&lt;a href=&quot;http://wil.dog/douban&quot;&gt;http://wil.dog/douban&lt;/a&gt;，可以导出如下图格式的 Excel 文件，然后按惯例记录一下开发途中遇到的问题。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/exported.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/exported.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;爬爬爬…爬数据&lt;/h2&gt;
 
@@ -47,7 +47,7 @@
 
 &lt;p&gt;先扔 Repo 地址和效果图：&lt;a href=&quot;https://github.com/Wildog/iOS-10-Steps-Widget&quot;&gt;https://github.com/Wildog/iOS-10-Steps-Widget&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-widget.gif&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/steps-widget.gif&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;ios-10-widget-&quot;&gt;iOS 10 Widget 新特性：折叠/展开&lt;/h2&gt;
 
@@ -77,7 +77,7 @@
 
 &lt;p&gt;如下图设置好这两个值过后就能正常地请求应用授权了：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/healthkit-usage-description.png&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/healthkit-usage-description.png&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -135,7 +135,7 @@
 
 &lt;h2 id=&quot;section-2&quot;&gt;绘制线形图&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/chart-view.png&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/chart-view.png&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -216,7 +216,7 @@
 
 &lt;h2 id=&quot;ios-10-imessage-extension&quot;&gt;iOS 10 iMessage Extension&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-imsg-ext.png&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/steps-imsg-ext.png&quot; alt=&quot;Steps Widget&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;iOS 10 提供的 iMessage 扩展可以生成漂亮的 rich message。把之前 Widget 里写好的 ViewController 拿过来改改就可以直接用，这里记录下信息的生成，使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;MSMessageTemplateLayout&lt;/code&gt; 可以创建带&lt;a href=&quot;https://developer.apple.com/reference/messages/msmessagetemplatelayout&quot;&gt;媒体文件、标题和说明&lt;/a&gt;的布局，创建 &lt;code class=&quot;highlighter-rouge&quot;&gt;NSMessage&lt;/code&gt; 后，设置其布局属性，然后通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;MSMessagesAppViewController&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;activeConversation&lt;/code&gt; 属性获取当前对话并执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;insertMessage:&lt;/code&gt; 来插入信息，整个过程完毕后交给用户添加评论或发送：&lt;/p&gt;
 
@@ -259,13 +259,13 @@
 
 &lt;p&gt;针对第一个问题，分析文件后发现能正常播放的 mp4 文件都是我之前通过 HandBrake 转码过后的 web optimized mp4 文件，如下图所见，此类文件的 metadata(moov) 位于媒体数据(mdat)之前，浏览器请求视频文件后从文件开头开始接收，如果 metadata 在文件开头，浏览器就能正常读取信息并完整地播放视频。而大多数视频的 metadata 都在媒体数据之后，导致浏览器不能正常 streaming。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/moov.jpg&quot; alt=&quot;moov before mdat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/moov.jpg&quot; alt=&quot;moov before mdat&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;第二个问题通过对两个浏览器的请求进行抓包比较得到问题所在：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/chrome-header.png&quot; alt=&quot;chrome&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/chrome-header.png&quot; alt=&quot;chrome&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/safari-header.png&quot; alt=&quot;safari&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/safari-header.png&quot; alt=&quot;safari&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;从图上可以看出 Safari 在请求 mp3 文件之前先发送了一个头部带有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Range: bytes=0-1&lt;/code&gt; 的请求给服务器，如果服务器的响应头部没有对应的 Content-Range 或者响应码不是 206 Partial Content，而是直接回应整个文件，Safari 就会认为这是一个 Live Broadcasting 流，并把 audio.duration 这个 tag 的值设为无限大。&lt;/p&gt;
 
@@ -340,7 +340,7 @@
 
 &lt;p&gt;如此一来就能正常的传输流媒体了：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/streaming.png&quot; alt=&quot;streaming&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/streaming.png&quot; alt=&quot;streaming&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;完整项目见此：&lt;a href=&quot;https://github.com/Wildog/flask-file-server&quot;&gt;https://github.com/Wildog/flask-file-server&lt;/a&gt;&lt;/p&gt;
 
@@ -358,7 +358,7 @@
 
 &lt;h2 id=&quot;exifpy&quot;&gt;EXIF.py&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/exif.jpg&quot; alt=&quot;EXIF&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/exif.jpg&quot; alt=&quot;EXIF&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这是一个用于查看照片信息的 Extension，能显示 EXIF 信息、RGB 直方图和解析后的地理位置，可以触发 Share Sheet 地方都能使用。&lt;/p&gt;
 
@@ -392,7 +392,7 @@
 
 &lt;h2 id=&quot;garfieldpy&quot;&gt;Garfield.py&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/garfield.jpg&quot; alt=&quot;garfield&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/garfield.jpg&quot; alt=&quot;garfield&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;一个用来看每日加菲猫漫画的小脚本，除了显示和保存漫画以外还能查看从 GoComics 上抓取的评论。画 UI 的时候发现虽然有 Auto-Resizing / Flex 功能，但远不及 iOS 的 AutoLayout 来的完善，甚至都没法在同层级的 view 之间建立约束，不过整体代码只有百来行，远比写个真正的 App 轻松多了。&lt;/p&gt;
 
@@ -405,7 +405,7 @@
         <item>
                 <title>Ariafred: 利用 Alfred 管理 Aria2</title>
                 <description>&lt;p&gt;&lt;a href=&quot;https://aria2.github.io&quot;&gt;Aria2&lt;/a&gt; 对于我这种长期使用百度云和迅雷离线的 Mac 用户简直就是救星, 再不用忍受百度云蛋疼的同步盘客户端和万年不更新还死耗资源的迅雷客户端, 找了下 Aria2 基本只有 web 前端, 感觉不如配合 &lt;a href=&quot;https://www.alfredapp.com&quot;&gt;Alfred 2&lt;/a&gt; 来得方便, 趁着周末用 Python 写了个 Alfred Workflow, 支持 Aria2 的大多数操作和后台通知. 截图如下:
-&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/ariafred.gif&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;//wil.dog/static/images/ariafred.gif&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;下载&lt;/h2&gt;
 
@@ -436,7 +436,7 @@
   &lt;li&gt;状态关键词和搜索关键词可搭配使用:&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/filter.png&quot; alt=&quot;filter&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/filter.png&quot; alt=&quot;filter&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -444,7 +444,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/stat.png&quot; alt=&quot;stat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/stat.png&quot; alt=&quot;stat&quot; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;输入关键词 &lt;code class=&quot;highlighter-rouge&quot;&gt;stat&lt;/code&gt; 可查看全局状态&lt;/li&gt;
@@ -468,7 +468,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/bt.png&quot; alt=&quot;BT&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/bt.png&quot; alt=&quot;BT&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;在 .torrent 文件上执行 &lt;a href=&quot;https://www.alfredapp.com/help/features/file-search/#file-actions&quot;&gt;File Action&lt;/a&gt; 后选择 ‘Add BT download to Aria2’&lt;/p&gt;
 
@@ -555,7 +555,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/run.png&quot; alt=&quot;filter&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/run.png&quot; alt=&quot;filter&quot; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;如果连接不上 Aria2, Ariafred 会提示启动 Aria2 或者设置 RPC, 选择启动以尝试启动 Aria2&lt;/li&gt;
@@ -585,7 +585,7 @@
 
         <item>
                 <title>在 Vim-airline 上显示天气</title>
-                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/airline-weather-vim-screenshot.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+                <description>&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/airline-weather-vim-screenshot.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这两天把 Vim 的 Powerline 插件换成了 &lt;a href=&quot;https://github.com/bling/vim-airline&quot;&gt;vim-airline&lt;/a&gt;, 相比 Powerline, vim-airline 更轻量, 完全用 Vimscript 实现, 让我摆脱了 Vim 中的 Powerline 插件在我的 tmux 环境下经常闪烁的问题.&lt;/p&gt;
 
@@ -705,7 +705,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt
 
         <item>
                 <title>把你的旧 Kindle 变成桌面气象站</title>
-                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/kindle.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+                <description>&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/kindle.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;参考 Repo: &lt;a href=&quot;https://github.com/cathay4t/kindle-weather&quot;&gt;https://github.com/cathay4t/kindle-weather&lt;/a&gt;&lt;/p&gt;
 
@@ -749,13 +749,13 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt
   &lt;/li&gt;
   &lt;li&gt;越狱后安装 USB networking, 从&lt;a href=&quot;http://www.mobileread.com/forums/showthread.php?t=88004&quot;&gt;此贴&lt;/a&gt;下载对应 Kindle 的版本, 解压后把文件名结尾为 install.bin 的文件复制到 Kindle 根目录, 然后在 Kindle 设置界面的菜单里选择更新 Kindle.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;断开 Kindle 和电脑的连接&lt;/strong&gt;, 在主界面按键盘键, 输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;;debugOn&lt;/code&gt; 后回车, 接着输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;~usbNetwork&lt;/code&gt; 并回车, 然后把 Kindle 连接到电脑上, 这时候电脑会检测到名为 RNDIS/Ethernet Gadget 的网络接口, K4 用户把这个接口的 IP 地址设为 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.15.201&lt;/code&gt;, 其他版本的 Kindle 把这个 IP 设为 &lt;code class=&quot;highlighter-rouge&quot;&gt;192.168.2.1&lt;/code&gt;,  如图:
-&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/interface.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;//wil.dog/static/images/interface.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh root@192.168.15.244&lt;/code&gt; 连接到 K4, 其他版本 Kindle 通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh root@192.168.2.2&lt;/code&gt; 连接, 密码通常为 mario&lt;/li&gt;
   &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;mntroot rw&lt;/code&gt; 挂载 rootfs 为可写&lt;/li&gt;
   &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;cd /etc/kdb.src/yoshi/system/daemon/powerd/&lt;/code&gt;, 进入 powerd 文件夹, 路径中的 yoshi 不是固定的, 不同版本的 Kindle 这个路径不同&lt;/li&gt;
   &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;vi suspend_levels&lt;/code&gt;, 查看 suspend_levels, 把最后一行的数字改为 1152, 表示可在睡眠模式下执行 crontab 任务.&lt;/li&gt;
   &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;mkdir /mnt/base-us/weather&lt;/code&gt; 创建文件夹
-&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;//wil.dog/static/images/ssh.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;在主机上把 &lt;code class=&quot;highlighter-rouge&quot;&gt;display-weather.sh&lt;/code&gt; 里面的 &lt;code class=&quot;highlighter-rouge&quot;&gt;URL&lt;/code&gt; 改为你自己主机上 weather.png 的 URL&lt;/li&gt;
   &lt;li&gt;通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;scp display-weather.sh root@192.168.15.244:/usr/bin/&lt;/code&gt; 把 &lt;code class=&quot;highlighter-rouge&quot;&gt;display-weather.sh&lt;/code&gt; 传到 Kindle 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/bin&lt;/code&gt; 目录下&lt;/li&gt;
   &lt;li&gt;回到 Kindle 的 shell, 添加 crontab 任务, 在每天6点到22点期间每小时获取一次天气图片:&lt;/li&gt;
@@ -781,7 +781,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt
 
 &lt;h2 id=&quot;section&quot;&gt;神经网络模型&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-model.png&quot; alt=&quot;模型简化图&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/nn-model.png&quot; alt=&quot;模型简化图&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;考虑到计算速度，我只建立了一个简单的三层 BP 神经网络模型作为分类器来识别单个字符，模型简化图如上。输入层是由 20x20 的图像得到的 1x400 的特征向量，隐藏层共 80 个隐藏单元，激活函数采用 sigmoid function，输出层是一个 1x17 的向量，可以用来描述 17 种识别结果：&lt;code class=&quot;highlighter-rouge&quot;&gt;数字 0-9 和 +, -, ⨯, ÷, ^, (, )&lt;/code&gt;。&lt;/p&gt;
 
@@ -795,8 +795,8 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt
     &lt;p&gt;不管是用作训练数据的图像还是最终需要识别的图像都需要做预处理，把图片上表达式的每个字符分离成单独的图像再依次送至分类器识别，预处理也是用 Matlab 完成，具体过程如下：&lt;/p&gt;
 
     &lt;ol&gt;
-      &lt;li&gt;图像转为灰度图像后反色处理，并进行中值滤波以平滑图像，然后进行整体&lt;a href=&quot;https://github.com/Wildog/handwritten-expr-evaluator/blob/master/xylimit.m&quot;&gt;边界限定&lt;/a&gt;，截取表达式区域图像。&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-1.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
-      &lt;li&gt;横向提取并拼接有效行，纵向提取并分割有效字符。提取每个分割区域为独⽴图像，进行边界限定，计算灰度阈值并转为⼆值图像，最后大小归一化图像：填充至正方形并统一为 20x20 的图像。&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-2.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+      &lt;li&gt;图像转为灰度图像后反色处理，并进行中值滤波以平滑图像，然后进行整体&lt;a href=&quot;https://github.com/Wildog/handwritten-expr-evaluator/blob/master/xylimit.m&quot;&gt;边界限定&lt;/a&gt;，截取表达式区域图像。&lt;img src=&quot;//wil.dog/static/images/img-preprocess-1.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+      &lt;li&gt;横向提取并拼接有效行，纵向提取并分割有效字符。提取每个分割区域为独⽴图像，进行边界限定，计算灰度阈值并转为⼆值图像，最后大小归一化图像：填充至正方形并统一为 20x20 的图像。&lt;img src=&quot;//wil.dog/static/images/img-preprocess-2.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
     &lt;/ol&gt;
 
     &lt;p&gt;预处理部分还需要注意的主要问题是过滤噪音，除了平滑图像和边界限定以外，还要剔除掉高度过小的行、宽度过小的列以及面积过小的区域。完整代码见这里：&lt;a href=&quot;https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m&quot;&gt;https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m&lt;/a&gt;&lt;/p&gt;
@@ -878,7 +878,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt
 
 &lt;p&gt;得到最终的权重矩阵后，针对预处理后的每个字符图像的像素矩阵计算其输出层就可以识别出对应的字符了，依次识别每个字符最终得到整个表达式，剩下的计算表达式的方法太多了不再多提，晒下结果图：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-result.png&quot; alt=&quot;result&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/nn-result.png&quot; alt=&quot;result&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;完整项目地址：&lt;a href=&quot;https://github.com/Wildog/handwritten-expr-evaluator&quot;&gt;https://github.com/Wildog/handwritten-expr-evaluator&lt;/a&gt;&lt;/p&gt;
 
@@ -914,8 +914,8 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt
 &lt;p&gt;按 F4 后自己改掉 regex 就可以了.&lt;/p&gt;
 
 &lt;p&gt;示例:&lt;br /&gt;
-&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;//wil.dog/static/images/vim-1.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;//wil.dog/static/images/vim-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 </description>
                 <link>http://wil.dog/2014/10/21/copy-and-paste-multiple-search-results-in-vim/</link>
                 <guid>http://wil.dog/2014/10/21/copy-and-paste-multiple-search-results-in-vim</guid>
@@ -924,7 +924,7 @@ Plugin &lt;span class=&quot;s1&quot;&gt;'Wildog/airline-weather.vim'&lt;/span&gt
 
         <item>
                 <title>用 Arduino + Processing 识别节拍</title>
-                <description>&lt;p&gt;&lt;img src=&quot;http://7xqhhm.com1.z0.glb.clouddn.com/images/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+                <description>&lt;p&gt;&lt;img src=&quot;//wil.dog/static/images/arduino.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;一个简单的 Arduino + Processing 工程，用 Minim 库中的 BeatDetect 实时读取 Buffer 中的数据并采集音频频率识别 Kick、Snare 和 Hi-Hat 三种鼓点，通过 Arduino 的 Firmata 库驱动 LED 发光。&lt;/p&gt;
 

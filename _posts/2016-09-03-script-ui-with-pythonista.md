@@ -11,7 +11,7 @@ menu: true
 
 ## EXIF.py
 
-![EXIF](http://7xqhhm.com1.z0.glb.clouddn.com/images/exif.jpg)
+![EXIF](//wil.dog/static/images/exif.jpg)
 
 这是一个用于查看照片信息的 Extension，能显示 EXIF 信息、RGB 直方图和解析后的地理位置，可以触发 Share Sheet 地方都能使用。
 
@@ -49,7 +49,7 @@ if exif.get('Orientation'):
 
 ## Garfield.py
 
-![garfield](http://7xqhhm.com1.z0.glb.clouddn.com/images/garfield.jpg)
+![garfield](//wil.dog/static/images/garfield.jpg)
 
 一个用来看每日加菲猫漫画的小脚本，除了显示和保存漫画以外还能查看从 GoComics 上抓取的评论。画 UI 的时候发现虽然有 Auto-Resizing / Flex 功能，但远不及 iOS 的 AutoLayout 来的完善，甚至都没法在同层级的 view 之间建立约束，不过整体代码只有百来行，远比写个真正的 App 轻松多了。
 

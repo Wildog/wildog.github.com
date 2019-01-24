@@ -9,7 +9,7 @@ menu: true
 
 ## 神经网络模型
 
-![模型简化图](http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-model.png)
+![模型简化图](//wil.dog/static/images/nn-model.png)
 
 考虑到计算速度，我只建立了一个简单的三层 BP 神经网络模型作为分类器来识别单个字符，模型简化图如上。输入层是由 20x20 的图像得到的 1x400 的特征向量，隐藏层共 80 个隐藏单元，激活函数采用 sigmoid function，输出层是一个 1x17 的向量，可以用来描述 17 种识别结果：`数字 0-9 和 +, -, ⨯, ÷, ^, (, )`。
 
@@ -19,8 +19,8 @@ menu: true
 
 * 不管是用作训练数据的图像还是最终需要识别的图像都需要做预处理，把图片上表达式的每个字符分离成单独的图像再依次送至分类器识别，预处理也是用 Matlab 完成，具体过程如下：
 
-    1. 图像转为灰度图像后反色处理，并进行中值滤波以平滑图像，然后进行整体[边界限定](https://github.com/Wildog/handwritten-expr-evaluator/blob/master/xylimit.m)，截取表达式区域图像。![](http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-1.png)
-    2. 横向提取并拼接有效行，纵向提取并分割有效字符。提取每个分割区域为独⽴图像，进行边界限定，计算灰度阈值并转为⼆值图像，最后大小归一化图像：填充至正方形并统一为 20x20 的图像。![](http://7xqhhm.com1.z0.glb.clouddn.com/images/img-preprocess-2.png)
+    1. 图像转为灰度图像后反色处理，并进行中值滤波以平滑图像，然后进行整体[边界限定](https://github.com/Wildog/handwritten-expr-evaluator/blob/master/xylimit.m)，截取表达式区域图像。![](//wil.dog/static/images/img-preprocess-1.png)
+    2. 横向提取并拼接有效行，纵向提取并分割有效字符。提取每个分割区域为独⽴图像，进行边界限定，计算灰度阈值并转为⼆值图像，最后大小归一化图像：填充至正方形并统一为 20x20 的图像。![](//wil.dog/static/images/img-preprocess-2.png)
     
     预处理部分还需要注意的主要问题是过滤噪音，除了平滑图像和边界限定以外，还要剔除掉高度过小的行、宽度过小的列以及面积过小的区域。完整代码见这里：[https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m](https://github.com/Wildog/handwritten-expr-evaluator/blob/master/getPicChar.m)
 
@@ -99,7 +99,7 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 得到最终的权重矩阵后，针对预处理后的每个字符图像的像素矩阵计算其输出层就可以识别出对应的字符了，依次识别每个字符最终得到整个表达式，剩下的计算表达式的方法太多了不再多提，晒下结果图：
 
-![result](http://7xqhhm.com1.z0.glb.clouddn.com/images/nn-result.png)
+![result](//wil.dog/static/images/nn-result.png)
 
 完整项目地址：[https://github.com/Wildog/handwritten-expr-evaluator](https://github.com/Wildog/handwritten-expr-evaluator)
 

@@ -13,13 +13,13 @@ menu: true
 
 针对第一个问题，分析文件后发现能正常播放的 mp4 文件都是我之前通过 HandBrake 转码过后的 web optimized mp4 文件，如下图所见，此类文件的 metadata(moov) 位于媒体数据(mdat)之前，浏览器请求视频文件后从文件开头开始接收，如果 metadata 在文件开头，浏览器就能正常读取信息并完整地播放视频。而大多数视频的 metadata 都在媒体数据之后，导致浏览器不能正常 streaming。
 
-![moov before mdat](http://7xqhhm.com1.z0.glb.clouddn.com/images/moov.jpg)
+![moov before mdat](//wil.dog/static/images/moov.jpg)
 
 第二个问题通过对两个浏览器的请求进行抓包比较得到问题所在：
 
-![chrome](http://7xqhhm.com1.z0.glb.clouddn.com/images/chrome-header.png)
+![chrome](//wil.dog/static/images/chrome-header.png)
 
-![safari](http://7xqhhm.com1.z0.glb.clouddn.com/images/safari-header.png)
+![safari](//wil.dog/static/images/safari-header.png)
 
 从图上可以看出 Safari 在请求 mp3 文件之前先发送了一个头部带有 `Range: bytes=0-1` 的请求给服务器，如果服务器的响应头部没有对应的 Content-Range 或者响应码不是 206 Partial Content，而是直接回应整个文件，Safari 就会认为这是一个 Live Broadcasting 流，并把 audio.duration 这个 tag 的值设为无限大。
 
@@ -94,7 +94,7 @@ def v_get_video_file(p=''):
 
 如此一来就能正常的传输流媒体了：
 
-![streaming](http://7xqhhm.com1.z0.glb.clouddn.com/images/streaming.png)
+![streaming](//wil.dog/static/images/streaming.png)
 
 完整项目见此：[https://github.com/Wildog/flask-file-server](https://github.com/Wildog/flask-file-server)
 

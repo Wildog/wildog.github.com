@@ -16,7 +16,7 @@ tags: ["Android", "Python", "终端", "sl4a"]
 6. 下载这里的 [python 文件](http://pan.baidu.com/share/link?shareid=2088068197&uk=3103986771) 文件复制到 `/system/bin/` 下
 7. 运行终端 → 首选项 → 命令行, 更改 `/system/bin/sh` 为 `/system/bin/bash`
 
-    ![setting shell](http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-setting-shell.jpg)   
+    ![setting shell](//wil.dog/static/images/130619-setting-shell.jpg)   
 8. 初始命令, 加入:
         
 {% highlight bash %}
@@ -30,8 +30,8 @@ export LD_LIBRARY_PATH=/data/data/com.googlecode.pythonforandroid/files/python/l
 #路径根据实际情况有可能需要更改
 {% endhighlight %}
 
-![](http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-export-env.jpg)   
+![](//wil.dog/static/images/130619-export-env.jpg)   
     
 9.启终端即可运行<br>
     
-![](http://7xqhhm.com1.z0.glb.clouddn.com/images/130619-run.jpg)
+![](//wil.dog/static/images/130619-run.jpg)

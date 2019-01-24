@@ -11,7 +11,7 @@ iOS 10 最不能让我接受的改版就是 Health.app，应用层级变多，�
 
 先扔 Repo 地址和效果图：[https://github.com/Wildog/iOS-10-Steps-Widget](https://github.com/Wildog/iOS-10-Steps-Widget)
 
-![Steps Widget](http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-widget.gif)
+![Steps Widget](//wil.dog/static/images/steps-widget.gif)
 
 ## iOS 10 Widget 新特性：折叠/展开
 
@@ -37,7 +37,7 @@ iOS 10 中增加了新的隐私访问控制，需要在 info.plist 中设置 `NS
     
 如下图设置好这两个值过后就能正常地请求应用授权了：
 
-![Steps Widget](http://7xqhhm.com1.z0.glb.clouddn.com/images/healthkit-usage-description.png)
+![Steps Widget](//wil.dog/static/images/healthkit-usage-description.png)
 
 * ### 异步请求带来的问题
 
@@ -89,7 +89,7 @@ NSArray *arrayForData = [userDefaults arrayForKey:@"snapshot"];
 
 ## 绘制线形图
 
-![Steps Widget](http://7xqhhm.com1.z0.glb.clouddn.com/images/chart-view.png)
+![Steps Widget](//wil.dog/static/images/chart-view.png)
 
 * ### 绘制渐变
 
@@ -166,7 +166,7 @@ gradientLayer.mask = chartLineShape;
 
 ## iOS 10 iMessage Extension
 
-![Steps Widget](http://7xqhhm.com1.z0.glb.clouddn.com/images/steps-imsg-ext.png)
+![Steps Widget](//wil.dog/static/images/steps-imsg-ext.png)
 
 iOS 10 提供的 iMessage 扩展可以生成漂亮的 rich message。把之前 Widget 里写好的 ViewController 拿过来改改就可以直接用，这里记录下信息的生成，使用 `MSMessageTemplateLayout` 可以创建带[媒体文件、标题和说明](https://developer.apple.com/reference/messages/msmessagetemplatelayout)的布局，创建 `NSMessage` 后，设置其布局属性，然后通过 `MSMessagesAppViewController` 的 `activeConversation` 属性获取当前对话并执行 `insertMessage:` 来插入信息，整个过程完毕后交给用户添加评论或发送：
 

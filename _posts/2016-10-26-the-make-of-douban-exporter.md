@@ -7,7 +7,7 @@ menu: true
 
 豆瓣的搜索功能实在是太弱了，想在曾经标记过的一大堆东西里找到一个条目只能靠一页一页的翻，想统计个数据更是基本不可能的事，搜索了下网上唯一一个可以导出豆瓣数据的脚本已经是 2014 年的了，早就不能用了，顺便发现有这个需求的人挺多的，不管是数据统计还是备份用途，于是我写了一个可以导出豆瓣数据的线上服务，戳链接即可：[http://wil.dog/douban](http://wil.dog/douban)，可以导出如下图格式的 Excel 文件，然后按惯例记录一下开发途中遇到的问题。
 
-![](http://7xqhhm.com1.z0.glb.clouddn.com/images/exported.png)
+![](//wil.dog/static/images/exported.png)
 
 ## 爬爬爬...爬数据
 
