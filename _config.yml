@@ -28,7 +28,7 @@ author :
 #
 production_url : http://wil.dog
 
-cdn_url : http://7xqhhm.com1.z0.glb.clouddn.com
+cdn_url : https://wil.dog/static
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
